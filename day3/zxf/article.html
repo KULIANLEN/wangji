@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="js/articles.js"></script>
+		<style>
+			@media only screen and (min-width: 0px){
+				body{
+					background-color: #F7F7F7;
+				}
+				#main{
+					width: 90vw;
+					display: flex;
+					flex-direction: column;
+					margin-top: 1em;
+				}
+				#container{
+					display: flex;flex-direction: column;width: 100vw;align-items: center;background-color: #F7F7F7;
+				}
+				.text_part{
+					padding: 1em;
+					font-size: 30px;
+					text-align: justify;
+				}
+				.pic{
+					width : 50vw;
+					box-shadow: 10px 10px 3px#70829E;
+				}
+				.pic_box{
+					align-self: center;
+					margin-top: 1em;
+					margin-bottom: 1em;
+				}
+				#title{
+					font-size: 60px;
+					font-weight: bold;
+					word-wrap: break-word;
+					width:90vw;
+					margin-top: 2vh;
+				}
+				#src-container{
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					margin-top: 1em;
+				}
+				#src{
+					margin-left: 2em;
+					color: #70829E;
+				}
+				#author{
+					margin-left: 2em;
+					color: #70829E;
+				}
+			}
+			@media only screen and (min-width: 1000px){
+				body{
+					background-color: #F7F7F7;
+				}
+				#main{
+					width: 90vw;
+					display: flex;
+					flex-direction: column;
+				}
+				#container{
+					display: flex;flex-direction: column;width: 90vw;align-items: center;
+					margin:60px;
+				}
+				.text_part{
+					padding: 1em;
+					font-size: 25px;
+					text-align: justify;
+				}
+				.pic{
+					width : 30vw;
+					display: flex;
+				}
+				.pic_box{
+					align-self: center;
+					margin-top: 1em;
+					margin-bottom: 1em;
+					display: flex;
+					width: 70vw;
+					flex-direction: row;
+					justify-content: space-around;
+				}
+				#title{
+					font-size: 40px;
+					font-weight: bold;
+					word-wrap: break-word;
+					width:90vw;
+					display: flex;
+					justify-content: center;
+					margin-top: 2vh;
+				}
+				#src-container{
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					margin-top: 1em;
+				}
+				#src{
+					margin-left: 2em;
+					color: #70829E;
+				}
+				#author{
+					margin-left: 2em;
+					color: #70829E;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="container">
+			<!-- 标题 -->
+			<div id = "title">
+				
+			</div>
+			
+			<!-- 来源 -->
+			<div id="src-container">
+				<!-- 时间 -->
+				<div id = 'time' style="color: #70829E;">
+					
+				</div>
+				<!-- 学院 -->
+				<div id = 'src'>
+					
+				</div>
+				<!-- 作者 -->
+				<div id = 'author'>
+					
+				</div>
+			</div>
+			
+			<!-- 文章主体 -->
+			<div id = "main">
+				
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var uid = 9;
+			let pars = window.location.href.split("?t=")
+			if(pars.length){
+				uid = pars[1]
+			}
+			var article = {};
+			for(let i = 0;i<articles.length;i++){
+				if(articles[i]["uid"] == uid){
+					article = articles[i];
+					break;
+				}
+			}
+			if(~article.title){
+				article = articles[0]
+			}
+			
+			$("#title").text(article["title"]);
+			$("#time").text(article["time"]);
+			$("#src").text(article["src"]);
+			$("#author").text(article["author"]);
+			
+			let txt = ''
+			var div = null;
+			for(let i = 0;i<article.parts.length;i++){
+				if(article.parts[i].t == "p"){
+					txt = '<div class="text_part">'+ "\xa0\xa0\xa0\xa0\xa0\xa0" + article.parts[i].v + '</div>';
+					$("#main").append(txt);
+					div = null;
+				} else if (article.parts[i].t == "i"){
+					txt = '<img src="' + article.parts[i].v + '"class=\"pic\">';
+					if(div == null){
+					var div = document.createElement("div");
+					div.className = "pic_box";
+					}
+					div.innerHTML+=txt;
+					$("#main").append(div);
+				}
+			}
+		</script>
+	</body>
+</html>
