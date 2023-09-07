@@ -96,7 +96,7 @@
 <script>
 	var newsList = document.getElementById("news_list");
 
-	filesInIndexFile("test/a.txt")
+	fetchIndexes("test/a.txt")
 	.then((arr)=>{
 		arr.forEach((e)=>{
 			var anchor = document.createElement("a");

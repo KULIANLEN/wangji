@@ -1,2 +1,2 @@
-asdasd	114-514	scripts/test.txt
+asdasd	114-514	scripts/test.html
 123123	1919-810	scripts/test2.txt

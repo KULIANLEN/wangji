@@ -1,5 +1,5 @@
 "use strict"
-function readText(url){
+function fetchText(url){
 	return fetch(url)
 	  .then((response) => {
 	    if (!response.ok) {
@@ -17,8 +17,8 @@ function parseNodeText(text, className = null){
 	}
 	return frag;
 }
-function getPassageFrag(path, className = null){
-	return readText(path).then((text)=>{
+function fetchPassageFrag(path, className = null){
+	return fetchText(path).then((text)=>{
 		return new Promise((resolve)=>{
 			resolve(parseNodeText(text, className));
 		});
@@ -32,8 +32,8 @@ function getFilesByIndexString(indexStr){
 	}
 	return indexes;
 }
-function filesInIndexFile(path){
-	return readText(path).
+function fetchIndexes(path){
+	return fetchText(path).
 	then((text)=>{
 		return new Promise((resolve)=>{
 			resolve(getFilesByIndexString(text));
