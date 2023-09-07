@@ -51,7 +51,7 @@
 		<a><img src="./toutiao.png" alt="" style="width:30px;height: 30px;"</img>军训要闻</a>
 		<a class="float-right" href="">more &gt;&gt;</a>
 		</dt>
-		<dd class="card-body"><ol>
+		<dd class="card-body"><ol id="news_list">
 		<li class="text-truncate"><a href="index.html" target="_blank" title="链接1">链接1</a><span class="listDate">09-06</span></li>
 		</ol></dd>
 	</dl>
@@ -93,6 +93,26 @@
 </section>
 </script>
 <script src="scripts/passageloader.js"></script>
+<script>
+	var newsList = document.getElementById("news_list");
+
+	filesInIndexFile("test/a.txt")
+	.then((arr)=>{
+		arr.forEach((e)=>{
+			var anchor = document.createElement("a");
+			anchor.innerHTML = e.title;
+			anchor.href = "paragraph.html" + "?path=" + e.path;
+			var dateSpan = document.createElement("span");
+			dateSpan.className = "listDate";
+			dateSpan.innerHTML = e.date;
+			var listItem = document.createElement("li");
+			listItem.className = "text-truncate";
+			listItem.appendChild(anchor);
+			listItem.appendChild(dateSpan);
+			newsList.appendChild(listItem);
+		});
+	});
+</script>
 <footer class="py_40 mt_20">
 <div id="footerInner">
 <div class="container text-center fz_12">
