@@ -153,7 +153,7 @@
 		display: flex;
 		justify-content: space-around;
 		height: 6vh;
-		background-color: #8f8f94; 
+		background-color: black; 
 		position:fixed;
 		bottom:0px;
 		width:100vw;
@@ -183,6 +183,7 @@
 	.text-area {
 		display: flex;
 		justify-content: center;
+		color:white;
 	}
 
 	.title {

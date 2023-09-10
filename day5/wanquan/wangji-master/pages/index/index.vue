@@ -84,9 +84,6 @@
 		onLoad() {
 			console.log(questionAndAnswers)
 			this.questionAndAnswers = questionAndAnswers
-			uni.setNavigationBarTitle({
-			    title: 'bilibili'
-			});
 		},
 		created() {
 			console.log(questionAndAnswers)
