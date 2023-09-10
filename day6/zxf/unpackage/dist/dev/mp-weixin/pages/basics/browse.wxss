@@ -1,0 +1,48 @@
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5vw;
+}
+.image-wrap{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+.extra{
+    height:100vh;
+}
+.comments{
+    overflow: scroll;
+    height:1vh;
+}
+.comments::-webkit-scrollbar{
+    display:none;
+}
+.relative{
+    overflow: scroll;
+    height:1vh
+}
+.relative::-webkit-scrollbar{
+    display:none;
+}
+.rel-vid{
+    display: flex;
+    flex-direction: row;
+    height: 13vh;
+    padding: 1vh;
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+}
+.rel-vid image{
+    width: 15vh;
+    height: 10vh;
+}
+.comments{
+    border: 1px;
+    border-style: solid;
+    border-color: gray;
+}
+
