@@ -11,7 +11,7 @@
 		<view class="content">
 			
 			<view class="submo">
-				<view class="item" v-for="(item,index) in questionAndAnswers" :key="index">
+				<view @click="jump(index)" class="item" v-for="(item,index) in questionAndAnswers" :key="index">
 					<image class="logo" :src="convert(index)"></image><view class="qustion">{{item.question}}</view>
 					<view class="author">{{item.answers[0].author}}</view>
 				</view>
@@ -68,6 +68,12 @@
 			convert(index){
 				index = index%4+1
 				return require('../../static/image/img'+ index +'.png')
+			},
+			jump(idx){
+				console.log("aaa")
+				uni.navigateTo({
+					url:"/pages/basics/browse?idx="+idx
+				})
 			}
 		}
 	}
