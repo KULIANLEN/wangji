@@ -173,14 +173,23 @@ int main()
     ));
     UINT64 first_id = 6872578;
     sq_para book_list;
-
-    for (int i = 0; i < 30; ++i) {
+    int book_count = 250;
+    for (int i = 0; i < book_count; ++i) {
         auto res = cli.Get(std::string() + "https://book.douban.com/subject/" + std::to_string(first_id + i) + "/", headers);
         auto book_info = new cl_para();
         std::string text = res->body;
         {
             size_t headLength = sizeof("<span property=\"v:itemreviewed\">") - 1;
-            size_t idx = text.find("<span property=\"v:itemreviewed\">");
+            size_t idx = text.find("<h1>");
+            if (idx == -1) {
+                ++book_count;
+                continue;
+            }
+            idx = text.find("<span property=\"v:itemreviewed\">", idx);
+            if (idx == -1) {
+                ++book_count;
+                continue;
+            }
             size_t eidx = text.find("</span>", idx);
             std::string t = text.substr(idx + headLength, eidx - idx - headLength);
             do_some_weird_transformation(t);
@@ -188,7 +197,7 @@ int main()
             book_info->push(new kv_pair(new jstr("book_name"), new jstr(t)));
         }
         {
-            size_t headLength = sizeof("<div class=\"intro\">");
+            size_t headLength = sizeof("<div class=\"intro\">") - 1;
             size_t idx = text.find("<div class=\"intro\">");
             if (idx != -1) {
                 size_t eidx = text.find("</div>", idx);
