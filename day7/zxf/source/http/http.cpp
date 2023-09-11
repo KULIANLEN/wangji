@@ -151,6 +151,16 @@ std::string Local2UTF8(std::string in) {
     delete[] sp_buf;
     return ret;
 }
+void do_some_weird_transformation(std::string& str) {
+    size_t idx = 0;
+    while ((idx = str.find("&#", idx)) != -1) {
+        size_t n_end = str.find(';', idx);
+        char asc_s = std::atoi(str.substr(idx + 2, n_end - idx - 2).c_str());
+        auto nstr = str.substr(0, idx);
+        nstr.push_back(asc_s);
+        str = nstr.append(str.substr(n_end + 1, str.length() - n_end - 1));
+    }
+}
 int main()
 {
     std::string path = "book.douban.com";
@@ -173,6 +183,7 @@ int main()
             size_t idx = text.find("<span property=\"v:itemreviewed\">");
             size_t eidx = text.find("</span>", idx);
             std::string t = text.substr(idx + headLength, eidx - idx - headLength);
+            do_some_weird_transformation(t);
             std::cout << UTF82Local(t) << std::endl;
             book_info->push(new kv_pair(new jstr("book_name"), new jstr(t)));
         }
@@ -183,6 +194,7 @@ int main()
                 size_t eidx = text.find("</div>", idx);
                 std::string ps = text.substr(idx + headLength, eidx - idx - headLength);
                 auto pe = *para_each(std::string(ps)).begin();
+                do_some_weird_transformation(pe);
                 std::cout << UTF82Local(pe) << std::endl;
                 book_info->push(new kv_pair(new jstr("introduction"), new jstr(pe)));
             }
