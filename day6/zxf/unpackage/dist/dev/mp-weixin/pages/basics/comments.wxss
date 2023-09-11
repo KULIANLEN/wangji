@@ -1,0 +1,24 @@
+
+.comment{
+    margin:5vw;
+}
+.comment-author{
+    margin-left: 5vw;
+    font-size: 20px;
+    margin-bottom: 3vw;
+}
+.comment-adder{
+    margin: 5vw;
+    padding-bottom: 5vw;
+}
+.comment-adder view{
+    padding: 2vw;
+    border: 1px;
+    border-color: grey;
+    border-style: solid;
+    background-color: azure;
+}
+.comment-adder button{
+    margin-top:2vw;
+}
+

@@ -8,17 +8,45 @@
 			</view>
 		</view> -->
 		
+		<!-- 顶部切换 -->
+		
+		<view>
+			<swiper class="swiper" circular indicator-dots autoplay interval=2000>
+				<swiper-item>
+					<image class="imag" src="../../static/logo.png"></image>
+				</swiper-item>
+				
+				<swiper-item>
+					<image class="imag" src="../../static/zhihu/tabbar/about.png"></image>
+				</swiper-item>
+				
+				<swiper-item>
+					<image class="imag" src="../../static/zhihu/tabbar/basics.png"></image>
+				</swiper-item>
+			</swiper>
+			
+		</view>
+		
+		<!-- 正文 -->
+		
 		<view class="content">
 			
 			<view class="submo">
+<<<<<<< HEAD
 				<view @click="jump(index)" class="item" v-for="(item,index) in questionAndAnswers" :key="index">
 					<image class="logo" :src="convert(index)"></image><view class="qustion">{{item.question}}</view>
+=======
+				<view class="item" @click="click(index)" v-for="(item,index) in questionAndAnswers" :key="index">
+					<image class="logo" :src="convert(index)"></image>
+					<view class="qustion">{{item.question}}</view>
+>>>>>>> f99515f990cd9f71535eb5e555bf0bc64cefaa17
 					<view class="author">{{item.answers[0].author}}</view>
 				</view>
 			</view>
-			
-			
 		</view>
+		
+		<!-- 底部菜单 -->
+		
 		<view class="tabbar">
 			<view class="row-container">
 				<image v-if="curPage==1" class="icon" @click="clickIcon(1)" src="../../static/zhihu/tabbar/index_blue.svg"></image>
@@ -50,7 +78,9 @@
 <script>
 	import questionAndAnswers from '../../data/zhihu/qa.json'
 	export default {
+		name:'zhihu',
 		data() {
+			
 			return {
 				questionAndAnswers:[],
 				curPage:0
@@ -59,8 +89,22 @@
 		onLoad() {
 			console.log(questionAndAnswers)
 			this.questionAndAnswers = questionAndAnswers
+			uni.setNavigationBarTitle({
+			    title: 'bilibili'
+			});
+		},
+		created() {
+			console.log(questionAndAnswers)
+			this.questionAndAnswers = questionAndAnswers
 		},
 		methods: {
+			
+			click(index){
+				console.log('zhihu',index)
+				uni.navigateTo({
+					url: '/pages/zhihu/browse?index='+index, // 参数名和值
+				});
+			},
 			clickIcon(index){
 				console.log(index)
 				this.curPage = index;
@@ -69,18 +113,32 @@
 				index = index%4+1
 				return require('../../static/image/img'+ index +'.png')
 			},
+<<<<<<< HEAD
 			jump(idx){
 				console.log("aaa")
 				uni.navigateTo({
 					url:"/pages/basics/browse?idx="+idx
 				})
 			}
+=======
+>>>>>>> f99515f990cd9f71535eb5e555bf0bc64cefaa17
 		}
 	}
 	
 </script>
 
 <style>
+	.imag{
+		display:flex;
+		width:150px;
+		height:150px;
+		margin: auto;
+	}
+	.swiper{
+		display: flex;
+		width: 100vw;
+		height: 200px;
+	}
 	.author{
 		font-weight: 10;
 		font-size: 14px;
@@ -102,6 +160,7 @@
 		align-items: center;
 		justify-content: center;
 		height: 74vh;
+		width:100vw;
 		flex-wrap:wrap;
 	}
 	.tabbar{
