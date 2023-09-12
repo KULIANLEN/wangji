@@ -1,0 +1,39 @@
+任务（所有人完成）：爬取以下书目的书名和作品简介，以示例格式存取为json文件
+In The Apple, 
+神童心算, 
+Creating HTML5 Animations with Flash and Wallaby, 
+桐城派与中国文章理论, 
+文心之道：汉语写作论说, 
+デザイン対話 再現か 表現か, 
+上海市新录用公务员初任培训教材, 
+Why Has Japan 'Succeeded'?, 
+千变万化的九连环, 
+ROMES06 誘惑の女神, 
+introduction to the philosophy of social research, 
+天を越える旅人, 
+Italo Calvino, 
+月刊NEO Kelly, 
+我们曾经相爱, 
+元史新讲（1-5）, 
+小说与电影中的叙事, 
+油画人体艺术大展作品集, 
+1986电影年历缩样, 
+中国画小辑, 
+美术资料15, 
+A New and Complete Illustration of the Celestial Science of Astrology, 
+Body against Body, 
+last night on earth, 
+金质版毛澤東诗词, 
+Maya Lin, 
+西方艺术史图解辞典, 
+中国火花艺术, 
+中国版画史图录, 
+全国美术作品展览会选辑
+
+补充：
+1.有的书无简介，爬取时可能会出错，若无简介，简介处写“暂无简介”；有的书简介有多段，文件中多段间可以直接相连，不需要换行或加“\n”
+2.要求内容完成后仍有时间，爬取内容添加一项：作者简介
+3.页面简介出现“（展开全部）”的不要求爬完，做完上面的有时间就研究一下
+
+
+拓展任务（能力强的同学可以加购）：爬取个人工作台任意数据
