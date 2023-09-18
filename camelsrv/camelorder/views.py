@@ -6,6 +6,9 @@ from .members import members as order_queries
 from common.common import *
 from user.common import *
 import json
+import hashlib
+import base64
+import time
 # Create your views here.
 def query(req, id):
     return query_base(req, id, order_queries, camel_order.objects, "order")
@@ -57,12 +60,17 @@ def start_cp(req):
             return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only start cp codes with orders on status 0.")
         if order.owner != user:
             return format_response(-1, f"Order {order.id} doesn't belong to user {user.id}.")
+        
+        ic = cp_inv_code()
+        gen = lambda org : base64.b32encode(hashlib.md5(org.encode()).hexdigest().encode()).decode()[0:6]
+        ic.code = gen(str(time.time))
+        while cp_inv_code.objects.filter(code = ic.code).count() > 0 :
+            ic.code = gen(ic.code + str(time.time))
         order.status = 1
         order.save()
-        ic = cp_inv_code()
         ic.order = order
         ic.save()
-        return format_response(1, "ok", ic.id) 
+        return format_response(1, "ok", ic.code) 
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
 def submit(req):

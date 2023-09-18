@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('query/<int:id>/<str:member_name>/', views.query_member),
     path('query/<int:id>/', views.query),
+    path('gacha5/', views.gacha5),
 ]

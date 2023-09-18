@@ -126,9 +126,9 @@ order_id | 364364 | int | 是 | 需要创建邀请码的订单id
 
 #### 成功响应示例
 ```javascript
-{"code":1, "msg":"ok", "dat": 364364}
+{"code":1, "msg":"ok", "dat": "52YJSP"}
 ```
-注: dat的值为邀请码的id
+注: dat的值为邀请码
 
 #### 失败响应示例
 ```javascript

@@ -1,23 +1,24 @@
 <html>
     <body>
         <script>
-
-var xmlHttp = new XMLHttpRequest;
-xmlHttp.open('POST', '/order/start_cp/');
-xmlHttp.setRequestHeader('content-type', 'application/json');
-xmlHttp.setRequestHeader('token', '701558c38f34c3e08e0ab305c84ecy0b');
-let obj = {
-	user_id : "40",
-    order_id : 4
+function post(url, obj){
+    var xmlHttp = new XMLHttpRequest;
+    xmlHttp.open('POST', url);
+    xmlHttp.setRequestHeader('content-type', 'application/json');
+    xmlHttp.setRequestHeader('token', '701558c38f34c3e08e0ab305c84ecy0b');
+    var stringData = JSON.stringify(obj);
+    xmlHttp.send(stringData);
+    xmlHttp.onreadystatechange = function() {
+        //complete
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            console.log(xmlHttp.responseText);
+        }
+    }
 }
-var stringData = JSON.stringify(obj);
-xmlHttp.send(stringData);
-xmlHttp.onreadystatechange = function() {
-//complete
-if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-	document.write(xmlHttp.responseText);
-}
-}
+post('/order/start_cp/', {
+    "user_id" : 114,
+    "order_id" : 2
+})
         </script>
     </body>
 </html>
