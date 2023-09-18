@@ -3,19 +3,19 @@
         <script>
 
 var xmlHttp = new XMLHttpRequest;
-xmlHttp.open('POST', '/order/create/');
+xmlHttp.open('POST', '/order/start_cp/');
 xmlHttp.setRequestHeader('content-type', 'application/json');
 xmlHttp.setRequestHeader('token', '701558c38f34c3e08e0ab305c84ecy0b');
 let obj = {
 	user_id : "40",
-    cp_inv_code : 1
+    order_id : 4
 }
 var stringData = JSON.stringify(obj);
 xmlHttp.send(stringData);
 xmlHttp.onreadystatechange = function() {
 //complete
 if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-	console.log(xmlHttp.responseText);
+	document.write(xmlHttp.responseText);
 }
 }
         </script>

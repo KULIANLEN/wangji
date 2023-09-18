@@ -17,6 +17,8 @@ def create(req):
         user = auth(req_json)
         if user == None:
             return format_response(-1, "Authentication failed.")
+        if user.order_token <= 0:
+            return format_response(-1, "Out of order token.")
         order = camel_order()
         order.owner = user
         ic = req_json.get('cp_inv_code')
@@ -34,6 +36,8 @@ def create(req):
             ic.order.status = 0
             ic.order.save()
             ic.delete()
+        user.order_token -= 1
+        user.save()
         order.save()
         return format_response(1, "ok", order.id)
     except Exception as e:
@@ -49,6 +53,8 @@ def start_cp(req):
             order = camel_order.objects.get(id = int(order))
         except Exception as e:
             return format_response(-1, f"Invalid order_id parameter: {order}")
+        if order.status != 0:
+            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only start cp codes with orders on status 0.")
         if order.owner != user:
             return format_response(-1, f"Order {order.id} doesn't belong to user {user.id}.")
         order.status = 1
@@ -73,6 +79,8 @@ def submit(req):
             order = camel_order.objects.get(id = int(order))
         except:
             return format_response(-1, f"Invalid order_id parameter: {order}.")
+        if order.status != 0:
+            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only submit orders on status 0.")
         if user != order.owner:
             return format_response(-1, f"Order {order.id} doesn't belong to {user.id}.")
         available_items = set(user.possessions)

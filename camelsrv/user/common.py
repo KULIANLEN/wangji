@@ -1,7 +1,6 @@
 from .models import *
 from django.core.exceptions import *
 def auth(req_json):
-    print(req_json)
     id = req_json["user_id"]
     if id == None:
         return None
