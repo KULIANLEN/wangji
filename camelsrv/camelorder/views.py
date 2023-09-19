@@ -11,9 +11,7 @@ import base64
 import time
 # Create your views here.
 def query(req, id):
-    return query_base(req, id, order_queries, camel_order.objects, "order")
-def query_member(req, id, member_name):
-    return query_member_base(id, member_name, order_queries, camel_order.objects, "order")
+    return query_base(req, id, camel_order.objects)
 def create(req):
     try:
         req_json = json.loads(req.body)
