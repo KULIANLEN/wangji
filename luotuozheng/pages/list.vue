@@ -4,83 +4,58 @@
 			<view>我的订单</view>
 		</view>
 		<view class="ddlist">
-			<view class="dd" @click="ddxq()">
+			<view class="dd" 
+			v-for="(el, idx) in orders"
+			:key="idx"
+			@click="redirect2OrderDetail(idx)">
 				<view class="a1">
-					<view class="lt_name">兰小骆</view>
+					<view class="lt_name">{{el.camelName}}</view>
 				</view>
 				<view class="a2">
 					<view class="b1">
-						<view class="txt">单身驼</view>
-						<view class="txt">订单编号：12345678</view>
-						<view class="txt">校园卡：320231234567</view>
+						<view class="txt">{{el.single ? "单身驼" : "情侣驼"}}</view>
+						<view class="txt">{{"订单编号："+el.orderId}}</view>
 					</view>
 					<view class="b2">
-						<view class="status">已打印</view>
-					</view>
-				</view>
-			</view>
-			<view class="dd" @click="ddxq()">
-				<view class="a1">
-					<view class="lt_name">二二</view>
-					<view class="and">&</view>
-					<view class="lt_name">三三</view>
-				</view>
-				<view class="a2">
-					<view class="b1">
-						<view class="txt">情侣驼</view>
-						<view class="txt">订单编号：12345678</view>
-						<view class="txt">校园卡：320231234567</view>
-					</view>
-					<view class="b2">
-						<view class="status" style="color: rgb(189, 138, 76);">未打印</view>
-					</view>
-				</view>
-			</view>
-			<view class="dd" @click="ddxq()">
-				<view class="a1">
-					<view class="lt_name">饼饼</view>
-				</view>
-				<view class="a2">
-					<view class="b1">
-						<view class="txt">单身驼</view>
-						<view class="txt">订单编号：12345678</view>
-						<view class="txt">校园卡：320231234567</view>
-					</view>
-					<view class="b2">
-						<view class="status">已打印</view>
+						<view class="status" :style="'color:'+mapStatus2Color(el.status)+';'">{{mapStatus2Txt(el.status)}}</view>
 					</view>
 				</view>
 			</view>
 			
-			<view class="dd" @click="ddxq()">
-				<view class="a1">
-					<view class="lt_name">饼饼</view>
-				</view>
-				<view class="a2">
-					<view class="b1">
-						<view class="txt">单身驼</view>
-						<view class="txt">订单编号：12345678</view>
-						<view class="txt">校园卡：320231234567</view>
-					</view>
-					<view class="b2">
-						<view class="status">已打印</view>
-					</view>
-				</view>
-			</view>
 		</view>
 		<view class="footer"></view>
 	</view>
 </template>
 
 <script>
+	var _self;
 	export default {
 		data() {
 			return {
+				user_id: '114',
 				username: '',
 				password: '',
 				code:'',
-				msg:""
+				msg:"",
+				orders: [],
 			};
+		},
+		onShow(){
+			uni.request({
+				url:'http://127.0.0.1:8000/user/query/'+ this.user_id +'/?query=orders.{id|extra|status|complement.{owner.id|extra.name}}',
+				method:"GET",
+				success : (res)=>{
+					res.data.dat.orders.forEach((e)=>{
+						this.orders.push({
+							orderId : e.id,
+							camelName : e.extra.name + (e.complement === null ? '' : ' & ' + e.complement.extra.name),
+							single : e.complement === null,
+							status : e.status,
+						});	
+					})
+					console.log(this.orders);
+				}
+			})
 		},
 		methods: {
 			dl() {
@@ -114,6 +89,31 @@
 			ddxq(){
 				uni.navigateTo({
 					url: '/pages/diyzhuangban'
+				})
+			},
+			mapStatus2Txt(status){
+				switch(status){
+					case 0:
+					return "未提交";
+					case 1:
+					return "等待配对";
+					case 2:
+					return "已提交";
+				}
+			},
+			mapStatus2Color(status){
+				switch(status){
+					case 0:
+					return "#FF0000";
+					case 1:
+					return "#dddd00";
+					case 2:
+					return "#00FF00";
+				}
+			},
+			redirect2OrderDetail(idx){
+				uni.navigateTo({
+					url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
 				})
 			}
 		},

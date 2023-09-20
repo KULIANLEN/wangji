@@ -35,7 +35,8 @@ def try_deref(obj, members):
             ret = list(filter(lambda e : e != Noref, map(lambda e : try_deref(e, members), obj)))
             return ret
         elif isinstance(obj, dict):
-            ret = dict(filter(lambda t : t[1] != Noref, map(lambda t : (t[0], try_deref(t[1], members)), obj)))
+            ret = dict(filter(lambda t : t[1] != Noref, map(lambda t : (t[0], try_deref(t[1], members)), obj.items())))
+            return ret
         else:
             return obj
 

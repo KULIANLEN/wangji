@@ -41,12 +41,28 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 		mounted() {
 			
 			new AwesomeQR({
-				text : "https://m.baidu.com",
-				size : 256,
-				margin : 10,
+				text : "https://m.bilibili.com",
+				size : 512,
+				margin : 0,
 				colorDark : "#000000",
 				colorLight : "#FFFFFF",
-				
+				components:{
+				  data: {
+					scale: 1.0,
+				  },
+				  timing: {
+					scale: 1.0,
+					protectors: false,
+				  },
+				  alignment: {
+					scale: 1.0,
+					protectors: false,
+				  },
+				  cornerAlignment: {
+					scale: 1.0,
+					protectors: true,
+				  },
+				},
 			})
 			.draw()
 			.then((dataURL)=>{
