@@ -28,20 +28,18 @@ def try_wrap(f):
 class Noref():
     pass
 
-def get_member_recursive(obj, members):
-    def try_deref(obj, members):
+def try_deref(obj, members):
         if hasattr(obj, 'query_methods'):
-            if members:
-                return get_member_recursive(obj, members)
-            return Noref
+            return get_member_recursive(obj, members)
         elif isinstance(obj, list):
             ret = list(filter(lambda e : e != Noref, map(lambda e : try_deref(e, members), obj)))
             return ret
         elif isinstance(obj, dict):
             ret = dict(filter(lambda t : t[1] != Noref, map(lambda t : (t[0], try_deref(t[1], members)), obj)))
         else:
-            
             return obj
+
+def get_member_recursive(obj, members):
     if hasattr(members, 'wild'):
         return dict(filter(lambda t: t[1] != Noref, map(lambda t: (t[0], try_deref(t[1](), members.wild)), obj.query_methods().items())))
     return dict(filter(lambda t: t[1] != Noref, 
@@ -53,8 +51,8 @@ def get_base(id, objects):
         obj = objects.get(id = id)
     except ObjectDoesNotExist as e:
         return raw_response(-1, f"{id} doesn't exist.")
-    for k, v in obj.query_methods():
-        ret[k] = v(obj)
+    for k, v in obj.query_methods().items():
+        ret[k] = try_deref(v(), {})
     return raw_response(1, "ok", ret)
 
 def parse_member_set(param, idx = 0):
