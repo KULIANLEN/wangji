@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 	export default {
 		data() {
 			return {
@@ -38,18 +39,19 @@
 			}
 		},
 		mounted() {
-			uni.request({
-				url: '/api/getImage',
-				method: 'GET',
-				success: (res) => {
-					
-					this.imageUrl =
-						'https://img9.vilipix.com/picture/pages/regular/2023/04/30/15/111427875_p0_master1200.jpg?x-oss-process=image/resize,m_fill,w_1000'
-				},
-				fail: (err) => {
-					console.error(err);
-				}
-			});
+			
+			new AwesomeQR({
+				text : "https://m.baidu.com",
+				size : 256,
+				margin : 10,
+				colorDark : "#000000",
+				colorLight : "#FFFFFF",
+				
+			})
+			.draw()
+			.then((dataURL)=>{
+				this.imageUrl = dataURL;
+			})
 		}
 	}
 </script>
