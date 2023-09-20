@@ -24,7 +24,7 @@ def create(req):
         order.owner = user
         ic = req_json.get('cp_inv_code')
         order.status = 0
-        order.items={"0":0, "1": 100, "2": 200}
+        order.items={"head":0, "face": 100, "neck": 200, "seat": 300}
         order.extra={"name": "骆驼酱"}
         if ic != None:
             try:

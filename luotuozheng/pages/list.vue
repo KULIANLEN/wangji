@@ -45,6 +45,7 @@
 				url:'http://127.0.0.1:8000/user/query/'+ this.user_id +'/?query=orders.{id|extra|status|complement.{owner.id|extra.name}}',
 				method:"GET",
 				success : (res)=>{
+					this.orders = [];
 					res.data.dat.orders.forEach((e)=>{
 						this.orders.push({
 							orderId : e.id,

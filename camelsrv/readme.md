@@ -9,13 +9,14 @@
 #### 请求url参数
 参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
 --- | --- | --- | --- | ---
-query | id\|gacha_token\|orders.{id\|complement.*}" | String | 否 | 指定要获取的成员树, 在下文会解释, 无此参数则等价于query=\*
+query | {id\|gacha_token\|orders.{id\|complement.*}} | String | 否 | 指定要获取的成员树, 在下文会解释, 无此参数则等价于query=\*
 
 #### 成功响应示例
 ```javascript
-{"code": 1, 
-"msg": "ok", 
-"dat": {"id": "1145141919810", "gacha_token": 3, "orders": [{"id": 1, "complement": null}, {"id": 2, "complement": {"id": 3, "owner": {}, "items": {"0": 1, "1": 102}, "extra": {"favorite": "仙人掌"}, "complement": {}, "status": 2}}]}
+{
+    "code": 1, 
+    "msg": "ok", 
+    "dat": {"id": "1145141919810", "gacha_token": 3, "orders": [{"id": 1, "complement": null}, {"id": 2, "complement": {"id": 3, "owner": {}, "items": {"head": 1, "face": 102, "neck":203, "seat":300}, "extra": {"favorite": "仙人掌"}, "complement": {}, "status": 2}}]}
 }
 ```
 #### 失败响应示例
@@ -38,7 +39,7 @@ msg | ok/<错误信息> | String | 获取成功/失败
 id | 114514 | String | 校园卡号
 gacha_token | 3 | Integer | 抽卡剩余次数
 order_token | 2 | Integer | 可发起订单剩余次数
-possessions | [1, 114, 514] | Integer Array | 拥有的装备列表
+possessions | [1, 102, 203] | Integer Array | 拥有的装备列表
 orders | [\<order>, \<order>] | Order ref Array | 发起的订单列表
 
 ## 获取订单数据接口
@@ -55,7 +56,7 @@ orders | [\<order>, \<order>] | Order ref Array | 发起的订单列表
 --- | --- | --- | ---
 id | 333 | Integer | 订单id
 owner | 114514 | String | 发起人用户id
-items | {"0":1, "1": 100, "2":203} | Integer Dictionary | 各槽位选择的装备
+items | {"head":1, "face": 100, "neck":203, "seat":301} | Integer Dictionary | 各槽位选择的装备
 extra | {"favorite_food":"仙人掌"} | String Dictionary | 额外信息
 complement | \<order> | Order ref \| null | 情侣订单?
 status | 0 | 0 : 未提交 \| 1 : 等待配对 \| 2 : 已提交 | 订单状态
@@ -70,7 +71,7 @@ status | 0 | 0 : 未提交 \| 1 : 等待配对 \| 2 : 已提交 | 订单状态
 #### 示例2: 
 > {a|b.child1|c.{child2|child3}}
 
-意为获取查询到数据的a, b和c成员, 并获取b的child1成员和c的child1及child2成员
+意为获取查询到数据的a, b和c成员, 并获取b的child1成员和c的child2及child3成员
 
 #### 示例3: 
 > \*.\*
@@ -91,7 +92,7 @@ status | 0 | 0 : 未提交 \| 1 : 等待配对 \| 2 : 已提交 | 订单状态
 参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
 --- | --- | --- | --- | ---
 user_id | 1145141919810 | String | 是 | 用户id
-cp_inv_code | 364364 | int | 否 | 情侣邀请码, 若填入则会将该订单与邀请码对应的订单配对
+cp_inv_code | 364364 | Integer | 否 | 情侣邀请码, 若填入则会将该订单与邀请码对应的订单配对
 
 #### 成功响应示例
 ```javascript
@@ -126,7 +127,7 @@ msg | ok/<错误信息> | String | 获取成功/失败
 参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
 --- | --- | --- | --- | ---
 user_id | 1145141919810 | String | 是 | 用户id
-order_id | 364364 | int | 是 | 需要创建邀请码的订单id
+order_id | 364364 | Integer | 是 | 需要创建邀请码的订单id
 
 #### 成功响应示例
 ```javascript
@@ -156,8 +157,8 @@ order_id | 364364 | int | 是 | 需要创建邀请码的订单id
 --- | --- | --- | --- | ---
 user_id | 1145141919810 | String | 是 | 用户id
 order_id | 364364 | int | 是 | 订单id
-items | {"0":1, "1":103, "2":200} | Integer Dictionary | 是 | 选择的装备
-extra | {"favorite":"无花果"} | String Dictionary | 是 |额外信息
+items | {"head":1, "face":103, "neck":200, "seat":302} | Integer Dictionary | 是 | 选择的装备
+extra | {"favorite":"无花果"} | String Dictionary | 是 | 额外信息
 
 #### 成功响应示例
 ```javascript

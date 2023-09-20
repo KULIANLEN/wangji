@@ -19,7 +19,16 @@
 					</view>
 				</view>
 				<view class="middlebox3">
-					
+					<image 
+					class="camel" 
+					src="/static/images/camel/camel.png"
+					mode="widthFix"></image>
+					<image
+					class="head"
+					:src="headTexture"
+					:style="'left:'+headOffsetX+'rpx;top:'+headOffsetY+'rpx;width:'+headWidth+'rpx;'"
+					mode="widthFix"
+					></image>
 				</view>
 				<view class="middlebox4" v-show="page===1">
 					<view class="image">
@@ -158,16 +167,38 @@
 		
 	</view>
 </template>
-
 <script>
+	import itemSprites from 'static/scripts/item-sprites.js';
 	export default {
 		data() {
 			return {
-				page:1
+				page:1,
+				items:{"head":0, "face":0, "neck":0, "seat":0},
+				itemSprites : {},
+				headTexture:"",
+				headOffsetX:0,
+				headOffsetY:0,
+				headWidth:0,
+				faceTexture:"",
+				faceOffsetX:0,
+				faceOffsetY:0,
+				faceWidth:0,
+				neckTexture:"",
+				neckOffsetX:0,
+				neckOffsetY:0,
+				neckWidth:0,
+				seatTexture:"",
+				seatOffsetX:0
 			}
 		},
-		onLoad() {
-
+		onShow() {
+			
+			this.itemSprites = itemSprites;
+			var foreground = this.itemSprites[this.items.head].foreground;
+			this.headTexture = foreground.texture;
+			this.headOffsetX = foreground.offsetX;
+			this.headOffsetY = foreground.offsetY;
+			this.headWidth = foreground.width;
 		},
 		methods: {
 		change(pageid){
@@ -266,6 +297,7 @@
 }
 .middlebox3
 {
+	position: relative;
 	margin-left:  2vw ;
 	margin-top: 5vw;
 	padding: 1vw;
@@ -324,6 +356,15 @@
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 }
 
+.camel{
+	width: 750rpx;
+	top: -30rpx;
+	left: -20rpx;
+}
+.head{
+	position: absolute;
+	z-index: 100;
+}
 .underbutton{
 	/* margin-right: 3vw; */
 	margin-top:2vw;
