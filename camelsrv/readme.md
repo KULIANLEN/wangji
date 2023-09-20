@@ -55,7 +55,7 @@ orders | [\<order>, \<order>] | Order ref Array | 发起的订单列表
 成员名 | 示例值 | 成员类型 | 参数描述
 --- | --- | --- | ---
 id | 333 | Integer | 订单id
-owner | 114514 | String | 发起人用户id
+owner | \<user> | User ref | 订单发起人
 items | {"head":1, "face": 100, "neck":203, "seat":301} | Integer Dictionary | 各槽位选择的装备
 extra | {"favorite_food":"仙人掌"} | String Dictionary | 额外信息
 complement | \<order> | Order ref \| null | 情侣订单?
