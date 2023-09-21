@@ -1,4 +1,8 @@
 <template>
+	<view>
+	<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 	<view class="bigbox">
 		<view class="top">
 			<view class="backcolor">
@@ -9,13 +13,13 @@
 				
 				<view class="middlebox2">
 					<view class="smallbox">
-						<button class="topbutton">装扮图鉴</button>
+						<button class="topbutton" @click="jump1()">装扮图鉴</button>
 					</view>
 					<view class="smallbox">
-						<button class="topbutton">去抽卡</button>
+						<button class="topbutton" @click="jump2()">去抽卡</button>
 					</view>
 					<view class="smallbox">
-						<button class="topbutton">填写信息</button>
+						<button class="topbutton" @click="jump3()">填写信息</button>
 					</view>
 				</view>
 				<view class="middlebox3">
@@ -156,7 +160,7 @@
 			</view>
 		</view> -->
 		
-	</view>
+	</view></view>
 </template>
 
 <script>
@@ -170,14 +174,46 @@
 
 		},
 		methods: {
+			jump1(){
+				uni.navigateTo({
+					url:'/pages/list'
+				})
+			},
+			jump2(){
+				uni.navigateTo({
+					url:'/pages/chouka'
+				})
+			},
+			jump3(){
+				uni.navigateTo({
+					url:'/pages/master'
+				})
+			},
 		change(pageid){
 			this.page=pageid;
+			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
 			}
+			
 		}
 	}
 </script>
 
 <style>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	*{
 		margin-right: 1vw;
 	}
@@ -187,7 +223,7 @@
 		align-items: center;
 		
 		width: 100vw;
-		height:6vh;
+		height:8vh;
 		z-index: -2;
 		 background: linear-gradient(to   right,#FF6E53 , #FF6E52 , #FF8453 40% , #FF9758  ,#FFA859 );
 	}

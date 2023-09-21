@@ -1,6 +1,12 @@
 <template>
+	<view>
+	<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 	<view class="all">
+		
 		<view class="top">
+			
 			<view>订单详情</view>
 		</view>
 			
@@ -56,6 +62,7 @@
 			<li></li>
 			<li></li>
 		</ul>
+	</view>
 	</view>
 </template>
 
@@ -160,11 +167,27 @@
 				// 	});
 				
 			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			}
 		},
 	};
 </script>
 
 <style>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	.all{
 		display: flex;
 		width: 100vw;

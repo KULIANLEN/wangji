@@ -1,4 +1,8 @@
 <template>
+	<view>
+	<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 	<view class="all">
 		<view class="top">
 			<view>我的订单</view>
@@ -69,7 +73,7 @@
 			</view>
 		</view>
 		<view class="footer"></view>
-	</view>
+	</view></view>
 </template>
 
 <script>
@@ -115,12 +119,28 @@
 				uni.navigateTo({
 					url: '/pages/diyzhuangban'
 				})
+			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
 			}
 		},
 	};
 </script>
 
 <style>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	.all{
 		display: flex;
 		width: 100vw;

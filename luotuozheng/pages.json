@@ -69,6 +69,14 @@
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
+		},
+		{
+		    "path" : "pages/master",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
 		}
     ],
 	"globalStyle": {
