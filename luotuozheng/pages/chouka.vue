@@ -1,4 +1,8 @@
 <template>
+	<view>
+	<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
   <view class="back">
     <view class="top">
       <view class="jiangquan">
@@ -45,7 +49,7 @@
 	<view class="yinbi" v-if="yinbi"></view>
   </view>
 	 
-  </view>
+  </view></view>
 </template>
 
 <script>
@@ -110,12 +114,28 @@ export default {
 	close(){
 		this.showPopup2=false;
 		location.reload();
+	},
+	fanhui(){
+		uni.navigateTo({
+			url:'/pages/index'
+		})
 	}
   }
 };
 </script>
 
 <style>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	.yinbi{
 		position: fixed;
 		top: 0;
@@ -168,19 +188,19 @@ export default {
 }
 
 .add {
-  margin-top: -20px;
-  width: 50px;
-  height: 50px;
+  /* margin-top: -20px; */
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .quantity {
-  margin-top: -20px;
+  
 }
 
 .jqpic {
-  margin-top: -20px;
-  width: 50px;
-  height: 50px;
+  /* margin-top: -20px; */
+  width: 50rpx;
+  height: 50rpx;
 }
 
 .jiangquan {
@@ -192,12 +212,12 @@ export default {
   border-style: dotted;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -5vw;
   transform: translate(-50%, 50%);
-  padding-top: 20px;
-  background-color: grey;
-  width: 200px;
-  height: 30px;
+  padding-top: 2rpx;
+  background-color: #c2ccd0;
+  width: 150rpx;
+  height: 70rpx;
 }
 
 .top {
@@ -287,19 +307,24 @@ export default {
 .buttons-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .draw-btn {
-  margin: 0 10px;
+  /* margin: 0 10px; */
+  margin-left: 30rpx;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #000;
-  color: #fff;
+  width: 200rpx;
+  height: 100rpx;
+ 
+  color: #f5f5f5;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  background-image: linear-gradient(to left , #FFE7AC, #FFBF90);
+  
 }
 
 .draw-btn:hover {

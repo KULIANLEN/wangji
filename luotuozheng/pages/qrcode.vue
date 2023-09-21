@@ -1,7 +1,12 @@
 <template>
 	<view class="a">
+		<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 		<view class="top">
-			<text class="title" >{{title}}</text>
+			<view class="biaoti">
+				<text class="title" >{{title}}</text>
+			</view>
 		</view>
 		<view class="middlebox">
 			<img :src="imageUrl" class="qrcode">
@@ -35,7 +40,8 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 				imageUrl: '',
 				sentence: '请凭此二维码领取骆驼证',
 				background: '/static/a.png',
-				title: '二维码页面'
+				title: '二维码页面',
+				icon:'/static/hhh/jiantou.png',
 			}
 		},
 		mounted() {
@@ -63,22 +69,49 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 					protectors: true,
 				  },
 				},
+<<<<<<< HEAD
+				fail: (err) => {
+					console.error(err);
+				}
+			});
+		},
+		methods :{
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			}
+		},
+=======
 			})
 			.draw()
 			.then((dataURL)=>{
 				this.imageUrl = dataURL;
 			})
 		}
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	}
 </script>
 <style>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+	}
+	
 	.qrcode {
 		height: 42vh;
 		width: 42vh;
 		display: flex;
 		align-self: flex-end;
 	}
-
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
+	
 	.a {
 		display: flex;
 		flex-direction: column;
@@ -139,7 +172,7 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 	  left: 0;
 	  width: 100%;
 	  height: 100%;
-	  z-index: 1;
+	  z-index: -1;
 	}
 	.bg-bubbles li {
 	  position: absolute;
