@@ -8,13 +8,13 @@ import re
 from .gacha_pool import gacha
 
 default_pool = {
-    10 : 10,
-    11 : 8,
-    12 : 5,
-    13 : 10,
-    14 : 1,
-    15 : 5,
-    16 : 4,
+    1 : 10,
+    2 : 8,
+    3 : 5,
+    101 : 10,
+    102 : 1,
+    103 : 5,
+    201 : 4,
 }
 
 # Create your views here.
