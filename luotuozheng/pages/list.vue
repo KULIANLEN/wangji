@@ -58,7 +58,6 @@
 							status : e.status,
 						});	
 					})
-					console.log(this.orders);
 				}
 			})
 		},
@@ -118,7 +117,12 @@
 			},
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
-					url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
+					url: '/pages/diyzhuangban?user='+this.user_id+'&order='+this.orders[idx].orderId
+				})
+			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
 				})
 			}
 		},

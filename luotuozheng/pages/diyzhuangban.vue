@@ -73,7 +73,7 @@
 				page:1,
 				items:{"head":0, "face":100, "neck":200, "seat":300},
 				itemSprites:itemSprites,
-				userId:'114',
+				userId:'',
 				orderId: 0,
 				headPossessions:[],
 				facePossessions:[],
@@ -82,6 +82,7 @@
 			}
 		},
 		onShow() {
+			this.userId = this.$route.query.user;
 			this.orderId = this.$route.query.order;
 			var that = this;
 			uni.request({
