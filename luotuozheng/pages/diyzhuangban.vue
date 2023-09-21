@@ -22,52 +22,19 @@
 					</view>
 				</view>
 				<view class="middlebox4" v-show="page===2">
-					<view class="image">
-						
+					<view class="image" v-for="(el, idx) in facePossessions" :key="idx" @click="selectItem('face', el)">
+						<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
 					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					
-					
 				</view>
 				<view class="middlebox4" v-show="page===3">
-					<view class="image">
-						
+					<view class="image" v-for="(el, idx) in neckPossessions" :key="idx" @click="selectItem('neck', el)">
+						<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
 					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					
-					
 				</view>
 				<view class="middlebox4" v-show="page===4">
-					<view class="image">
-						
+					<view class="image" v-for="(el, idx) in seatPossessions" :key="idx" @click="selectItem('seat', el)">
+						<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
 					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					
-					
 				</view>
 				<view class="middlebox5">
 					
