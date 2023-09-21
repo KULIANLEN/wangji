@@ -24,11 +24,15 @@ def create(req):
         order.owner = user
         ic = req_json.get('cp_inv_code')
         order.status = 0
+        order.items={"head":0, "face": 100, "neck": 200, "seat": 300}
+        order.extra={"name": "骆驼酱"}
         if ic != None:
             try:
-                ic = cp_inv_code.objects.get(id = int(ic))
+                ic = cp_inv_code.objects.get(code = ic)
                 if ic.order.status != 1:
                     return format_response(-1, f"{ic} isn't a valid complement invitation code.")
+                if ic.order.owner == user:
+                    return format_response(-1, f"You are attempting to pair with yourself.")
             except:
                 return format_response(-1, f"{ic} isn't a valid complement invitation code.")
             order.complement = ic.order

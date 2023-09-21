@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 	export default {
 		data() {
 			return {
@@ -44,14 +45,31 @@
 			}
 		},
 		mounted() {
-			uni.request({
-				url: '/api/getImage',
-				method: 'GET',
-				success: (res) => {
-					
-					this.imageUrl =
-						'https://img9.vilipix.com/picture/pages/regular/2023/04/30/15/111427875_p0_master1200.jpg?x-oss-process=image/resize,m_fill,w_1000'
+			
+			new AwesomeQR({
+				text : "https://m.bilibili.com",
+				size : 512,
+				margin : 0,
+				colorDark : "#000000",
+				colorLight : "#FFFFFF",
+				components:{
+				  data: {
+					scale: 1.0,
+				  },
+				  timing: {
+					scale: 1.0,
+					protectors: false,
+				  },
+				  alignment: {
+					scale: 1.0,
+					protectors: false,
+				  },
+				  cornerAlignment: {
+					scale: 1.0,
+					protectors: true,
+				  },
 				},
+<<<<<<< HEAD
 				fail: (err) => {
 					console.error(err);
 				}
@@ -64,6 +82,14 @@
 				})
 			}
 		},
+=======
+			})
+			.draw()
+			.then((dataURL)=>{
+				this.imageUrl = dataURL;
+			})
+		}
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	}
 </script>
 <style>

@@ -6,11 +6,6 @@
 	<view class="bigbox">
 		<view class="top">
 			<view class="backcolor">
-				
-				<!-- <view class="middlebox1">
-					
-				</view> -->
-				
 				<view class="middlebox2">
 					<view class="smallbox">
 						<button class="topbutton" @click="jump1()">装扮图鉴</button>
@@ -23,23 +18,12 @@
 					</view>
 				</view>
 				<view class="middlebox3">
-					
+					<camel-display :items="items"></camel-display>
 				</view>
 				<view class="middlebox4" v-show="page===1">
-					<view class="image">
-						
+					<view class="image" v-for="(el, idx) in headPossessions" :key="idx" @click="selectItem('head', el)">
+						<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
 					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					<view class="image">
-						
-					</view>
-					
-					
 				</view>
 				<view class="middlebox4" v-show="page===2">
 					<view class="image">
@@ -91,14 +75,14 @@
 				</view>
 				<view class="middlebox5">
 					
-					<view class="smallbox2">
-						<button @click="change(1)" class="underbutton">1</button>
+					<view class="smallbox2" @click="change(1)">
+						<button class="underbutton">帽子</button>
 					</view>
 					<view class="smallbox2" @click="change(2)">
-						<button class="underbutton" >表情</button>
+						<button class="underbutton">面部</button>
 					</view>
 					<view class="smallbox2" @click="change(3)">
-						<button class="underbutton">帽子</button>
+						<button class="underbutton">颈部</button>
 					</view>
 					<view class="smallbox2" @click="change(4)">
 						<button class="underbutton">坐垫</button>
@@ -108,6 +92,7 @@
 				</view>
 			</view>
 		</view>
+<<<<<<< HEAD
 		<!-- <view class="backcolor">
 			
 			<view class="middlebox1">
@@ -161,19 +146,75 @@
 		</view> -->
 		
 	</view></view>
+=======
+	</view>
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 </template>
-
 <script>
+	import camel_display from '@/components/camel-display.vue';
+	import itemSprites from 'static/scripts/item-sprites.js';
 	export default {
+		components:{
+			"camel-display": camel_display,
+		},
 		data() {
 			return {
-				page:1
+				page:1,
+				items:{"head":0, "face":100, "neck":200, "seat":300},
+				itemSprites:itemSprites,
+				userId:'114',
+				orderId: 0,
+				headPossessions:[],
+				facePossessions:[],
+				neckPossessions:[],
+				seatPossessions:[],
 			}
 		},
-		onLoad() {
-
+		onShow() {
+			this.orderId = this.$route.query.order;
+			var that = this;
+			uni.request({
+				url:'http://127.0.0.1:8000/order/query/'+this.orderId+'?query=*.{possessions|owner.possessions}',
+				method:'GET',
+				success(res){
+					console.log(that);
+					console.log('---------------------');
+					console.log(res.data);
+					that.items = res.data.dat.items;
+					console.log('XXXXXXXXXXXXXXXXXXXX');
+					var headSet = new Set();
+					var faceSet = new Set();
+					var neckSet = new Set();
+					var seatSet = new Set();
+					var filter =  e => {
+						switch(true){
+							case e < 100:
+								headSet.add(e);
+								break;
+							case e < 200:
+								faceSet.add(e);
+								break;
+							case e < 300:
+								neckSet.add(e);
+								break;
+							default:
+								seatSet.add(e);
+						}
+					};
+					
+					res.data.dat.owner.possessions.forEach(filter);
+					if(res.data.dat.complement != null){
+						res.data.dat.complement.owner.possessions.forEach(filter);
+					}
+					that.headPossessions = Array.from(headSet);
+					that.facePossessions = Array.from(faceSet);
+					that.neckPossessions = Array.from(neckSet);
+					that.seatPossessions = Array.from(seatSet); 
+				}
+			})
 		},
 		methods: {
+<<<<<<< HEAD
 			jump1(){
 				uni.navigateTo({
 					url:'/pages/list'
@@ -199,6 +240,17 @@
 			}
 			
 		}
+=======
+			change(pageid){
+				this.page=pageid;
+			},
+			selectItem(slot, item){
+				this.items[slot] = item;
+				this.$forceUpdate();
+			},
+		},
+			
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	}
 </script>
 
@@ -302,6 +354,7 @@
 }
 .middlebox3
 {
+	position: relative;
 	margin-left:  2vw ;
 	margin-top: 5vw;
 	padding: 1vw;
@@ -359,7 +412,9 @@
 	margin-right: 3vw;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 }
-
+.image image{
+	width: 100%;
+}
 .underbutton{
 	/* margin-right: 3vw; */
 	margin-top:2vw;

@@ -21,7 +21,11 @@
 					<button class="button1" @click="showForm('form2')">
 						主人信息
 					</button>
+<<<<<<< HEAD
 					
+=======
+
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 				</view>
 				<view class="smallbox">
 					<button class="button1">3</button>
@@ -100,12 +104,69 @@
 				</view>
 				<input type="text" class="text" name="name" placeholder="请输入姓名" v-model="zr_name" />
 
+<<<<<<< HEAD
 				<form class="form1" action="">
 					<view class="formtitle">生日</view>
 					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
 						<view class="text">{{date}}</view>
 					</picker>
 				</form>
+=======
+				<view>
+					<view class="formtitle">
+						生日
+					</view>
+
+					<label for="year">年份：</label>
+					<select id="year" v-model="zr_year">
+						<option>2004</option>
+						<option>2005</option>
+						<option>2006</option>
+					</select>
+
+					<!-- 					<label for="year">年份：</label>
+					<select id="year" v-model="zr_year" @change="updateDayOptions">
+						<option v-for="year in yearOptions" :value="year">{{ year }}</option>
+					</select> -->
+
+					<label for="month">月份：</label>
+					<select id="month" v-model="zr_month">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+
+					<label for="day">日期：</label>
+					<select id="day" v-model="zr_day">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</view>
+				<view class="form">
+					<view class="formtitle">
+						性别
+					</view>
+					<radio-group v-model="zr_sex">
+						<!-- <label class="radio">
+							<radio for="nan" value="sex1" name="sex" checked="zr_sex === '1'" @click="handleRadioClick_3(1)" />
+							<text id="nan">男</text>
+						</label>
+						<label class="radio1">
+							<radio for="nv" value="sex2" name="sex" checked="zr_sex === '2'" @click="handleRadioClick_3(2)" />
+							<text id="nv">女</text>
+						</label> -->
+						<label class="radio1" @click="handleRadioClick_3(1)">
+							<radio id="shou" value="lt_body3" name="lt_body" checked="zr_sex === '1'" /><text
+								for="shou">男</text>
+						</label>
+						<label class="radio1" @click="handleRadioClick_3(2)">
+							<radio id="henshou" value="lt_body4" name="lt_body" checked="zr_sex === '2'" /><text
+								for="henshou">女</text>
+						</label>
+					</radio-group>
+				</view>
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 
 				<view class="formtitle">
 					学院
@@ -202,6 +263,7 @@
 			    format: true
 			})
 			return {
+<<<<<<< HEAD
 				sex:'',
 				index: 0,
 				date: currentDate,
@@ -213,6 +275,8 @@
 				        return this.getDate('end');
 				    }
 				},
+=======
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 				// body: '',
 				// zhuangtai: '',
 				activeForm: "form1",
@@ -293,6 +357,7 @@
 				// 进行其他表单验证逻辑...
 
 				 return true; // 允许表单提交
+<<<<<<< HEAD
 			},
 			bindDateChange: function(e) {
 			    this.date = e.detail.value
@@ -329,10 +394,14 @@
 			    day = day > 9 ? day : '0' + day;
 			    return `${year}-${month}-${day}`;
 			},
+=======
+			}
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 		},
 	}
 </script>
 <style>
+<<<<<<< HEAD
 	
 		.text{
 			width: 66vw;
@@ -453,6 +522,8 @@
 					transform: translateY(-700px) rotate(600deg);
 				  }
 				}
+=======
+>>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	.bigbox {
 		display: flex;
 		flex-direction: column;
