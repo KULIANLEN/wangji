@@ -84,11 +84,7 @@
 				url:'http://127.0.0.1:8000/order/query/'+this.orderId+'?query=*.{possessions|owner.possessions}',
 				method:'GET',
 				success(res){
-					console.log(that);
-					console.log('---------------------');
-					console.log(res.data);
 					that.items = res.data.dat.items;
-					console.log('XXXXXXXXXXXXXXXXXXXX');
 					var headSet = new Set();
 					var faceSet = new Set();
 					var neckSet = new Set();
