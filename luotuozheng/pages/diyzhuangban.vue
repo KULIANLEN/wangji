@@ -2,11 +2,6 @@
 	<view class="bigbox">
 		<view class="top">
 			<view class="backcolor">
-				
-				<!-- <view class="middlebox1">
-					
-				</view> -->
-				
 				<view class="middlebox2">
 					<view class="smallbox">
 						<button class="topbutton">装扮图鉴</button>
@@ -22,14 +17,16 @@
 					<camel-display :items="items"></camel-display>
 				</view>
 				<view class="middlebox4" v-show="page===1">
-					<view class="image">
+					<view class="image" @click="selectItem('head', 0)">
 						
 					</view>
-					<view class="image">
-						
+					<view class="image" @click="selectItem('head', 1)">
+						<image mode="widthFix" src="/static/images/head/blue-hair.png">
+						</image>
 					</view>
-					<view class="image">
-						
+					<view class="image" @click="selectItem('head', 2)">
+						<image mode="widthFix" src="/static/images/head/flower-ring.png">
+						</image>
 					</view>
 					<view class="image">
 						
@@ -87,14 +84,14 @@
 				</view>
 				<view class="middlebox5">
 					
-					<view class="smallbox2">
-						<button @click="change(1)" class="underbutton">1</button>
+					<view class="smallbox2" @click="change(1)">
+						<button  class="underbutton">帽子</button>
 					</view>
 					<view class="smallbox2" @click="change(2)">
-						<button class="underbutton" >表情</button>
+						<button class="underbutton" >面部</button>
 					</view>
 					<view class="smallbox2" @click="change(3)">
-						<button class="underbutton">帽子</button>
+						<button class="underbutton">颈部</button>
 					</view>
 					<view class="smallbox2" @click="change(4)">
 						<button class="underbutton">坐垫</button>
@@ -104,58 +101,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- <view class="backcolor">
-			
-			<view class="middlebox1">
-				
-			</view>
-			
-			<view class="middlebox2">
-				<view class="smallbox">
-					<button class="topbutton">1</button>
-				</view>
-				<view class="smallbox">
-					<button class="topbutton">2</button>
-				</view>
-				<view class="smallbox">
-					<button class="topbutton">3</button>
-				</view>
-			</view>
-			<view class="middlebox3">
-				
-			</view>
-			<view class="middlebox4">
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				
-				
-			</view>
-			<view class="middlebox5">
-				<view class="smallbox2">
-					<button class="underbutton">1</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">2</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">3</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">4</button>
-				</view>
-			</view>
-		</view> -->
-		
 	</view>
 </template>
 <script>
@@ -174,10 +119,15 @@
 			this.items = {"head":2, "face":100, "neck":200, "seat":300};
 		},
 		methods: {
-		change(pageid){
-			this.page=pageid;
-			}
-		}
+			change(pageid){
+				this.page=pageid;
+			},
+			selectItem(slot, item){
+				this.items[slot] = item;
+				this.$forceUpdate();
+			},
+		},
+			
 	}
 </script>
 
@@ -328,15 +278,8 @@
 	margin-right: 3vw;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 }
-
-.camel{
-	width: 750rpx;
-	top: -30rpx;
-	left: -20rpx;
-}
-.head{
-	position: absolute;
-	z-index: 100;
+.image image{
+	width: 100%;
 }
 .underbutton{
 	/* margin-right: 3vw; */
