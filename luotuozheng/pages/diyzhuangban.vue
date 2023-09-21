@@ -19,16 +19,7 @@
 					</view>
 				</view>
 				<view class="middlebox3">
-					<image 
-					class="camel" 
-					src="/static/images/camel/camel.png"
-					mode="widthFix"></image>
-					<image
-					class="head"
-					:src="headTexture"
-					:style="'left:'+headOffsetX+'rpx;top:'+headOffsetY+'rpx;width:'+headWidth+'rpx;'"
-					mode="widthFix"
-					></image>
+					<camel-display :items="items"></camel-display>
 				</view>
 				<view class="middlebox4" v-show="page===1">
 					<view class="image">
@@ -168,37 +159,19 @@
 	</view>
 </template>
 <script>
-	import itemSprites from 'static/scripts/item-sprites.js';
+	import camel_display from '@/components/camel-display.vue';
 	export default {
+		components:{
+			"camel-display": camel_display,
+		},
 		data() {
 			return {
 				page:1,
-				items:{"head":0, "face":0, "neck":0, "seat":0},
-				itemSprites : {},
-				headTexture:"",
-				headOffsetX:0,
-				headOffsetY:0,
-				headWidth:0,
-				faceTexture:"",
-				faceOffsetX:0,
-				faceOffsetY:0,
-				faceWidth:0,
-				neckTexture:"",
-				neckOffsetX:0,
-				neckOffsetY:0,
-				neckWidth:0,
-				seatTexture:"",
-				seatOffsetX:0
+				items:{"head":0, "face":100, "neck":200, "seat":300},
 			}
 		},
 		onShow() {
-			
-			this.itemSprites = itemSprites;
-			var foreground = this.itemSprites[this.items.head].foreground;
-			this.headTexture = foreground.texture;
-			this.headOffsetX = foreground.offsetX;
-			this.headOffsetY = foreground.offsetY;
-			this.headWidth = foreground.width;
+			this.items = {"head":2, "face":100, "neck":200, "seat":300};
 		},
 		methods: {
 		change(pageid){

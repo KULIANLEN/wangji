@@ -3,27 +3,77 @@
 		<image
 		class="camel" 
 		src="/static/images/camel/camel.png"
-		mode="widthFix"></image>
-		<image
-		class="head"
-		:src="headTexture"
-		:style="'left:'+headOffsetX+'rpx;top:'+headOffsetY+'rpx;width:'+headWidth+'rpx;'"
-		mode="widthFix"
-		></image>
+		mode="widthFix">
+			<image
+			class="item"
+			:src="itemSprites[items.head].foreground.texture"
+			:style="'left:'+itemSprites[items.head].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			mode="widthFix"
+			></image>
+			<image
+			class="item"
+			:src="itemSprites[items.face].foreground.texture"
+			:style="'left:'+itemSprites[items.face].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			mode="widthFix"
+			></image>
+			<image
+			class="item"
+			:src="itemSprites[items.neck].foreground.texture"
+			:style="'left:'+itemSprites[items.neck].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			mode="widthFix"
+			></image>
+			<image
+			class="item"
+			:src="itemSprites[items.seat].foreground.texture"
+			:style="'left:'+itemSprites[items.seat].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			mode="widthFix"
+			></image>
+		</image>
+		
 	</view>
 </template>
 
 <script>
+import itemSprites from 'static/scripts/item-sprites.js';
+export default{
+	name:'camel-display',
+	data() {
+		return {
+			itemSprites : {},
+		}
+	},
+	props:{
+		items:{"head":0, "face":100, "neck":200, "seat":300},
+	},
+	created(){
+		this.itemSprites = itemSprites;
+	}
+}
+
 </script>
 
 <style>
 	.container{
 		position: relative;
 		width: 100%;
-		height: 100%;
+		height: fit-content;
 		margin: 0;
 		padding: 0;
 		border: 0;
-		background-color: transparent;
+	}
+	.camel{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+	.item{
+		position: absolute;
+		z-index: 1;
+		margin: 0;
+		padding: 0;
+		border: 0;
 	}
 </style>
