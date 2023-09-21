@@ -39,14 +39,11 @@ export default{
 	name:'camel-display',
 	data() {
 		return {
-			itemSprites : {},
+			itemSprites : itemSprites,
 		}
 	},
 	props:{
 		items:{"head":0, "face":100, "neck":200, "seat":300},
-	},
-	created(){
-		this.itemSprites = itemSprites;
 	}
 }
 
