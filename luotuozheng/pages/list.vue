@@ -96,11 +96,6 @@
 					url: '/pages/diyzhuangban'
 				})
 			},
-<<<<<<< HEAD
-			fanhui(){
-				uni.navigateTo({
-					url:'/pages/index'
-=======
 			mapStatus2Txt(status){
 				switch(status){
 					case 0:
@@ -124,7 +119,6 @@
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
 					url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
->>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 				})
 			}
 		},

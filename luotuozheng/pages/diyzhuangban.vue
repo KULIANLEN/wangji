@@ -55,67 +55,11 @@
 						<button class="underbutton">坐垫</button>
 					</view>
 					
-					
+					</view>
 				</view>
 			</view>
 		</view>
-<<<<<<< HEAD
-		<!-- <view class="backcolor">
-			
-			<view class="middlebox1">
-				
-			</view>
-			
-			<view class="middlebox2">
-				<view class="smallbox">
-					<button class="topbutton">1</button>
-				</view>
-				<view class="smallbox">
-					<button class="topbutton">2</button>
-				</view>
-				<view class="smallbox">
-					<button class="topbutton">3</button>
-				</view>
-			</view>
-			<view class="middlebox3">
-				
-			</view>
-			<view class="middlebox4">
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				<view class="image">
-					
-				</view>
-				
-				
-			</view>
-			<view class="middlebox5">
-				<view class="smallbox2">
-					<button class="underbutton">1</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">2</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">3</button>
-				</view>
-				<view class="smallbox2">
-					<button class="underbutton">4</button>
-				</view>
-			</view>
-		</view> -->
-		
-	</view></view>
-=======
 	</view>
->>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 </template>
 <script>
 	import camel_display from '@/components/camel-display.vue';
@@ -177,7 +121,6 @@
 			})
 		},
 		methods: {
-<<<<<<< HEAD
 			jump1(){
 				uni.navigateTo({
 					url:'/pages/list'
@@ -193,17 +136,7 @@
 					url:'/pages/master'
 				})
 			},
-		change(pageid){
-			this.page=pageid;
-			},
-			fanhui(){
-				uni.navigateTo({
-					url:'/pages/index'
-				})
-			}
-			
-		}
-=======
+		
 			change(pageid){
 				this.page=pageid;
 			},
@@ -211,9 +144,13 @@
 				this.items[slot] = item;
 				this.$forceUpdate();
 			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			}
 		},
 			
->>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	}
 </script>
 

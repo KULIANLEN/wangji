@@ -69,11 +69,10 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 					protectors: true,
 				  },
 				},
-<<<<<<< HEAD
 				fail: (err) => {
 					console.error(err);
 				}
-			});
+			}).draw().then(url=>{this.imageUrl = url});
 		},
 		methods :{
 			fanhui(){
@@ -82,14 +81,6 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 				})
 			}
 		},
-=======
-			})
-			.draw()
-			.then((dataURL)=>{
-				this.imageUrl = dataURL;
-			})
-		}
->>>>>>> 50fc2ca6ee3ade4404a55f4c70f5187c42b1c62c
 	}
 </script>
 <style>
