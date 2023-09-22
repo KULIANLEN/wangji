@@ -57,6 +57,7 @@
 					
 					</view>
 				</view>
+				<view class="submit-button">提交</view>
 			</view>
 		</view>
 	</view>
@@ -327,14 +328,26 @@
 	border: none;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
 	z-index: 999;
-	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	
 }
 .smallbox2{
 	width: 20vw;
 	height: 7vh;
-	
-	
 }
-	
+.submit-button{
+	margin: 7.5%;
+	width:85%;
+	display:flex;
+	justify-content: center;
+	align-content: center;
+	background-color: #f8f3d4;
+	border-radius: 15px;
+	border: none;
+	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+	z-index: 999;
+}
+
 </style>

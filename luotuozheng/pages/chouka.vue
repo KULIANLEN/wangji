@@ -49,7 +49,7 @@
 	<view class="yinbi" v-if="yinbi"></view>
   </view>
 	 
-  </view></view>
+  </view>
 </template>
 
 <script>
