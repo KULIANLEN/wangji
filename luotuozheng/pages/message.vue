@@ -21,7 +21,7 @@
 					<button class="button1" @click="showForm('form2')">
 						主人信息
 					</button>
-					
+
 				</view>
 				<!-- <view class="smallbox">
 					<button class="button1">3</button>
@@ -73,9 +73,8 @@
 						骆驼状态
 					</view>
 					<radio-group v-model="lt_zt">
-						<label class="radio" >
-							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text
-								for="pang">单身</text>
+						<label class="radio">
+							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text for="pang">单身</text>
 						</label>
 					</radio-group>
 				</view>
@@ -83,10 +82,7 @@
 					最喜欢的食物
 				</view>
 				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
-				<view class="formtitle">
-					性格
-				</view>
-				<input type="text" class="text" name="xingge" placeholder="请输入性格" id="xingge" v-model="lt_xg" />
+				
 			</form>
 
 
@@ -195,19 +191,19 @@
 	export default {
 		data() {
 			const currentDate = this.getDate({
-			    format: true
+				format: true
 			})
 			return {
-				sex:'',
+				sex: '',
 				index: 0,
 				date: currentDate,
 				computed: {
-				    startDate() {
-				        return this.getDate('start');
-				    },
-				    endDate() {
-				        return this.getDate('end');
-				    }
+					startDate() {
+						return this.getDate('start');
+					},
+					endDate() {
+						return this.getDate('end');
+					}
 				},
 				// body: '',
 				// zhuangtai: '',
@@ -216,7 +212,7 @@
 				lt_name: "",
 				lt_age: "",
 				lt_body: "",
-				lt_zt: "",
+				lt_zt: "1",
 				lt_food: "",
 				lt_xg: "",
 
@@ -231,12 +227,12 @@
 			};
 		},
 		computed: {
-		    startDate() {
-		        return this.getDate('start');
-		    },
-		    endDate() {
-		        return this.getDate('end');
-		    }
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
 		},
 		methods: {
 			submitForms() {
@@ -253,6 +249,51 @@
 				console.log(this.zr_xy);
 				console.log(this.zr_sex);
 				console.log(this.zr_year)
+				// uni.request({
+				// 	url: 'http://127.0.0.1:8000/order/create/',
+				// 	data: {
+				// 		user_id: "123456"
+				// 	},
+				// 	method: "POST",
+				// 	success: (res) => {
+				// 		console.log(res.data)
+				// 		// this.msg=res.data.code
+				// 		// if(this.msg=="登录成功"){
+				// 		// 	uni.navigateTo({
+				// 		// 		url: '/pages/tu/tu'
+				// 		// 	})
+				// 		// }
+				// 	}
+				// })
+				uni.request({
+					url: 'http://127.0.0.1:8000/order/submit/',
+					data: {
+						user_id: "123456",
+						order_id:11,
+						extra:{"lt_name": this.lt_name,
+								"lt_age":this.lt_age,
+								"lt_body":this.lt_body,
+								"lt_zt":"1",
+								"lt_food":this.lt_food,
+								"zr_name":this.zr_name,
+								"zr_sr":this.date,
+								"zr_xy":this.zr_xy,
+								"zr_zy":this.zr_zy,
+								"zr_card":this.zr_card,
+							},
+						items:{"head":0, "face":100, "neck":200, "seat":300}
+					},
+					method: "POST",
+					success: (res) => {
+						console.log(res.data)
+						// this.msg=res.data.code
+						// if(this.msg=="登录成功"){
+						// 	uni.navigateTo({
+						// 		url: '/pages/tu/tu'
+						// 	})
+						// }
+					}
+				})
 
 				// var formData = {
 				// 	name: name,
@@ -280,68 +321,70 @@
 				this.activeForm = formName;
 			},
 			check1() {
-				 if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''||this.lt_xg===''||this.zr_name===''||this.zr_year===''||this.zr_month===''||this.zr_day===''||this.zr_xy===''||this.zr_zy===''||this.zr_card==='') {
-				   return false; // 阻止表单提交
-				 }
+				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
+					'' || this.zr_zy === '' || this.zr_card === '') {
+					return false; // 阻止表单提交
+				}
 
 				// 进行其他表单验证逻辑...
 
-				 return true; // 允许表单提交
+				return true; // 允许表单提交
 			},
 			bindDateChange: function(e) {
-			    this.date = e.detail.value
+				this.date = e.detail.value
 			},
 			getDabindDateChange: function(e) {
-		            this.date = e.detail.value
-		        },
-		        getDate(type) {
-		            const date = new Date();
-		            let year = date.getFullYear();
-		            let month = date.getMonth() + 1;
-		            let day = date.getDate();
-		
-		            if (type === 'start') {
-		                year = year - 60;
-		            } else if (type === 'end') {
-		                year = year + 2;
-		            }
-		            month = month > 9 ? month : '0' + month;
-		            day = day > 9 ? day : '0' + day;
-		            return `${year}-${month}-${day}`;
-		        },te(type) {
-			    const date = new Date();
-			    let year = date.getFullYear();
-			    let month = date.getMonth() + 1;
-			    let day = date.getDate();
-					
-			    if (type === 'start') {
-			        year = year - 60;
-			    } else if (type === 'end') {
-			        year = year + 2;
-			    }
-			    month = month > 9 ? month : '0' + month;
-			    day = day > 9 ? day : '0' + day;
-			    return `${year}-${month}-${day}`;
+				this.date = e.detail.value
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
+			te(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
 			},
 		},
 	}
 </script>
 <style>
-	
-		.text{
-			width: 66vw;
-			height: 3vh;
-			
-			border-width: 1px;
-			
-			
-			border-bottom:solid 1px #BEBDBF;
-			margin-top: 1vw;
-			/* margin: 1vw; */	
-		}
-		text::-moz-placeholder {
-			  color:  red;
-			}
+	.text {
+		width: 66vw;
+		height: 3vh;
+
+		border-width: 1px;
+
+
+		border-bottom: solid 1px #BEBDBF;
+		margin-top: 1vw;
+		/* margin: 1vw; */
+	}
+
+	text::-moz-placeholder {
+		color: red;
+	}
 
 	.bigbox {
 		display: flex;

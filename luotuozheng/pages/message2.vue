@@ -83,10 +83,7 @@
 					最喜欢的食物
 				</view>
 				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
-				<view class="formtitle">
-					性格
-				</view>
-				<input type="text" class="text" name="xingge" placeholder="请输入性格" id="xingge" v-model="lt_xg" />
+			
 			</form>
 
 
@@ -216,7 +213,7 @@
 				lt_name: "",
 				lt_age: "",
 				lt_body: "",
-				lt_zt: "",
+				lt_zt: "2",
 				lt_food: "",
 				lt_xg: "",
 
@@ -253,7 +250,37 @@
 				console.log(this.zr_xy);
 				console.log(this.zr_sex);
 				console.log(this.zr_year)
-
+				
+				uni.request({
+					url: 'http://127.0.0.1:8000/order/submit/',
+					data: {
+						user_id: "123456",
+						order_id:11,
+						extra:{"lt_name": this.lt_name,
+								"lt_age":this.lt_age,
+								"lt_body":this.lt_body,
+								"lt_zt":"1",
+								"lt_food":this.lt_food,
+								"zr_name":this.zr_name,
+								"zr_sr":this.date,
+								"zr_xy":this.zr_xy,
+								"zr_zy":this.zr_zy,
+								"zr_card":this.zr_card,
+							},
+						items:{"head":0, "face":100, "neck":200, "seat":300}
+					},
+					method: "POST",
+					success: (res) => {
+						console.log(res.data)
+						// this.msg=res.data.code
+						// if(this.msg=="登录成功"){
+						// 	uni.navigateTo({
+						// 		url: '/pages/tu/tu'
+						// 	})
+						// }
+					}
+				})
+				
 				// var formData = {
 				// 	name: name,
 				// 	age: age,
@@ -280,13 +307,14 @@
 				this.activeForm = formName;
 			},
 			check1() {
-				 if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''||this.lt_xg===''||this.zr_name===''||this.zr_year===''||this.zr_month===''||this.zr_day===''||this.zr_xy===''||this.zr_zy===''||this.zr_card==='') {
-				   return false; // 阻止表单提交
-				 }
+				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
+					'' || this.zr_zy === '' || this.zr_card === '') {
+					return false; // 阻止表单提交
+				}
 
 				// 进行其他表单验证逻辑...
 
-				 return true; // 允许表单提交
+				return true; // 允许表单提交
 			},
 			bindDateChange: function(e) {
 			    this.date = e.detail.value
