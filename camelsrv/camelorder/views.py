@@ -75,7 +75,7 @@ def start_cp(req):
         return format_response(1, "ok", ic.code) 
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
-def submit(req):
+def modify(req):
     try:
         req_json = json.loads(req.body)
         user = auth(req_json)
@@ -90,24 +90,21 @@ def submit(req):
         except:
             return format_response(-1, f"Invalid order_id parameter: {order}.")
         if order.status != 0:
-            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only submit orders on status 0.")
+            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only modify orders on status 0.")
         if user != order.owner:
             return format_response(-1, f"Order {order.id} doesn't belong to {user.id}.")
         available_items = set(user.possessions)
         if order.complement != None:
             available_items.update(order.complement.owner.possessions)
         items = req_json.get('items')
-        if items == None:
-            return format_response(-1, "Missing data items.")
+        if items != None:
+            for v in items.values():
+                if not v in available_items:
+                    return format_response(-1, f"Items parameter containing unavailable item(s).")
+            order.items = items
         extra = req_json.get('extra')
-        if extra == None:
-            return format_response(-1, "Missing data extra.")
-        for v in items.values():
-            if not v in available_items:
-                return format_response(-1, f"Items parameter containing unavailable item(s).")
-        order.items = items
-        order.extra = extra
-        order.status = 2
+        if extra != None:
+            order.extra = extra
         order.save()
         return format_response(1, "ok")
     except Exception as e:

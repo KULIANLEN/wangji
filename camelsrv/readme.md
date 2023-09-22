@@ -144,10 +144,10 @@ order_id | 364364 | Integer | 是 | 需要创建邀请码的订单id
 }
 ```
 
-## 提交订单
+## 修改订单
 
 #### 接口URL
-> https://<域名>/order/submit/
+> https://<域名>/order/modify/
 
 #### 请求方式
 > POST
@@ -157,8 +157,8 @@ order_id | 364364 | Integer | 是 | 需要创建邀请码的订单id
 --- | --- | --- | --- | ---
 user_id | 1145141919810 | String | 是 | 用户id
 order_id | 364364 | int | 是 | 订单id
-items | {"head":1, "face":103, "neck":200, "seat":302} | Integer Dictionary | 是 | 选择的装备
-extra | {"favorite":"无花果"} | String Dictionary | 是 | 额外信息
+items | {"head":1, "face":103, "neck":200, "seat":302} | Integer Dictionary | 否 | 若存在即新的选择的装备
+extra | {"favorite":"无花果"} | String Dictionary | 否 | 若存在即新的额外信息
 
 #### 成功响应示例
 ```javascript

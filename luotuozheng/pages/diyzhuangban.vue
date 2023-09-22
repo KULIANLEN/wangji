@@ -57,7 +57,7 @@
 					
 					</view>
 				</view>
-				<view class="submit-button">提交</view>
+				<view class="confirm-button" @click="confirm()">提交</view>
 			</view>
 		</view>
 	</view>
@@ -84,7 +84,7 @@
 		},
 		onShow() {
 			this.userId = this.$route.query.user;
-			this.orderId = this.$route.query.order;
+			this.orderId = +this.$route.query.order;
 			var that = this;
 			uni.request({
 				url:'http://127.0.0.1:8000/order/query/'+this.orderId+'?query=*.{possessions|owner.possessions}',
@@ -149,6 +149,40 @@
 			fanhui(){
 				uni.navigateTo({
 					url:'/pages/index'
+				})
+			},
+			confirm(){
+				uni.request({
+					url:'http://127.0.0.1:8000/order/modify/',
+					data:{
+						user_id : this.userId,
+						order_id : this.orderId,
+						items : this.items,
+					},
+					method : 'POST',
+					success(res){
+						if(res.data.code == 1){
+							uni.showToast({
+								icon: 'success',
+								title : '修改成功',
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast();
+								}, 500)
+							})
+						} else {
+							uni.showToast({
+								icon: 'error',
+								title : res.data.msg
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast()
+								}, 500)
+							})
+							console.log(res.data.msg);
+						}
+					}
+					
 				})
 			}
 		},
@@ -337,7 +371,7 @@
 	width: 20vw;
 	height: 7vh;
 }
-.submit-button{
+.confirm-button{
 	margin: 7.5%;
 	width:85%;
 	display:flex;
