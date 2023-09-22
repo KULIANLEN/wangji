@@ -18,12 +18,12 @@
 				</view>
 			</view>
 			<view class="middlebox2">
-				<view class="image2" @click="redirect2Page(page-1)">
+				<view v-if="page > 0" class="image2" @click="redirect2Page(page-1)">
 					<image src="../static/shangyiye white.png" class="image2"></image>
 				</view>
 				
 				<view class="image3" @click="redirect2Page(page+1)">
-					<image src="../static/nextwhite.png" class="image3"></image>
+					<image v-if="page < pageCnt - 1" src="../static/nextwhite.png" class="image3"></image>
 				</view>
 			</view>
 	</view>
