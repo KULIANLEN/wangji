@@ -73,8 +73,8 @@
 						骆驼状态
 					</view>
 					<radio-group v-model="lt_zt">
-						<label class="radio" @click="1">
-							<radio id="weipang" value="lt_body2" name="lt_body" checked="lt_body === '2'" /><text
+						<label class="radio">
+							<radio id="weipang" value="lt_body2" name="lt_body" checked="1" /><text
 								for="weipang">恋爱中</text>
 						</label>
 					</radio-group>
