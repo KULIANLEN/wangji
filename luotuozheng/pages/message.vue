@@ -238,6 +238,12 @@
 			submitForms() {
 				if (this.check1() === false) {
 					console.log("数据有误");
+					uni.showLoading({
+					    title: '信息填写不完整'
+					});
+					setTimeout(() => {
+						uni.hideLoading();
+					}, 500);
 					return null;
 				}
 				// food=this.food;
@@ -252,7 +258,7 @@
 				// uni.request({
 				// 	url: 'http://127.0.0.1:8000/order/create/',
 				// 	data: {
-				// 		user_id: "123456"
+				// 		user_id: "114"
 				// 	},
 				// 	method: "POST",
 				// 	success: (res) => {
@@ -266,10 +272,10 @@
 				// 	}
 				// })
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/submit/',
+					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
-						user_id: "123456",
-						order_id:11,
+						user_id: "114",
+						order_id:12,
 						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
 								"lt_body":this.lt_body,
@@ -286,12 +292,9 @@
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
-						// this.msg=res.data.code
-						// if(this.msg=="登录成功"){
-						// 	uni.navigateTo({
-						// 		url: '/pages/tu/tu'
-						// 	})
-						// }
+						uni.navigateTo({
+							url:'/pages/list'
+						})
 					}
 				})
 

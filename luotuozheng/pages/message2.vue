@@ -131,6 +131,62 @@
 	</view>
 
 </template>
+<!-- export default {
+		data() {
+			return {
+				username: '',
+				password: '',
+				code:'',
+				msg:"",
+				
+				lt_name:"",
+				lt_age:"",
+				lt_body:"",
+				lt_zt:"",
+				lt_food:"",
+				lt_xg:"",
+								
+				zr_name:"",
+				zr_year:"",
+				zr_month:"",
+				zr_day:"",
+				zr_sex:"",
+				zr_zy:"",
+				zr_card:"",
+			};
+		},
+		methods: {
+			dl() {
+				uni.request({
+					url:'http://127.0.0.1:8001/app/login',
+					data:{
+						n1:this.username,
+						n2:this.password
+					},
+					method:"GET",
+					success:(res)=>{
+						console.log(res.data.code)
+						this.msg=res.data.code
+						if(this.msg=="登录成功"){
+							uni.navigateTo({
+								url: '/pages/tu/tu'
+							})
+						}
+					}
+				})
+			},
+			xx(){
+				this.msg="66666"
+			},
+			click03(){
+				console.log(2233)
+				uni.navigateTo({
+					url: '/pages/signup/signup'
+				})
+			}
+		},
+	}; -->
+
 
 <script>
 	export default {
@@ -183,6 +239,12 @@
 			submitForms() {
 				if (this.check1() === false) {
 					console.log("数据有误");
+					uni.showLoading({
+					    title: '信息填写不完整'
+					});
+					setTimeout(() => {
+						uni.hideLoading();
+					}, 500);
 					return null;
 				}
 				// food=this.food;
@@ -198,7 +260,7 @@
 				uni.request({
 					url: 'http://127.0.0.1:8000/order/submit/',
 					data: {
-						user_id: "123456",
+						user_id: "114",
 						order_id:11,
 						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
@@ -216,12 +278,9 @@
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
-						// this.msg=res.data.code
-						// if(this.msg=="登录成功"){
-						// 	uni.navigateTo({
-						// 		url: '/pages/tu/tu'
-						// 	})
-						// }
+						uni.navigateTo({
+							url:'/pages/list'
+						})
 					}
 				})
 				

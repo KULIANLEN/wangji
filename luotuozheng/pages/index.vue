@@ -23,8 +23,8 @@
 		
 		
 		<button class="button3"hover-class="hover2" @click="dianji1"><span class="button-text1">邀请码</span></button>
-		<button class="button4"hover-class="hover2" @click="dianjiqr"><span class="button-text2">二维码</span></button>
-		<button class="button5"hover-class="hover2" @click="dianji3"><span class="button-text">我的订单</span></button>
+		<button class="button4"hover-class="hover2" @click="dianjixjdd"><span class="button-text2">新建订单</span></button>
+		<button class="button5"hover-class="hover2" @click="dianjimy"><span class="button-text">我的订单</span></button>
 	</view>
 	<view class="di2">
 		<view>兰大小萃版权所有</view>
@@ -65,11 +65,11 @@
 			this.clicked=false
 		}, 500);
 	},
-	dianjiqr(){
+	dianjixjdd(){
 		this.clicked=true,
 		setTimeout(() => {
 			uni.navigateTo({
-				url:"/pages/qrcode",
+				url:"/pages/choose",
 			}),
 			this.clicked=false
 		}, 500);
@@ -78,7 +78,7 @@
 		this.clicked=true,
 		setTimeout(() => {
 			uni.navigateTo({
-				url:"/pages/detail",
+				url:"/pages/list",
 			}),
 			this.clicked=false
 		}, 500);
