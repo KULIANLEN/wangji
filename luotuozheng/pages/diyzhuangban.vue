@@ -57,7 +57,7 @@
 					
 					</view>
 				</view>
-				<view class="confirm-button" @click="confirm()">提交</view>
+				<view class="confirm-button" @click="confirm()">确认修改</view>
 			</view>
 		</view>
 	</view>
@@ -83,7 +83,7 @@
 			}
 		},
 		onShow() {
-			this.userId = this.$route.query.user;
+			this.userId = getApp().globalData.userId;
 			this.orderId = +this.$route.query.order;
 			var that = this;
 			uni.request({

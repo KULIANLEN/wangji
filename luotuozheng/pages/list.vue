@@ -36,7 +36,6 @@
 	export default {
 		data() {
 			return {
-				user_id: '114',
 				username: '',
 				password: '',
 				code:'',
@@ -46,7 +45,7 @@
 		},
 		onShow(){
 			uni.request({
-				url:'http://127.0.0.1:8000/user/query/'+ this.user_id +'/?query=orders.{id|extra|status|complement.{owner.id|extra.name}}',
+				url:'http://127.0.0.1:8000/user/query/'+ getApp().globalData.userId +'/?query=orders.{id|extra|status|complement.{owner.id|extra.name}}',
 				method:"GET",
 				success : (res)=>{
 					this.orders = [];
@@ -117,7 +116,7 @@
 			},
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
-					url: '/pages/diyzhuangban?user='+this.user_id+'&order='+this.orders[idx].orderId
+					url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
 				})
 			},
 			fanhui(){

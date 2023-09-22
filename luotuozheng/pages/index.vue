@@ -157,7 +157,7 @@
      font-size: 100rpx;
 	 font-weight: bold;
 
-	 color: rgb(180, 186, 200);
+	 color: rgb(255, 255, 255);
 	 font-family: '楷体';
 	 margin-top: 15rpx;
 }
@@ -171,7 +171,7 @@
      font-size: 80rpx;
 	 font-weight: bold;
 
-	 color: rgb(192, 192, 192);
+	 color: rgb(255, 255, 255);
 	 font-family: '楷体';
 }
 .daohang{

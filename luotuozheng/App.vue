@@ -8,6 +8,9 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+		},
+		globalData:{
+			userId : 114,
 		}
 	}
 </script>
