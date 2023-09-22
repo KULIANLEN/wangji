@@ -23,6 +23,70 @@ const itemSprites = {
 			width : 25,
 		},
 	},
+	"4":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"5":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"6":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"7":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"8":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"9":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"10":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
+	"11":{
+		foreground:{
+			texture : "/static/images/head/flower-ring.png",
+			offsetX : 3.75,
+			offsetY : 11.75,
+			width : 25,
+		},
+	},
 	"100":{
 		foreground:{
 			texture: "",

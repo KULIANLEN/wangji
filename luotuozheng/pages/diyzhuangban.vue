@@ -317,7 +317,7 @@
 	display: flex;
 	justify-content: center;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
-	
+	overflow-x: scroll;
 	
 }
 
