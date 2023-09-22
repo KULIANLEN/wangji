@@ -37,9 +37,17 @@
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
-		}
-		,{
+		},
+		{
 		    "path" : "pages/message",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
+		    "path" : "pages/message2",
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "",

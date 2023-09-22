@@ -256,7 +256,7 @@
 					data: {
 						user_id: "123456",
 						order_id:11,
-						extra:{"lt_name": this.lt_name,
+						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
 								"lt_body":this.lt_body,
 								"lt_zt":"1",

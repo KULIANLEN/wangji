@@ -244,7 +244,7 @@
 				// xingge=this.xingge;
 				// const formData1 = new FormData(this.$refs.form1);//获取表单1的数据
 				// const formData2=new FormData(this.$refs.form2); // 获取表单2的数据
-				console.log(this.lt_name);
+				console.log(this.name);
 				console.log(this.lt_age);
 				console.log(this.zr_xy);
 				console.log(this.zr_sex);
@@ -270,7 +270,7 @@
 					data: {
 						user_id: "123456",
 						order_id:11,
-						extra:{"lt_name": this.lt_name,
+						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
 								"lt_body":this.lt_body,
 								"lt_zt":"1",
