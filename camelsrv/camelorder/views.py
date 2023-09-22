@@ -109,3 +109,33 @@ def modify(req):
         return format_response(1, "ok")
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
+def submit(req):
+    try:
+        req_json = json.loads(req.body)
+        user = auth(req_json)
+        if user == None:
+            return format_response(-1, "Authentication failed.")
+        try:
+            order = req_json.get('order_id')
+            if order == None:
+                return format_response(-1, "Missing data order_id.")
+            order = camel_order.objects.get(id = int(order))
+        except:
+            return format_response(-1, f"Invalid order_id parameter: {order}.")
+        if order.status != 0:
+            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only modify orders on status 0.")
+        if user != order.owner:
+            return format_response(-1, f"Order {order.id} doesn't belong to {user.id}.")
+        order.status = 2
+        order.save()
+        return HttpResponse(1, "ok")
+    except Exception as e:
+        return format_response(-1, f"Server error: {str(e)}")
+def obtain_submitted(req):
+    ret = []
+    for e in camel_order.objects.filter(status = 2):
+        toAdd = {}
+        for k, v in e.query_methods().items():
+            toAdd[k] = try_deref(v(), wild(wild({})))
+        ret.append(toAdd)
+    return format_response(1, "ok", json.dumps(ret))

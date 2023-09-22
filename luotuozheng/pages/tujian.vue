@@ -57,7 +57,6 @@
 		},
 		methods: {
 			redirect2Page(idx){
-				if(idx >= 0 && idx < this.pageCnt)
 				uni.navigateTo({
 					url: "/pages/tujian?page="+idx,
 				});
