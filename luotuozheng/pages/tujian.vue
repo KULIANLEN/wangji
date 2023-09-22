@@ -12,40 +12,17 @@
 		</view>
 			
 			<view class="middlebox">
-				<view class="smallbox">
-					<image src="../static/unlock_00000.png" class="image1"></image>
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
-				</view>
-				<view class="smallbox">
-					
+				<view class="smallbox" v-for="(el, idx) in items2Show" :key="idx">
+					<image class="image1" v-if="!el.obtained" src="/static/unlock_00000.png"></image>
+					<image class="image1" v-else :src="itemSprites[el.id].foreground.texture"></image>
 				</view>
 			</view>
 			<view class="middlebox2">
-				<view class="image2">
+				<view class="image2" @click="redirect2Page(page-1)">
 					<image src="../static/shangyiye white.png" class="image2"></image>
 				</view>
 				
-				<view class="image3">
+				<view class="image3" @click="redirect2Page(page+1)">
 					<image src="../static/nextwhite.png" class="image3"></image>
 				</view>
 			</view>
@@ -53,14 +30,38 @@
 </template>
 
 <script>
+	import itemSprites from 'static/scripts/item-sprites.js'
 	export default {
 		data() {
 			return {
-				
+				items2Show:[],
+				itemSprites: {},
+				page: 0,
+				pageCnt: 0,
 			}
 		},
+		onShow(){
+			this.itemSprites = itemSprites;
+			this.page = this.$route.query.page;
+			this.pageCnt = (Object.keys(this.itemSprites).length-4)/9;
+			if(this.page===undefined)this.page=0;
+			var that = this;
+			uni.request({
+				url: 'http://127.0.0.1:8000/user/query/'+getApp().globalData.userId+'?query=possessions',
+				method: 'GET',
+				success(res) {
+					var possessions = new Set(res.data.dat.possessions);
+					that.items2Show = Object.keys(itemSprites).map(e=>+e).filter(e=>e % 100 != 0).slice(that.page*9, (that.page + 1) * 9).map(e=>possessions.has(e) ? {id: e, obtained: true} : {id: e, obtained: false});
+				}
+			});
+		},
 		methods: {
-			
+			redirect2Page(idx){
+				if(idx >= 0 && idx < this.pageCnt)
+				uni.navigateTo({
+					url: "/pages/tujian?page="+idx,
+				});
+			}
 		}
 	}
 </script>
