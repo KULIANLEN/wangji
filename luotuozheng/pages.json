@@ -85,6 +85,14 @@
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
+		},
+		{
+		    "path" : "pages/choose",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
 		}
     ],
 	"globalStyle": {
