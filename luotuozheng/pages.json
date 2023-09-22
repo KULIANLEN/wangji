@@ -45,14 +45,6 @@
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
-		}
-		,{
-		    "path" : "pages/message2",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
 		},
 		{
 		    "path" : "pages/diyzhuangban",
@@ -80,6 +72,14 @@
 		},
 		{
 		    "path" : "pages/master",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
+		    "path" : "pages/tujian",
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "",
