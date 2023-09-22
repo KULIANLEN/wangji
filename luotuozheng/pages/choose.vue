@@ -69,7 +69,7 @@
 					success: (res) => {
 						console.log(res.data)
 						uni.navigateTo({
-							url:'/pages/message'
+							url:'/pages/message?order='+res.data.dat
 						})
 					}
 				})

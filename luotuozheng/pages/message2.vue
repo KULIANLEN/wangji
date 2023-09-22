@@ -1,6 +1,8 @@
 <template>
 	<view class="bigbox">
-
+		<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 		<view class="top">
 
 		</view>
@@ -319,6 +321,11 @@
 			showForm(formName) {
 				this.activeForm = formName;
 			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			},
 			check1() {
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
 					'' || this.zr_zy === '' || this.zr_card === '') {
@@ -368,7 +375,17 @@
 	}
 </script>
 <style>
-	
+	.zuoshang {
+		position: fixed;
+		top: 16rpx;
+		left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 		.text{
 			width: 66vw;
 			height: 3vh;
@@ -383,7 +400,17 @@
 		text::-moz-placeholder {
 			  color:  red;
 			}
-
+			.zuoshang {
+				position: fixed;
+				margin-top: 36rpx;
+				margin-left: 15rpx;
+			}
+			.icon {
+				height: 4vh;
+				width: 4vh;
+				display: flex;
+				justify-content: flex-start;
+			}
 	.bigbox {
 		display: flex;
 		flex-direction: column;
