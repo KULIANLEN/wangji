@@ -7,7 +7,7 @@
 
 		<view class="background">
 			<view class="title">
-				用户名什么的 大概 我就留个空
+				骆驼订单
 			</view>
 			<view class="middlebox1">
 				<view class="smallbox">
@@ -21,10 +21,11 @@
 					<button class="button1" @click="showForm('form2')">
 						主人信息
 					</button>
+					
 				</view>
-				<view class="smallbox">
+				<!-- <view class="smallbox">
 					<button class="button1">3</button>
-				</view>
+				</view> -->
 
 
 			</view>
@@ -99,60 +100,12 @@
 				</view>
 				<input type="text" class="text" name="name" placeholder="请输入姓名" v-model="zr_name" />
 
-				<view>
-					<view class="formtitle">
-						生日
-					</view>
-
-					<label for="year">年份：</label>
-					<select id="year" v-model="zr_year">
-						<option>2004</option>
-						<option>2005</option>
-						<option>2006</option>
-					</select>
-
-					<!-- 					<label for="year">年份：</label>
-					<select id="year" v-model="zr_year" @change="updateDayOptions">
-						<option v-for="year in yearOptions" :value="year">{{ year }}</option>
-					</select> -->
-
-					<label for="month">月份：</label>
-					<select id="month" v-model="zr_month">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-
-					<label for="day">日期：</label>
-					<select id="day" v-model="zr_day">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</view>
-				<view class="form">
-					<view class="formtitle">
-						性别
-					</view>
-					<radio-group v-model="zr_sex">
-						<!-- <label class="radio">
-							<radio for="nan" value="sex1" name="sex" checked="zr_sex === '1'" @click="handleRadioClick_3(1)" />
-							<text id="nan">男</text>
-						</label>
-						<label class="radio1">
-							<radio for="nv" value="sex2" name="sex" checked="zr_sex === '2'" @click="handleRadioClick_3(2)" />
-							<text id="nv">女</text>
-						</label> -->
-						<label class="radio1" @click="handleRadioClick_3(1)">
-							<radio id="shou" value="lt_body3" name="lt_body" checked="zr_sex === '1'" /><text
-								for="shou">男</text>
-						</label>
-						<label class="radio1" @click="handleRadioClick_3(2)">
-							<radio id="henshou" value="lt_body4" name="lt_body" checked="zr_sex === '2'" /><text
-								for="henshou">女</text>
-						</label>
-					</radio-group>
-				</view>
+				<form class="form1" action="">
+					<view class="formtitle">生日</view>
+					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+						<view class="text">{{date}}</view>
+					</picker>
+				</form>
 
 				<view class="formtitle">
 					学院
@@ -249,6 +202,17 @@
 			    format: true
 			})
 			return {
+				sex:'',
+				index: 0,
+				date: currentDate,
+				computed: {
+				    startDate() {
+				        return this.getDate('start');
+				    },
+				    endDate() {
+				        return this.getDate('end');
+				    }
+				},
 				// body: '',
 				// zhuangtai: '',
 				activeForm: "form1",
@@ -310,12 +274,10 @@
 			},
 			handleRadioClick_2(value) {
 				this.lt_zt = value.toString();
-				console.log(666)
 				console.log(this.lt_zt)
 			},
 			handleRadioClick_3(value) {
 				this.zr_sex = value.toString();
-				console.log(666)
 				console.log(this.zr_sex)
 			},
 			showForm(formName) {
@@ -329,11 +291,62 @@
 				// 进行其他表单验证逻辑...
 
 				 return true; // 允许表单提交
-			}
+			},
+			bindDateChange: function(e) {
+			    this.date = e.detail.value
+			},
+			getDabindDateChange: function(e) {
+		            this.date = e.detail.value
+		        },
+		        getDate(type) {
+		            const date = new Date();
+		            let year = date.getFullYear();
+		            let month = date.getMonth() + 1;
+		            let day = date.getDate();
+		
+		            if (type === 'start') {
+		                year = year - 60;
+		            } else if (type === 'end') {
+		                year = year + 2;
+		            }
+		            month = month > 9 ? month : '0' + month;
+		            day = day > 9 ? day : '0' + day;
+		            return `${year}-${month}-${day}`;
+		        },te(type) {
+			    const date = new Date();
+			    let year = date.getFullYear();
+			    let month = date.getMonth() + 1;
+			    let day = date.getDate();
+					
+			    if (type === 'start') {
+			        year = year - 60;
+			    } else if (type === 'end') {
+			        year = year + 2;
+			    }
+			    month = month > 9 ? month : '0' + month;
+			    day = day > 9 ? day : '0' + day;
+			    return `${year}-${month}-${day}`;
+			},
 		},
 	}
 </script>
 <style>
+	
+		.text{
+			width: 66vw;
+			height: 3vh;
+			
+			border-width: 1px;
+			
+			
+			border-bottom:solid 1px #BEBDBF;
+			margin-top: 1vw;
+			/* margin: 1vw; */	
+		}
+		text::-moz-placeholder {
+			  color:  red;
+			}
+
 	.bigbox {
 		display: flex;
 		flex-direction: column;
