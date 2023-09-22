@@ -57,6 +57,7 @@
 					
 					</view>
 				</view>
+				<view class="confirm-button" @click="confirm()">提交</view>
 			</view>
 		</view>
 	</view>
@@ -83,7 +84,7 @@
 		},
 		onShow() {
 			this.userId = this.$route.query.user;
-			this.orderId = this.$route.query.order;
+			this.orderId = +this.$route.query.order;
 			var that = this;
 			uni.request({
 				url:'http://127.0.0.1:8000/order/query/'+this.orderId+'?query=*.{possessions|owner.possessions}',
@@ -148,6 +149,40 @@
 			fanhui(){
 				uni.navigateTo({
 					url:'/pages/index'
+				})
+			},
+			confirm(){
+				uni.request({
+					url:'http://127.0.0.1:8000/order/modify/',
+					data:{
+						user_id : this.userId,
+						order_id : this.orderId,
+						items : this.items,
+					},
+					method : 'POST',
+					success(res){
+						if(res.data.code == 1){
+							uni.showToast({
+								icon: 'success',
+								title : '修改成功',
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast();
+								}, 500)
+							})
+						} else {
+							uni.showToast({
+								icon: 'error',
+								title : res.data.msg
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast()
+								}, 500)
+							})
+							console.log(res.data.msg);
+						}
+					}
+					
 				})
 			}
 		},
@@ -327,14 +362,26 @@
 	border: none;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
 	z-index: 999;
-	
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	
 }
 .smallbox2{
 	width: 20vw;
 	height: 7vh;
-	
-	
 }
-	
+.confirm-button{
+	margin: 7.5%;
+	width:85%;
+	display:flex;
+	justify-content: center;
+	align-content: center;
+	background-color: #f8f3d4;
+	border-radius: 15px;
+	border: none;
+	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+	z-index: 999;
+}
+
 </style>
