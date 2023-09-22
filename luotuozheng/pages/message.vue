@@ -275,7 +275,7 @@
 					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
 						user_id: "114",
-						order_id:12,
+						order_id:14,
 						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
 								"lt_body":this.lt_body,

@@ -61,25 +61,6 @@
 			})
 		},
 		methods: {
-			dl() {
-				uni.request({
-					url:'http://127.0.0.1:8001/app/login',
-					data:{
-						n1:this.username,
-						n2:this.password
-					},
-					method:"GET",
-					success:(res)=>{
-						console.log(res.data.code)
-						this.msg=res.data.code
-						if(this.msg=="登录成功"){
-							uni.navigateTo({
-								url: '/pages/tu/tu'
-							})
-						}
-					}
-				})
-			},
 			xx(){
 				this.msg="66666"
 			},

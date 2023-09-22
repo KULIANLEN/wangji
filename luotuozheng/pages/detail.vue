@@ -18,6 +18,7 @@
 				<img class="lt_2" :src="zb2">
 				<img class="lt_3" :src="zb3">
 				<img class="lt_4" :src="zb4">
+				<!-- <camel-display :items="items"></camel-display> -->
 			</view>
 		</view>
 		
@@ -67,7 +68,12 @@
 </template>
 
 <script>
+	import camel_display from '@/components/camel-display.vue';
+	import itemSprites from 'static/scripts/item-sprites.js';
 	export default {
+		components:{
+			"camel-display": camel_display,
+		},
 		data() {
 			return {
 				username: '',
@@ -199,7 +205,7 @@
 		background: linear-gradient(to   right,#FF6E53 0 , #FF6E52 , #FF8453  , #FF9758  ,#FFA859 100% );
 		width: 100vw;
 		height: 160px;
-		z-index: -3;
+		z-index: -7;
 		display: flex;
 		align-items: center;
 		font-size: 20px;
@@ -216,7 +222,7 @@
 		width: 100%;
 		margin-top: 10px;
 		flex-direction: column;
-		z-index: -1;
+		z-index: -5;
 
 		width: 84vw;
 		height: auto;
@@ -237,17 +243,17 @@
 		height: 80vw;
 		position: relative;
 		margin-bottom: 20px;
-		z-index: 3;
+		z-index: -1;
 	}
 	.lt_0{
 		width: 100%;
 		height: 100%;
-		z-index: 3;
+		z-index: -1;
 		position: absolute;
 	}
 	.lt_1{
 		width: 10%;
-		z-index: 4;
+		z-index: 0;
 		height: 10%;
 		top: 22%;
 		left: 12%;
@@ -256,7 +262,7 @@
 	}
 	.lt_2{
 		width: 10%;
-		z-index: 4;
+		z-index: 0;
 		height: 10%;
 		top: 15%;
 		left: 22%;
@@ -265,7 +271,7 @@
 	}
 	.lt_3{
 		width: 10%;
-		z-index: 4;
+		z-index: 0;
 		height: 10%;
 		top: 49%;
 		left: 24%;
@@ -274,7 +280,7 @@
 	}
 	.lt_4{
 		width: 10%;
-		z-index: 4;
+		z-index: 0;
 		height: 10%;
 		top: 26%;
 		left: 56%;
@@ -284,7 +290,7 @@
 	
 	.box2{
 		display: flex;
-		z-index: -5;
+		z-index: -9;
 		justify-content: center;
 	}
 	.box3{
@@ -317,7 +323,7 @@
 	}
 	.footer{
 		position: fixed;
-		z-index: 3;
+		z-index: -1;
 		bottom: 0;
 		width: 100vw;
 		height: 40px;
@@ -444,7 +450,7 @@
 	  left: 0;
 	  width: 100%;
 	  height: 100%;
-	  z-index: -3;
+	  z-index: -7;
 	}
 	.bg-bubbles li {
 	  position: absolute;

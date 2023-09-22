@@ -24,7 +24,7 @@
 					
 				</view>
 				<view class="smallbox">
-					<button class="button1">邀请码</button>
+					<button class="button1" @click="showForm('form3')">邀请码</button>
 				</view>
 
 
@@ -115,6 +115,16 @@
 				</view>
 				<input type="text" class="text" name="name" v-model="zr_card" placeholder="请输入校园卡号" />
 
+			</form>
+			
+			<form v-show="activeForm === 'form3'" class="form1">
+							<view class="yaoqing">
+								<text class="yaoqingtitle">请输入邀请码</text>
+								<view class="yaoqingbox">
+								   <input type="text"  placeholder="请输入邀请码" >	
+								</view>
+							</view>
+							
 			</form>
 
 
@@ -516,4 +526,26 @@
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: #fff1cf;
 	}
+	
+		.yaoqing{
+			text-align: center;
+		}
+		.yaoqingtitle{
+			font-size: 10vw;
+			
+		}
+		.yaoqingbox{
+			height: 5vh;
+			border: none;
+			border-radius: 4px;
+			width: 50vw;
+			outline: none;
+			font-size: 12px;
+			background-color: #f5f5f5;
+			color: #444444;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, .2);
+			margin-top: 10vw;
+			margin-left: 5vw;
+			margin-bottom: 10vw;
+		}
 </style>
