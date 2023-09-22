@@ -96,15 +96,11 @@ def submit(req):
         available_items = set(user.possessions)
         if order.complement != None:
             available_items.update(order.complement.owner.possessions)
-
-        try:
-            items = req_json.get('items')
-        except Exception as e:
+        items = req_json.get('items')
+        if items == None:
             return format_response(-1, "Missing data items.")
-        
-        try:
-            extra = req_json.get('extra')
-        except Exception as e:
+        extra = req_json.get('extra')
+        if extra == None:
             return format_response(-1, "Missing data extra.")
         for v in items.values():
             if not v in available_items:
