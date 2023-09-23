@@ -1,6 +1,8 @@
 <template>
 	<view class="bigbox">
-
+		<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 		<view class="top">
 
 		</view>
@@ -24,7 +26,7 @@
 					
 				</view>
 				<view class="smallbox">
-					<button class="button1">邀请码</button>
+					<button class="button1" @click="showForm('form3')">邀请码</button>
 				</view>
 
 
@@ -115,6 +117,16 @@
 				</view>
 				<input type="text" class="text" name="name" v-model="zr_card" placeholder="请输入校园卡号" />
 
+			</form>
+			
+			<form v-show="activeForm === 'form3'" class="form1">
+							<view class="yaoqing">
+								<text class="yaoqingtitle">请输入邀请码</text>
+								<view class="yaoqingbox">
+								   <input type="text"  placeholder="请输入邀请码" >	
+								</view>
+							</view>
+							
 			</form>
 
 
@@ -309,6 +321,11 @@
 			showForm(formName) {
 				this.activeForm = formName;
 			},
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			},
 			check1() {
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
 					'' || this.zr_zy === '' || this.zr_card === '') {
@@ -358,7 +375,17 @@
 	}
 </script>
 <style>
-	
+	.zuoshang {
+		position: fixed;
+		top: 16rpx;
+		left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 		.text{
 			width: 66vw;
 			height: 3vh;
@@ -373,7 +400,17 @@
 		text::-moz-placeholder {
 			  color:  red;
 			}
-
+			.zuoshang {
+				position: fixed;
+				margin-top: 36rpx;
+				margin-left: 15rpx;
+			}
+			.icon {
+				height: 4vh;
+				width: 4vh;
+				display: flex;
+				justify-content: flex-start;
+			}
 	.bigbox {
 		display: flex;
 		flex-direction: column;
@@ -516,4 +553,26 @@
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: #fff1cf;
 	}
+	
+		.yaoqing{
+			text-align: center;
+		}
+		.yaoqingtitle{
+			font-size: 10vw;
+			
+		}
+		.yaoqingbox{
+			height: 5vh;
+			border: none;
+			border-radius: 4px;
+			width: 50vw;
+			outline: none;
+			font-size: 12px;
+			background-color: #f5f5f5;
+			color: #444444;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, .2);
+			margin-top: 10vw;
+			margin-left: 5vw;
+			margin-bottom: 10vw;
+		}
 </style>

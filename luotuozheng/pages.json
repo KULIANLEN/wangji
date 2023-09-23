@@ -95,6 +95,14 @@
 		    }
 		},
 		{
+		    "path" : "pages/qinglvyaoqingma",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
 		    "path" : "pages/choose",
 		    "style" :                                                                                    
 		    {

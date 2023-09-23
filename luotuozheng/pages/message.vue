@@ -1,6 +1,8 @@
 <template>
 	<view class="bigbox">
-
+		<view class="zuoshang">
+			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+		</view>
 		<view class="top">
 
 		</view>
@@ -234,6 +236,9 @@
 				return this.getDate('end');
 			}
 		},
+		onShow(){
+			this.order_id = this.$route.query.order;
+		},
 		methods: {
 			submitForms() {
 				if (this.check1() === false) {
@@ -271,11 +276,12 @@
 				// 		// }
 				// 	}
 				// })
+				var that = this;
 				uni.request({
 					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
 						user_id: "114",
-						order_id:12,
+						order_id: that.order_id,
 						extra:{"name": this.lt_name,
 								"lt_age":this.lt_age,
 								"lt_body":this.lt_body,
@@ -289,6 +295,7 @@
 							},
 						items:{"head":0, "face":100, "neck":200, "seat":300}
 					},
+					
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
@@ -307,7 +314,11 @@
 				// var jsonData = JSON.stringify(formData);
 				// console.log(jsonData)
 			},
-
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/index'
+				})
+			},
 			handleRadioClick_1(value) {
 				this.lt_body = value.toString();
 				console.log(this.lt_body)
@@ -373,6 +384,17 @@
 	}
 </script>
 <style>
+	.zuoshang {
+		position: fixed;
+		top: 36rpx;
+		left: 15rpx;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	.text {
 		width: 66vw;
 		height: 3vh;

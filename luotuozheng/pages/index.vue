@@ -276,6 +276,21 @@ bottom: 40vw;
 .button:active {
   background-color: #ccc;
   transform: translateY(1px);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to right, #ff6e53, #ff8453);
+    background-repeat: no-repeat;
+    background-size: 200% auto;
+    transition: background-position 0.3s ease;
+  	 transition: transform 0.3s ease;
+  	   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+   background-position: right center;
+   transform: rotate(20deg);
+    background-color: #ff6e53;
+     color: #000;;
 }
 
 .di1 {
