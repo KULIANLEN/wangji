@@ -1,8 +1,8 @@
 <template>
 	<view>
 	<view class="zuoshang">
-			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
-		</view>
+		<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+	</view>
 	<view class="all">
 		<view class="top">
 			<view>我的订单</view>
@@ -53,7 +53,7 @@
 						this.orders.push({
 							orderId : e.id,
 							camelName : e.extra.name + (e.complement === null ? '' : ' & ' + e.complement.extra.name),
-							single : e.complement === null,
+							single : e.extra.lt_zt==="1"?1:0,
 							status : e.status,
 						});	
 					})
@@ -139,13 +139,18 @@
 	}
 	.ddlist{
 		margin-top: -110px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
 	}
 	.dd{
 		height: 125px;
-		width: auto;
+		width: 90vw;
 		background: white;
-		margin-left: 10px;
-		margin-right: 10px;
+/* 		margin-left: 10px;
+		margin-right: 10px; */
 		margin-top: 15px;
 		border-radius: 10px;
 		box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;

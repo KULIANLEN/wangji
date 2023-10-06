@@ -1,8 +1,8 @@
 <template>
 	<view>
 	<view class="zuoshang">
-			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
-		</view>
+		<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+	</view>
 	<view class="all">
 		
 		<view class="top">

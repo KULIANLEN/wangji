@@ -204,19 +204,19 @@
 	export default {
 		data() {
 			const currentDate = this.getDate({
-			    format: true
+				format: true
 			})
 			return {
-				sex:'',
+				sex: '',
 				index: 0,
 				date: currentDate,
 				computed: {
-				    startDate() {
-				        return this.getDate('start');
-				    },
-				    endDate() {
-				        return this.getDate('end');
-				    }
+					startDate() {
+						return this.getDate('start');
+					},
+					endDate() {
+						return this.getDate('end');
+					}
 				},
 				// body: '',
 				// zhuangtai: '',
@@ -240,12 +240,15 @@
 			};
 		},
 		computed: {
-		    startDate() {
-		        return this.getDate('start');
-		    },
-		    endDate() {
-		        return this.getDate('end');
-		    }
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
+		},
+		onShow(){
+			//this.order_id = this.$route.query.order;
 		},
 		methods: {
 			submitForms() {
@@ -259,43 +262,50 @@
 					}, 500);
 					return null;
 				}
-				// food=this.food;
-				// xingge=this.xingge;
-				// const formData1 = new FormData(this.$refs.form1);//获取表单1的数据
-				// const formData2=new FormData(this.$refs.form2); // 获取表单2的数据
-				console.log(this.lt_name);
-				console.log(this.lt_age);
-				console.log(this.zr_xy);
-				console.log(this.zr_sex);
-				console.log(this.zr_year)
-				
+				// console.log(this.name);
+				// console.log(this.lt_age);
+				// console.log(this.zr_xy);
+				// console.log(this.zr_sex);
+				// console.log(this.zr_year)
+				var that = this;
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/submit/',
+					url: 'http://127.0.0.1:8000/order/create/',
 					data: {
-						user_id: "114",
-						order_id:11,
-						extra:{"name": this.lt_name,
-								"lt_age":this.lt_age,
-								"lt_body":this.lt_body,
-								"lt_zt":"1",
-								"lt_food":this.lt_food,
-								"zr_name":this.zr_name,
-								"zr_sr":this.date,
-								"zr_xy":this.zr_xy,
-								"zr_zy":this.zr_zy,
-								"zr_card":this.zr_card,
-							},
-						items:{"head":0, "face":100, "neck":200, "seat":300}
+						user_id: "114"
 					},
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
-						uni.navigateTo({
-							url:'/pages/list'
+						this.order_id=res.data.dat
+						uni.request({
+							url: 'http://127.0.0.1:8000/order/modify/',
+							data: {
+								user_id: "114",
+								order_id: that.order_id,
+								extra:{"name": this.lt_name,
+										"lt_age":this.lt_age,
+										"lt_body":this.lt_body,
+										"lt_zt":"2",
+										"lt_food":this.lt_food,
+										"zr_name":this.zr_name,
+										"zr_sr":this.date,
+										"zr_xy":this.zr_xy,
+										"zr_zy":this.zr_zy,
+										"zr_card":this.zr_card,
+									},
+								items:{"head":0, "face":100, "neck":200, "seat":300}
+							},
+							method: "POST",
+							success: (res) => {
+								console.log(res.data)
+								uni.navigateTo({
+									url:'/pages/list'
+								})
+							}
 						})
 					}
 				})
-				
+
 				// var formData = {
 				// 	name: name,
 				// 	age: age,
@@ -305,7 +315,11 @@
 				// var jsonData = JSON.stringify(formData);
 				// console.log(jsonData)
 			},
-
+			fanhui(){
+				uni.navigateTo({
+					url:'/pages/choose'
+				})
+			},
 			handleRadioClick_1(value) {
 				this.lt_body = value.toString();
 				console.log(this.lt_body)
@@ -321,11 +335,6 @@
 			showForm(formName) {
 				this.activeForm = formName;
 			},
-			fanhui(){
-				uni.navigateTo({
-					url:'/pages/index'
-				})
-			},
 			check1() {
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
 					'' || this.zr_zy === '' || this.zr_card === '') {
@@ -337,39 +346,40 @@
 				return true; // 允许表单提交
 			},
 			bindDateChange: function(e) {
-			    this.date = e.detail.value
+				this.date = e.detail.value
 			},
 			getDabindDateChange: function(e) {
-		            this.date = e.detail.value
-		        },
-		        getDate(type) {
-		            const date = new Date();
-		            let year = date.getFullYear();
-		            let month = date.getMonth() + 1;
-		            let day = date.getDate();
-		
-		            if (type === 'start') {
-		                year = year - 60;
-		            } else if (type === 'end') {
-		                year = year + 2;
-		            }
-		            month = month > 9 ? month : '0' + month;
-		            day = day > 9 ? day : '0' + day;
-		            return `${year}-${month}-${day}`;
-		        },te(type) {
-			    const date = new Date();
-			    let year = date.getFullYear();
-			    let month = date.getMonth() + 1;
-			    let day = date.getDate();
-					
-			    if (type === 'start') {
-			        year = year - 60;
-			    } else if (type === 'end') {
-			        year = year + 2;
-			    }
-			    month = month > 9 ? month : '0' + month;
-			    day = day > 9 ? day : '0' + day;
-			    return `${year}-${month}-${day}`;
+				this.date = e.detail.value
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
+			te(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
 			},
 		},
 	}
