@@ -143,63 +143,6 @@
 	</view>
 
 </template>
-<!-- export default {
-		data() {
-			return {
-				username: '',
-				password: '',
-				code:'',
-				msg:"",
-				
-				lt_name:"",
-				lt_age:"",
-				lt_body:"",
-				lt_zt:"",
-				lt_food:"",
-				lt_xg:"",
-								
-				zr_name:"",
-				zr_year:"",
-				zr_month:"",
-				zr_day:"",
-				zr_sex:"",
-				zr_zy:"",
-				zr_card:"",
-			};
-		},
-		methods: {
-			dl() {
-				uni.request({
-					url:'http://127.0.0.1:8001/app/login',
-					data:{
-						n1:this.username,
-						n2:this.password
-					},
-					method:"GET",
-					success:(res)=>{
-						console.log(res.data.code)
-						this.msg=res.data.code
-						if(this.msg=="登录成功"){
-							uni.navigateTo({
-								url: '/pages/tu/tu'
-							})
-						}
-					}
-				})
-			},
-			xx(){
-				this.msg="66666"
-			},
-			click03(){
-				console.log(2233)
-				uni.navigateTo({
-					url: '/pages/signup/signup'
-				})
-			}
-		},
-	}; -->
-
-
 <script>
 	export default {
 		data() {

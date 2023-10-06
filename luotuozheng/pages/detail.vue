@@ -26,21 +26,20 @@
 			<view class="box3">
 				<view class="detail">
 					<view class="aaa">骆驼信息</view>
-					<view class="txt">骆驼名字：兰小骆</view>
-					<view class="txt">年龄：３岁</view>
-					<view class="txt">体型：胖胖的/瘦瘦的</view>
-					<view class="txt">状态：单身/恋爱中</view>
-					<view class="txt">最喜欢的食物：翔</view>
-					<view class="txt">性格：乐呵呵</view>
+					<view class="txt">骆驼名字：{{lt_name}}</view>
+					<view class="txt">年龄：{{lt_age}}岁</view>
+					<view class="txt">体型：{{getBody(lt_body)}}</view>
+					<view class="txt">状态：{{lt_zt=="1"?"单身":(lt_zt=="2"?"恋爱中":"")}}</view>
+					<view class="txt">最喜欢的食物：{{lt_food}}</view>
 				
 					<view class="aaa">主人信息</view>
-					<view class="txt">姓名：兰小萃</view>
-					<view class="txt">生日：2077年3月14日</view>
+					<view class="txt">姓名：{{zr_name}}</view>
+					<view class="txt">生日：{{zr_sr}}</view>
 					<view class="txt">性别：未知</view>
-					<view class="txt">学院：电竞学院</view>
-					<view class="txt">专业：电竞专业</view>
-					<view class="txt">校园卡：320231234567</view>
-					<view class="txt">订单编号：12345678</view>
+					<view class="txt">学院：{{zr_xy}}</view>
+					<view class="txt">专业：{{zr_zy}}</view>
+					<view class="txt">校园卡：{{zr_card}}</view>
+					<view class="txt">订单编号：{{order_id}}</view>
 
 				</view>
 			</view>
@@ -68,12 +67,7 @@
 </template>
 
 <script>
-	import camel_display from '@/components/camel-display.vue';
-	import itemSprites from 'static/scripts/item-sprites.js';
 	export default {
-		components:{
-			"camel-display": camel_display,
-		},
 		data() {
 			return {
 				username: '',
@@ -85,6 +79,24 @@
 				dd_id:"",
 				xyk:"",
 				cookie:"",
+				
+				lt_name: "",
+				lt_age: "",
+				lt_body: "",
+				lt_zt: "",
+				lt_food: "",
+				lt_xg: "",
+
+				zr_name: "",
+				zr_year: "",
+				zr_month: "",
+				zr_day: "",
+				zr_sr:"",
+				zr_sex: "",
+				zr_zy: "",
+				zr_xy: "",
+				zr_card: "",
+				order_id:"",
 				
 				uuu:"https://img1.imgtp.com/2023/09/18/rm5q4LHs.png",
 				zb1:"",
@@ -100,8 +112,25 @@
 				// zb4:"https://img1.imgtp.com/2023/09/18/IxLA8cXq.png",
 			};
 		},
-		created() {
-			this.getImg();
+		onShow(){
+			this.order_id = "34"
+			uni.request({
+				url:'http://127.0.0.1:8000/order/query/34/',
+				method:"GET",
+				success : (res)=>{
+					console.log(res.data)
+					this.lt_name=res.data.dat.extra.name;
+					this.lt_age=res.data.dat.extra.lt_age;
+					this.lt_body=res.data.dat.extra.lt_body;
+					this.lt_food=res.data.dat.extra.lt_food;
+					this.lt_zt=res.data.dat.extra.lt_zt;
+					this.zr_name=res.data.dat.extra.zr_name;
+					this.zr_card=res.data.dat.extra.zr_card;
+					this.zr_sr=res.data.dat.extra.zr_sr;
+					this.zr_xy=res.data.dat.extra.zr_xy;
+					this.zr_zy=res.data.dat.extra.zr_zy;//专业可以不要，有学院就行
+				}
+			})
 		},
 		methods: {
 			click03(){
@@ -110,50 +139,32 @@
 					url: '/pages/signup/signup'
 				})
 			},
+			getBody(status){
+				switch(status){
+					case "1":
+					return "微胖";
+					case "2":
+					return "胖";
+					case "3":
+					return "瘦";
+					case "4":
+					return "很瘦";
+				}
+			},
 			qxdd(){
 				console.log("qxdd")
-				uni.request({
-					url:'http://127.0.0.1:8001/app/login',
-					data:{
-						// act:this.action,
-						action:"qxdd",
-						dd_id:this.dd_id,
-						xyk:this.xyk,
-					},
-					method:"GET",
-					success:(res)=>{
-						// console.log(res.data.code)
-						// this.msg=res.data.code
-						uni.navigateTo({
-							url: '/pages/luotuo/list'
-						})
-					}
-				})
+				
 			},
 			xgdd(){
 				console.log("xgdd")
 				uni.navigateTo({
-					url: '/pages/luotuo/list'
+					url: '/pages/list'
 				})
 			},
 			tjdd(){
 				console.log("tjdd")
-				uni.request({
-					url:'http://127.0.0.1:8001/app/login',
-					data:{
-						// act:this.action,
-						action:"tjdd",
-						dd_id:this.dd_id,
-						xyk:this.xyk,
-					},
-					method:"GET",
-					success:(res)=>{
-						// console.log(res.data.code)
-						// this.msg=res.data.code
-						uni.navigateTo({
-							url: '/pages/luotuo/list'
-						})
-					}
+				uni.navigateTo({
+					url: '/pages/list'
 				})
 			},
 			getImg(url0){
@@ -323,7 +334,7 @@
 	}
 	.footer{
 		position: fixed;
-		z-index: -1;
+		z-index: 9;
 		bottom: 0;
 		width: 100vw;
 		height: 40px;
