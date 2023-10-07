@@ -1,24 +1,24 @@
 <template>
 	<view class="all">
-		<view class="zhongjian">
-			<view class="wenzi1">小萃</view>
-			<view class="wenzi">骆驼证</view>
-			<button class="button"hover-class="hover1" @click="tujian">
-				<view class="button-text1">图鉴</view>
+		<view class="top">
+			<view class="wenzi_gongyou wenzi1">小萃</view>
+			<view class="wenzi_gongyou wenzi2">骆驼证</view>
+			<button class="button" @click="tujian">
+				<view class="button-text text1">图鉴</view>
 			</button>
-			<button class="button"hover-class="hover1" @click="dianjichouka">
-				<view class="button-text1">抽卡</view>
+			<button class="button"@click="chouka">
+				<view class="button-text text1">抽卡</view>
 			</button>
 		</view>
-		<view class="di1">
-			<button class="button3"hover-class="hover2" @click="dianji1">
-				<view class="button-text1">邀请码</view>
+		<view class="main">
+			<button class="button3" @click="dianjiyqm">
+				<view class="button-text text1">邀请码</view>
 			</button>
-			<button class="button4"hover-class="hover2" @click="dianjixjdd">
-				<view class="button-text2">新建订单</view>
+			<button class="button4" @click="dianjixjdd">
+				<view class="button-text text2">新建订单</view>
 			</button>
-			<button class="button5"hover-class="hover2" @click="dianjimy">
-				<view class="button-text">我的订单</view>
+			<button class="button5" @click="dianjimy">
+				<view class="button-text text3">我的订单</view>
 			</button>
 		</view>
 	</view>
@@ -35,7 +35,7 @@
 			onClick() {
 				this.isClicked = !this.isClicked;
 			},
-			dianji1(){
+			dianjiyqm(){
 				this.clicked=true,
 				setTimeout(() => {
 					uni.navigateTo({
@@ -44,7 +44,7 @@
 					this.clicked=false
 				}, 500);
 			},
-			dianjichouka(){
+			chouka(){
 				this.clicked=true,
 				setTimeout(() => {
 					uni.navigateTo({
