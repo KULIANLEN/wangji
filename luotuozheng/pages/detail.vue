@@ -48,7 +48,7 @@
 			</view>
 		</view>
 		<view class="footer">
-			<view class="f1" @click="qxdd()">取消订单</view>
+			<view class="f1" @click="qxdd()">删除订单</view>
 			<view class="f2" @click="xgdd()">修改订单</view>
 			<view class="f1" @click="tjdd()">提交订单</view>
 		</view>
@@ -198,7 +198,40 @@
 			},
 			qxdd(){
 				console.log("qxdd")
-				
+				uni.request({
+					url:'http://127.0.0.1:8000/order/delete/',
+					data:{
+						user_id : this.userId,
+						order_id : this.orderId,
+					},
+					method : 'POST',
+					success(res){
+						if(res.data.code == 1){
+							uni.showToast({
+								icon: 'success',
+								title : '删除订单成功',
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast();
+									uni.navigateTo({
+										url: '/pages/list'
+									});
+								}, 500)
+							})
+						} else {
+							uni.showToast({
+								icon: 'error',
+								title : res.data.msg
+							}).then(v=>{
+								setTimeout(()=>{
+									uni.hideToast()
+								}, 500)
+							})
+							console.log(res.data.msg);
+						}
+					}
+					
+				})
 			},
 			xgdd(){
 				console.log("xgdd")

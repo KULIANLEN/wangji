@@ -228,7 +228,6 @@
 										"zr_name":this.zr_name,
 										"zr_sr":this.date,
 										"zr_xy":this.zr_xy,
-										"zr_zy":this.zr_zy,
 										"zr_card":this.zr_card,
 									},
 								items:{"head":0, "face":100, "neck":200, "seat":300}
@@ -275,7 +274,7 @@
 			},
 			check1() {
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
-					'' || this.zr_zy === '' || this.zr_card === '') {
+					'' || this.zr_card === '') {
 					return false; // 阻止表单提交
 				}
 
