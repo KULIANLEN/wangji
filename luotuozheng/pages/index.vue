@@ -3,21 +3,21 @@
 		<view class="top">
 			<view class="wenzi_gongyou wenzi1">小萃</view>
 			<view class="wenzi_gongyou wenzi2">骆驼证</view>
-			<button class="button" @click="tujian">
+			<button class="button_gongyou button1" @click="tujian">
 				<view class="button-text text1">图鉴</view>
 			</button>
-			<button class="button"@click="chouka">
+			<button class="button_gongyou button1"@click="chouka">
 				<view class="button-text text1">抽卡</view>
 			</button>
 		</view>
 		<view class="main">
-			<button class="button3" @click="dianjiyqm">
+			<button class="button_gongyou button3" @click="dianjiyqm">
 				<view class="button-text text1">邀请码</view>
 			</button>
-			<button class="button4" @click="dianjixjdd">
+			<button class="button_gongyou button4" @click="dianjixjdd">
 				<view class="button-text text2">新建订单</view>
 			</button>
-			<button class="button5" @click="dianjimy">
+			<button class="button_gongyou button5" @click="dianjimy">
 				<view class="button-text text3">我的订单</view>
 			</button>
 		</view>
@@ -27,14 +27,10 @@
 	export default {
 		data() {
 			return {
-				isClicked: false,
 				clicked:false,
 			};
 		},
 		methods: {
-			onClick() {
-				this.isClicked = !this.isClicked;
-			},
 			dianjiyqm(){
 				this.clicked=true,
 				setTimeout(() => {
@@ -83,3 +79,6 @@
 		}
 	};
 </script>
+<style>
+	@import '/style/index.css';
+</style>
