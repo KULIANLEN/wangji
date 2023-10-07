@@ -1,7 +1,6 @@
 .all {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(246,246,246);
 }
 .top {
 	display: flex;
@@ -30,8 +29,8 @@
 .button_gongyou{
 	position: fixed;
 	border-radius: 50%;
-	box-shadow: 15rpx 15rpx 15rpx rgba(0, 0, 0, 0.5);
-	background-color: rgba(247, 247, 247, 0.8);
+	box-shadow: 10rpx 10rpx 10rpx rgba(0, 0, 0, 0.5);
+	background-color: rgba(245,244,236,0.9);
 }
 .button1 {
 	left: 66vw;
@@ -69,8 +68,8 @@
 .button4:hover,
 .button5:hover{
 	transition: transform 0.5s ease, background-color 0.5s ease, color 0.5s ease;
-	transform: rotate(20deg);
-	background-color: #ff6e53;
+	transform: rotate(10deg);
+	background-color: rgba(84,174,255,0.9);
 }
 .button-text{
 	position: absolute;
