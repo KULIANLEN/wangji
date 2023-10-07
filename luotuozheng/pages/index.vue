@@ -92,6 +92,7 @@
 	justify-content: center;
 	height: 100vh;
 	width: 100vw;
+	background-color: rgb(246,246,246);
 }
 .white{
 	position: fixed;
@@ -133,13 +134,15 @@
 	background-position: right center;
 }
 .wenzi{
+	display: flex;
+	align-items: center;
 	height: 100%;
 	border: 2px;
 	font-size: 100rpx;
 	font-weight: bold;
 	color: rgb(255, 255, 255);
 	font-family: '楷体';
-	margin-top: 15rpx;
+	margin-top: -5rpx;
 }
 .wenzi1{
 	margin-left: 3vw;
@@ -164,7 +167,7 @@
 .button {
 	border-radius: 50%;
 	right: -2vw;
-	top: 3vw;
+	top: 5vw;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 	bottom: 10vw;
 	height: 100rpx;
@@ -180,8 +183,8 @@
 	align-items: center;
 	justify-content: center;
 	bottom: 40vw;
-	top:-0vw;
-	left:20vw;
+	top:26vw;
+	left:30vw;
 	height: 80px;
 	width:80px;
 	margin: 10px;
@@ -197,7 +200,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	top: -0vw;
+	top: 35vw;
 	bottom: 100vw;
 	left:60vw;
 	height: 130px;
@@ -215,8 +218,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	bottom:0vw;
-	left:-20vw;
+	bottom:-20vw;
+	left:-15vw;
 	height: 200px;
 	width:200px;
 	margin: 10px;
@@ -255,8 +258,9 @@
 	color: #000;;
 }
 .di1 {
+	margin-top: 0rpx;
 	background-image: url("/static/666.jpg");
-	height: 80vh;
+	height: 85vh;
 	width: 100%;
 	background-size: cover;
 	background-position: bottom;
@@ -264,7 +268,7 @@
 .zhongjian {
 	background: linear-gradient(to   right,#FF6E53 , #FF6E52 , #FF8453 40% , #FF9758  ,#FFA859 );
 	width: 100%;
-	height: 150rpx;
+	height: 15vh;
 	display: flex;
 }
 .button2, .button3, .button4 ,.button5{
