@@ -51,21 +51,21 @@
 					<view class="formtitle">
 						骆驼体型
 					</view>
-					<radio-group v-model="lt_zt">
+					<radio-group>
 						<label class="radio" @click="handleRadioClick_1(1)">
-							<radio id="pang" value="lt_body1" name="lt_body" checked="lt_body === '1'" /><text
+							<radio id="pang" value="1" name="lt_body" :checked="lt_body === '1' " /><text
 								for="pang">胖</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(2)">
-							<radio id="weipang" value="lt_body2" name="lt_body" checked="lt_body === '2'" /><text
+							<radio id="weipang" value="2" name="lt_body" :checked="lt_body === '2' " /><text
 								for="weipang">微胖</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(3)">
-							<radio id="shou" value="lt_body3" name="lt_body" checked="lt_body === '3'" /><text
+							<radio id="shou" value="3" name="lt_body" :checked="lt_body === '3' " /><text
 								for="shou">瘦</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(4)">
-							<radio id="henshou" value="lt_body4" name="lt_body" checked="lt_body === '4'" /><text
+							<radio id="henshou" value="4" name="lt_body" :checked="lt_body === '4' " /><text
 								for="henshou">很瘦</text>
 						</label>
 					</radio-group>
@@ -196,11 +196,11 @@
 				// xingge=this.xingge;
 				// const formData1 = new FormData(this.$refs.form1);//获取表单1的数据
 				// const formData2=new FormData(this.$refs.form2); // 获取表单2的数据
-				console.log(this.name);
-				console.log(this.lt_age);
-				console.log(this.zr_xy);
-				console.log(this.zr_sex);
-				console.log(this.zr_year)
+				// console.log(this.name);
+				// console.log(this.lt_age);
+				// console.log(this.zr_xy);
+				// console.log(this.zr_sex);
+				// console.log(this.zr_year)
 				// uni.request({
 				// 	url: 'http://127.0.0.1:8000/order/create/',
 				// 	data: {

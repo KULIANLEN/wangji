@@ -100,14 +100,6 @@
 				zr_card: "",
 				order_id:"",
 				
-				uuu:"https://img1.imgtp.com/2023/09/18/rm5q4LHs.png",
-				zb1:"",
-				zb2:"",
-				zb3:"",
-				zb4:"",
-				
-				url0:"http://localhost:8080/#/pages/luotuo/detail",
-				
 				items:{"head":0, "face":100, "neck":200, "seat":300},
 				itemSprites:itemSprites,
 				userId:'',
@@ -187,9 +179,9 @@
 			getBody(status){
 				switch(status){
 					case "1":
-					return "微胖";
-					case "2":
 					return "胖";
+					case "2":
+					return "微胖";
 					case "3":
 					return "瘦";
 					case "4":
@@ -234,10 +226,19 @@
 				})
 			},
 			xgdd(){
-				console.log("xgdd")
-				uni.navigateTo({
-					url: '/pages/list'
-				})
+				console.log("xgdd");
+				if(this.lt_zt=="1")
+				{
+					uni.navigateTo({
+						url: '/pages/modify?order='+this.orderId
+					})
+				}
+				if(this.lt_zt=="2")
+				{
+					uni.navigateTo({
+						url: '/pages/modify2?order='+this.orderId
+					})
+				}
 			},
 			tjdd(){
 				console.log("tjdd")

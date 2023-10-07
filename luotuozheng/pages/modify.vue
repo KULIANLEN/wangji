@@ -9,7 +9,7 @@
 
 		<view class="background">
 			<view class="title">
-				情侣骆驼订单
+				骆驼订单
 			</view>
 			<view class="middlebox1">
 				<view class="smallbox">
@@ -23,11 +23,11 @@
 					<button class="button1" @click="showForm('form2')">
 						主人信息
 					</button>
-					
+
 				</view>
-				<view class="smallbox">
-					<button class="button1" @click="showForm('form3')">邀请码</button>
-				</view>
+				<!-- <view class="smallbox">
+					<button class="button1">3</button>
+				</view> -->
 
 
 			</view>
@@ -76,8 +76,7 @@
 					</view>
 					<radio-group v-model="lt_zt">
 						<label class="radio">
-							<radio id="weipang" value="lt_body2" name="lt_body" checked="1" /><text
-								for="weipang">恋爱中</text>
+							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text for="pang">单身</text>
 						</label>
 					</radio-group>
 				</view>
@@ -85,7 +84,7 @@
 					最喜欢的食物
 				</view>
 				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
-			
+				
 			</form>
 
 
@@ -107,21 +106,12 @@
 				</view>
 				<input type="text" class="text" name="name" v-model="zr_xy" placeholder="请输入学院" />
 
+
 				<view class="formtitle">
 					校园卡号
 				</view>
 				<input type="text" class="text" name="name" v-model="zr_card" placeholder="请输入校园卡号" />
 
-			</form>
-			
-			<form v-show="activeForm === 'form3'" class="form1">
-							<view class="yaoqing">
-								<text class="yaoqingtitle">请输入邀请码</text>
-								<view class="yaoqingbox">
-								   <input type="text"  placeholder="请输入邀请码" >	
-								</view>
-							</view>
-							
 			</form>
 
 
@@ -138,6 +128,8 @@
 	</view>
 
 </template>
+
+
 <script>
 	export default {
 		data() {
@@ -163,7 +155,7 @@
 				lt_name: "",
 				lt_age: "",
 				lt_body: "",
-				lt_zt: "2",
+				lt_zt: "1",
 				lt_food: "",
 				lt_xg: "",
 
@@ -175,6 +167,9 @@
 				zr_zy: "",
 				zr_xy: "",
 				zr_card: "",
+				
+				userId:'',
+				orderId: 0,
 			};
 		},
 		computed: {
@@ -186,7 +181,27 @@
 			}
 		},
 		onShow(){
-			//this.order_id = this.$route.query.order;
+			this.userId = getApp().globalData.userId;
+			this.orderId = +this.$route.query.order;
+			var that = this;
+			//this.order_id = "34"
+			uni.request({
+				url:'http://127.0.0.1:8000/order/query/'+that.orderId,
+				method:"GET",
+				success : (res)=>{
+					//console.log(res.data)
+					this.lt_name=res.data.dat.extra.name;
+					this.lt_age=res.data.dat.extra.lt_age;
+					this.lt_body=res.data.dat.extra.lt_body;
+					this.lt_food=res.data.dat.extra.lt_food;
+					this.lt_zt=res.data.dat.extra.lt_zt;
+					this.zr_name=res.data.dat.extra.zr_name;
+					this.zr_card=res.data.dat.extra.zr_card;
+					this.zr_sr=res.data.dat.extra.zr_sr;
+					this.zr_xy=res.data.dat.extra.zr_xy;
+					this.date=res.data.dat.extra.zr_sr;
+				}
+			})
 		},
 		methods: {
 			submitForms() {
@@ -200,49 +215,86 @@
 					}, 500);
 					return null;
 				}
+				// food=this.food;
+				// xingge=this.xingge;
+				// const formData1 = new FormData(this.$refs.form1);//获取表单1的数据
+				// const formData2=new FormData(this.$refs.form2); // 获取表单2的数据
 				// console.log(this.name);
 				// console.log(this.lt_age);
 				// console.log(this.zr_xy);
 				// console.log(this.zr_sex);
 				// console.log(this.zr_year)
+				// uni.request({
+				// 	url: 'http://127.0.0.1:8000/order/create/',
+				// 	data: {
+				// 		user_id: "114"
+				// 	},
+				// 	method: "POST",
+				// 	success: (res) => {
+				// 		console.log(res.data)
+				// 		// this.msg=res.data.code
+				// 		// if(this.msg=="登录成功"){
+				// 		// 	uni.navigateTo({
+				// 		// 		url: '/pages/tu/tu'
+				// 		// 	})
+				// 		// }
+				// 	}
+				// })
 				var that = this;
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/create/',
+					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
-						user_id: "114"
+						user_id: "114",
+						order_id: this.orderId,
+						extra:{"name": this.lt_name,
+								"lt_age":this.lt_age,
+								"lt_body":this.lt_body,
+								"lt_zt":"1",
+								"lt_food":this.lt_food,
+								"zr_name":this.zr_name,
+								"zr_sr":this.date,
+								"zr_xy":this.zr_xy,
+								"zr_card":this.zr_card,
+							},
+						items:{"head":0, "face":100, "neck":200, "seat":300}
 					},
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
-						this.order_id=res.data.dat
-						uni.request({
-							url: 'http://127.0.0.1:8000/order/modify/',
-							data: {
-								user_id: "114",
-								order_id: that.order_id,
-								extra:{"name": this.lt_name,
-										"lt_age":this.lt_age,
-										"lt_body":this.lt_body,
-										"lt_zt":"2",
-										"lt_food":this.lt_food,
-										"zr_name":this.zr_name,
-										"zr_sr":this.date,
-										"zr_xy":this.zr_xy,
-										"zr_card":this.zr_card,
-									},
-								items:{"head":0, "face":100, "neck":200, "seat":300}
-							},
-							method: "POST",
-							success: (res) => {
-								console.log(res.data)
-								uni.navigateTo({
-									url:'/pages/list'
-								})
-							}
+						uni.navigateTo({
+							url: '/pages/detail?order='+this.orderId
 						})
 					}
 				})
-
+//////////////////////////////////////////////////////////////////原来的
+				// uni.request({
+				// 	url: 'http://127.0.0.1:8000/order/modify/',
+				// 	data: {
+				// 		user_id: "114",
+				// 		order_id: that.order_id,
+				// 		extra:{"name": this.lt_name,
+				// 				"lt_age":this.lt_age,
+				// 				"lt_body":this.lt_body,
+				// 				"lt_zt":"1",
+				// 				"lt_food":this.lt_food,
+				// 				"zr_name":this.zr_name,
+				// 				"zr_sr":this.date,
+				// 				"zr_xy":this.zr_xy,
+				// 				"zr_zy":this.zr_zy,
+				// 				"zr_card":this.zr_card,
+				// 			},
+				// 		items:{"head":0, "face":100, "neck":200, "seat":300}
+				// 	},
+					
+				// 	method: "POST",
+				// 	success: (res) => {
+				// 		console.log(res.data)
+				// 		uni.navigateTo({
+				// 			url:'/pages/list'
+				// 		})
+				// 	}
+				// })
+////////////////////////////////////////////////////////////////////////////////////
 				// var formData = {
 				// 	name: name,
 				// 	age: age,
@@ -254,7 +306,7 @@
 			},
 			fanhui(){
 				uni.navigateTo({
-					url:'/pages/choose'
+					url: '/pages/detail?order='+this.orderId
 				})
 			},
 			handleRadioClick_1(value) {
@@ -324,7 +376,7 @@
 <style>
 	.zuoshang {
 		position: fixed;
-		top: 16rpx;
+		top: 36rpx;
 		left: 15rpx;
 	}
 	.icon {
@@ -333,31 +385,22 @@
 		display: flex;
 		justify-content: flex-start;
 	}
-		.text{
-			width: 66vw;
-			height: 3vh;
-			
-			border-width: 1px;
-			
-			
-			border-bottom:solid 1px #BEBDBF;
-			margin-top: 1vw;
-			/* margin: 1vw; */	
-		}
-		text::-moz-placeholder {
-			  color:  red;
-			}
-			.zuoshang {
-				position: fixed;
-				margin-top: 36rpx;
-				margin-left: 15rpx;
-			}
-			.icon {
-				height: 4vh;
-				width: 4vh;
-				display: flex;
-				justify-content: flex-start;
-			}
+	.text {
+		width: 66vw;
+		height: 3vh;
+
+		border-width: 1px;
+
+
+		border-bottom: solid 1px #BEBDBF;
+		margin-top: 1vw;
+		/* margin: 1vw; */
+	}
+
+	text::-moz-placeholder {
+		color: red;
+	}
+
 	.bigbox {
 		display: flex;
 		flex-direction: column;
@@ -500,26 +543,4 @@
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: #fff1cf;
 	}
-	
-		.yaoqing{
-			text-align: center;
-		}
-		.yaoqingtitle{
-			font-size: 10vw;
-			
-		}
-		.yaoqingbox{
-			height: 5vh;
-			border: none;
-			border-radius: 4px;
-			width: 50vw;
-			outline: none;
-			font-size: 12px;
-			background-color: #f5f5f5;
-			color: #444444;
-			box-shadow: inset 0 2px 4px rgba(0, 0, 0, .2);
-			margin-top: 10vw;
-			margin-left: 5vw;
-			margin-bottom: 10vw;
-		}
 </style>

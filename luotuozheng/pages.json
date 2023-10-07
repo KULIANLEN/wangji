@@ -55,6 +55,22 @@
 		    }
 		},
 		{
+		    "path" : "pages/modify",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
+		    "path" : "pages/modify2",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
 		    "path" : "pages/diyzhuangban",
 		    "style" :                                                                                    
 		    {

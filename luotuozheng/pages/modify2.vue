@@ -175,6 +175,9 @@
 				zr_zy: "",
 				zr_xy: "",
 				zr_card: "",
+				
+				userId:'',
+				orderId: 0,
 			};
 		},
 		computed: {
@@ -186,7 +189,27 @@
 			}
 		},
 		onShow(){
-			//this.order_id = this.$route.query.order;
+			this.userId = getApp().globalData.userId;
+			this.orderId = +this.$route.query.order;
+			var that = this;
+			//this.order_id = "34"
+			uni.request({
+				url:'http://127.0.0.1:8000/order/query/'+that.orderId,
+				method:"GET",
+				success : (res)=>{
+					//console.log(res.data)
+					this.lt_name=res.data.dat.extra.name;
+					this.lt_age=res.data.dat.extra.lt_age;
+					this.lt_body=res.data.dat.extra.lt_body;
+					this.lt_food=res.data.dat.extra.lt_food;
+					this.lt_zt=res.data.dat.extra.lt_zt;
+					this.zr_name=res.data.dat.extra.zr_name;
+					this.zr_card=res.data.dat.extra.zr_card;
+					this.zr_sr=res.data.dat.extra.zr_sr;
+					this.zr_xy=res.data.dat.extra.zr_xy;
+					this.date=res.data.dat.extra.zr_sr;
+				}
+			})
 		},
 		methods: {
 			submitForms() {
@@ -207,38 +230,27 @@
 				// console.log(this.zr_year)
 				var that = this;
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/create/',
+					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
-						user_id: "114"
+						user_id: "114",
+						order_id: this.orderId,
+						extra:{"name": this.lt_name,
+								"lt_age":this.lt_age,
+								"lt_body":this.lt_body,
+								"lt_zt":"2",
+								"lt_food":this.lt_food,
+								"zr_name":this.zr_name,
+								"zr_sr":this.date,
+								"zr_xy":this.zr_xy,
+								"zr_card":this.zr_card,
+							},
+						items:{"head":0, "face":100, "neck":200, "seat":300}
 					},
 					method: "POST",
 					success: (res) => {
 						console.log(res.data)
-						this.order_id=res.data.dat
-						uni.request({
-							url: 'http://127.0.0.1:8000/order/modify/',
-							data: {
-								user_id: "114",
-								order_id: that.order_id,
-								extra:{"name": this.lt_name,
-										"lt_age":this.lt_age,
-										"lt_body":this.lt_body,
-										"lt_zt":"2",
-										"lt_food":this.lt_food,
-										"zr_name":this.zr_name,
-										"zr_sr":this.date,
-										"zr_xy":this.zr_xy,
-										"zr_card":this.zr_card,
-									},
-								items:{"head":0, "face":100, "neck":200, "seat":300}
-							},
-							method: "POST",
-							success: (res) => {
-								console.log(res.data)
-								uni.navigateTo({
-									url:'/pages/list'
-								})
-							}
+						uni.navigateTo({
+							url: '/pages/detail?order='+this.orderId
 						})
 					}
 				})
@@ -254,7 +266,7 @@
 			},
 			fanhui(){
 				uni.navigateTo({
-					url:'/pages/choose'
+					url: '/pages/detail?order='+this.orderId
 				})
 			},
 			handleRadioClick_1(value) {
