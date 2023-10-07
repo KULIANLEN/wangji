@@ -79,14 +79,6 @@
 		    }
 		},
 		{
-		    "path" : "pages/master",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		},
-		{
 		    "path" : "pages/tujian",
 		    "style" :                                                                                    
 		    {
