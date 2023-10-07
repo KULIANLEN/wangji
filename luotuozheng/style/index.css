@@ -23,7 +23,7 @@
 	font-size: 100rpx;
 }
 .main {
-	background-image: url("/static/666.jpg");
+	background-image: url("/static/homepage_background.jpg");
 	height: 85vh;
 	background-position: bottom;
 }
