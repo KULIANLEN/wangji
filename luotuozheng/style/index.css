@@ -7,18 +7,11 @@
 	background: linear-gradient(to right,#FF6E53,#FF6E52,#FF8453 40%,#FF9758,#FFA859);
 	height: 15vh;
 }
-.wenzi_gongyou{
-	font-weight: bold;
+.wenzi{
 	color: white;
-	font-family: '楷体';
-}
-.wenzi1{
-	margin-left: 3vw;
+	font-family: '黑体';
+	margin-left: 16vw;
 	margin-top:4vh;
-	font-size: 80rpx;
-}
-.wenzi2{
-	margin-top: 3vh;
 	font-size: 100rpx;
 }
 .main {
@@ -30,43 +23,43 @@
 	position: fixed;
 	border-radius: 50%;
 	box-shadow: 10rpx 10rpx 10rpx rgba(0, 0, 0, 0.5);
-	background-color: rgba(245,244,236,0.9);
+	background-color: #e6cea8;
+}
+.main_gongyou{
+	position: fixed;
 }
 .button1 {
-	left: 66vw;
-	top: 3vh;
-	height: 120rpx;
-	width: 120rpx;
+	left: 3vw;
+	top: 15.2vh;
+	height: 140rpx;
+	width: 140rpx;
 }
 .button2 {
-	left: 83vw;
-	top: 3vh;
-	height: 120rpx;
-	width: 120rpx;
+	left: 3vw;
+	top: 26.5vh;
+	height: 140rpx;
+	width: 140rpx;
 }
 .button3 {
-	top:30vw;
-	left:20vh;
-	height: 250rpx;
-	width:250rpx;
+	top:56vw;
+	left:19vh;
+	height: 280rpx;
+	width:280rpx;
 }
 .button4 {
-	top: 65vw;
-	left:30vh;
-	height: 400rpx;
-	width:400rpx;
+	top: 76vw;
+	left:28vh;
+	height: 450rpx;
+	width:450rpx;
 }
 .button5 {
-	bottom:12vw;
+	bottom:6vw;
 	left:-8vh;
 	height: 500rpx;
 	width:500rpx;
 }
 .button1:hover,
-.button2:hover,
-.button3:hover,
-.button4:hover,
-.button5:hover{
+.button2:hover{
 	transition: transform 0.5s ease, background-color 0.5s ease, color 0.5s ease;
 	transform: rotate(10deg);
 	background-color: rgba(84,174,255,0.9);
@@ -76,16 +69,39 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	font-family: '楷体';
+	font-weight: bold;
 }
 .text0{
-	font-size: 30rpx;
+	font-size: 35rpx;
 }
 .text1 {
-	font-size: 35rpx;
+	font-size: 43rpx;
 }
 .text2 {
 	font-size: 50rpx;
 }
 .text3 {
 	font-size: 60rpx;
+}
+.dibiao1{
+	position: fixed;
+	left:40vw;
+	top:25vh;
+	width: 25%;
+	height: 15%;
+}
+.dibiao2{
+	position: fixed;
+	left:66vw;
+	top:39vh;
+	width: 30%;
+	height: 18%;
+}
+.dibiao3{
+	position: fixed;
+	left:1vw;
+	top:55vh;
+	width: 34%;
+	height: 20%;
 }
