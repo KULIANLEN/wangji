@@ -4,10 +4,10 @@
 			<view class="wenzi_gongyou wenzi1">小萃</view>
 			<view class="wenzi_gongyou wenzi2">骆驼证</view>
 			<button class="button_gongyou button1" @click="tujian">
-				<view class="button-text text1">图鉴</view>
+				<view class="button-text text0">图鉴</view>
 			</button>
-			<button class="button_gongyou button1"@click="chouka">
-				<view class="button-text text1">抽卡</view>
+			<button class="button_gongyou button2"@click="chouka">
+				<view class="button-text text0">抽卡</view>
 			</button>
 		</view>
 		<view class="main">
