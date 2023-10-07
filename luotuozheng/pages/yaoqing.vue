@@ -1,5 +1,10 @@
 <template>
+	<view>
+	<view class="zuoshang">
+	  	<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
+	  </view>
   <view class="invite-container ">
+	  
     <view v-if="showInviteCode" class="animate__animated animate__fadeIn">
 		 
 		 <image src="/static/OIP-C_00000.png" class="image2"></image>
@@ -69,9 +74,22 @@
       
      </view>
   </view>
+  </view>
 </template>
 
 <style scoped>
+	.zuoshang {
+		position: fixed;
+		margin-top: 36rpx;
+		margin-left: 15rpx;
+		z-index: 100;
+	}
+	.icon {
+		height: 4vh;
+		width: 4vh;
+		display: flex;
+		justify-content: flex-start;
+	}
 	.tanchuang{
 		height: 100rpx;
 		width: 100rpx;
@@ -355,7 +373,12 @@ export default {
     },
     goBack() {
       this.showInviteCode = false;
-    }
+    },
+	fanhui(){
+		uni.navigateTo({
+			url:'/pages/index'
+		})
+	}
   }
 };
 </script>
