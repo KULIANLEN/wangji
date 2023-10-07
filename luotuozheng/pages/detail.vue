@@ -41,7 +41,6 @@
 					<view class="txt">生日：{{zr_sr}}</view>
 					<view class="txt">性别：未知</view>
 					<view class="txt">学院：{{zr_xy}}</view>
-					<view class="txt">专业：{{zr_zy}}</view>
 					<view class="txt">校园卡：{{zr_card}}</view>
 					<view class="txt">订单编号：{{order_id}}</view>
 
@@ -176,7 +175,6 @@
 					this.zr_card=res.data.dat.extra.zr_card;
 					this.zr_sr=res.data.dat.extra.zr_sr;
 					this.zr_xy=res.data.dat.extra.zr_xy;
-					this.zr_zy=res.data.dat.extra.zr_zy;//专业可以不要，有学院就行
 				}
 			})
 		},

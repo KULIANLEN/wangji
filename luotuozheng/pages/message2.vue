@@ -108,11 +108,6 @@
 				<input type="text" class="text" name="name" v-model="zr_xy" placeholder="请输入学院" />
 
 				<view class="formtitle">
-					专业
-				</view>
-				<input type="text" class="text" name="name" v-model="zr_zy" placeholder="请输入专业" />
-
-				<view class="formtitle">
 					校园卡号
 				</view>
 				<input type="text" class="text" name="name" v-model="zr_card" placeholder="请输入校园卡号" />
