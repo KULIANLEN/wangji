@@ -1,103 +1,76 @@
 .all {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	width: 100vw;
 	background-color: rgb(246,246,246);
 }
 .top {
 	display: flex;
-	background: linear-gradient(to   right,#FF6E53 , #FF6E52 , #FF8453 40% , #FF9758  ,#FFA859 );
-	width: 100%;
+	background: linear-gradient(to right,#FF6E53,#FF6E52,#FF8453 40%,#FF9758,#FFA859);
 	height: 15vh;
 }
 .wenzi_gongyou{
-	height: 100%;
-	align-items: center;
-	display: flex;
-	border: 2px;
 	font-weight: bold;
-	color: rgb(255, 255, 255);
+	color: white;
 	font-family: '楷体';
 }
 .wenzi1{
 	margin-left: 3vw;
+	margin-top:4vh;
 	font-size: 80rpx;
 }
 .wenzi2{
-	margin-top: -5rpx;
+	margin-top: 3vh;
 	font-size: 100rpx;
 }
 .main {
-	margin-top: 0rpx;
 	background-image: url("/static/666.jpg");
 	height: 85vh;
-	width: 100%;
-	background-size: cover;
 	background-position: bottom;
 }
 .button_gongyou{
+	position: fixed;
 	border-radius: 50%;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-	background-color: #f1f1f1;
+	box-shadow: 15rpx 15rpx 15rpx rgba(0, 0, 0, 0.5);
+	background-color: rgba(247, 247, 247, 0.8);
 }
 .button1 {
-	right: -2vw;
-	top: 5vw;
-	bottom: 10vw;
-	height: 100rpx;
-	width: 100rpx;
-	margin: 10rpx;
-	font-size: 30rpx;
+	left: 66vw;
+	top: 3vh;
+	height: 120rpx;
+	width: 120rpx;
+}
+.button2 {
+	left: 83vw;
+	top: 3vh;
+	height: 120rpx;
+	width: 120rpx;
 }
 .button3 {
-	bottom: 40vw;
-	top:26vw;
-	left:30vw;
-	height: 80px;
-	width:80px;
-	margin: 10px;
+	top:30vw;
+	left:20vh;
+	height: 250rpx;
+	width:250rpx;
 }
 .button4 {
-	top: 35vw;
-	bottom: 100vw;
-	left:60vw;
-	height: 130px;
-	width:130px;
-	margin: 10px;
+	top: 65vw;
+	left:30vh;
+	height: 400rpx;
+	width:400rpx;
 }
 .button5 {
-	bottom:-20vw;
-	left:-15vw;
-	height: 200px;
-	width:200px;
-	margin: 10px;
+	bottom:12vw;
+	left:-8vh;
+	height: 500rpx;
+	width:500rpx;
 }
 .button1:active,
 .button2:active,
 .button3:active,
 .button4:active,
-.button5:active,
-.button:active {
-	background-color: #ccc;
-	transform: translateY(1px);
-	transform: scale(1);
-	transition: transform 0.3s ease;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	background-image: linear-gradient(to right, #ff6e53, #ff8453);
-	background-repeat: no-repeat;
-	background-size: 200% auto;
-	transition: background-position 0.3s ease;
-	transition: transform 0.3s ease;
+.button5:active{
 	transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-	transform: scale(1.1);
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-	background-position: right center;
 	transform: rotate(20deg);
 	background-color: #ff6e53;
-	color: #000;;
 }
 .button-text{
 	position: absolute;
@@ -105,12 +78,15 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+.text0{
+	font-size: 30rpx;
+}
 .text1 {
-	font-size: 25rpx;
+	font-size: 35rpx;
 }
 .text2 {
-	font-size:32rpx;
+	font-size: 50rpx;
 }
 .text3 {
-	font-size:50rpx;
+	font-size: 60rpx;
 }
