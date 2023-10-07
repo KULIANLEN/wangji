@@ -47,10 +47,38 @@ def create(req):
         return format_response(1, "ok", order.id)
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
-def start_cp(req):
+def create_cp(req):
     try:
         req_json = json.loads(req.body)
         user = auth(req_json)
+        if user == None:
+            return format_response(-1, "Authentication failed.")
+        if user.order_token <= 0:
+            return format_response(-1, "Out of order token.")
+        order = camel_order()
+        order.owner = user
+        order.items={"head":0, "face": 100, "neck": 200, "seat": 300}
+        order.extra={"name": "骆驼酱"}
+        user.order_token -= 1
+        ic = cp_inv_code()
+        gen = lambda org : base64.b32encode(hashlib.md5(org.encode()).hexdigest().encode()).decode()[0:6]
+        ic.code = gen(str(time.time()))
+        while cp_inv_code.objects.filter(code = ic.code).count() > 0 :
+            ic.code = gen(ic.code + str(time.time()))
+        order.status = 1
+        order.save()
+        ic.order = order
+        ic.save()
+        user.save()
+        return format_response(1, "ok", {"order_id": order.id, "cp_inv_code": ic.code})
+    except Exception as e:
+        return format_response(-1, f"Server error: {str(e)}")
+def delete(req):
+    try:
+        req_json = json.loads(req.body)
+        user = auth(req_json)
+        if user == None:
+            return format_response(-1, "Authentication failed.")
         order = req_json.get('order_id')
         if order == None:
             return format_response(-1, "Missing data order_id.")
@@ -58,21 +86,12 @@ def start_cp(req):
             order = camel_order.objects.get(id = int(order))
         except Exception as e:
             return format_response(-1, f"Invalid order_id parameter: {order}")
-        if order.status != 0:
-            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only start cp codes with orders on status 0.")
         if order.owner != user:
             return format_response(-1, f"Order {order.id} doesn't belong to user {user.id}.")
-        
-        ic = cp_inv_code()
-        gen = lambda org : base64.b32encode(hashlib.md5(org.encode()).hexdigest().encode()).decode()[0:6]
-        ic.code = gen(str(time.time))
-        while cp_inv_code.objects.filter(code = ic.code).count() > 0 :
-            ic.code = gen(ic.code + str(time.time))
-        order.status = 1
-        order.save()
-        ic.order = order
-        ic.save()
-        return format_response(1, "ok", ic.code) 
+        order.delete()
+        user.order_token += 1
+        user.save()
+        return format_response(1, "ok")
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
 def modify(req):
