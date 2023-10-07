@@ -97,9 +97,16 @@
 			},
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
-					url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
+					url: '/pages/detail?order='+this.orders[idx].orderId
 				})
 			},
+			
+			// redirect2OrderDetail(idx){
+			// 	uni.navigateTo({
+			// 		url: '/pages/diyzhuangban?order='+this.orders[idx].orderId
+			// 	})
+			// },
+			
 			fanhui(){
 				uni.navigateTo({
 					url:'/pages/index'

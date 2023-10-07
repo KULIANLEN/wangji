@@ -148,7 +148,7 @@
 			},
 			fanhui(){
 				uni.navigateTo({
-					url:'/pages/index'
+					url: '/pages/detail?order='+this.orderId
 				})
 			},
 			confirm(){
@@ -236,6 +236,7 @@
 		border: none;
 		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
 		z-index: 999;
+		font-size: 35rpx;
 	}
 .bigbox
 {

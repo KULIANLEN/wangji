@@ -6,19 +6,23 @@
 	<view class="all">
 		
 		<view class="top">
-			
 			<view>订单详情</view>
 		</view>
 			
 		<view class="box1">
 			<view class="a">骆驼预览</view>
 			<view class="lt">
+<!-- 				
 				<img class="lt_0" :src="uuu">
 				<img class="lt_1" :src="zb1">
 				<img class="lt_2" :src="zb2">
 				<img class="lt_3" :src="zb3">
 				<img class="lt_4" :src="zb4">
-				<!-- <camel-display :items="items"></camel-display> -->
+				 -->
+				<camel-display :items="items"></camel-display>
+			</view>
+			<view class="diy_button" @click="jump_diy()" >
+				修改骆驼装扮
 			</view>
 		</view>
 		
@@ -50,7 +54,8 @@
 			<view class="f1" @click="tjdd()">提交订单</view>
 		</view>
 		<view style="height: 30px;width: 100vw;"></view>
-		<ul class="bg-bubbles">
+		
+		<!-- <ul class="bg-bubbles">
 			<li></li>
 			<li></li>
 			<li></li>
@@ -61,24 +66,22 @@
 			<li></li>
 			<li></li>
 			<li></li>
-		</ul>
+		</ul> -->
+		
 	</view>
 	</view>
 </template>
 
 <script>
+	import camel_display from '@/components/camel-display.vue';
+	import itemSprites from 'static/scripts/item-sprites.js';
 	export default {
+		components:{
+			"camel-display": camel_display,
+		},
 		data() {
 			return {
-				username: '',
-				password: '',
-				code:'',
 				msg:"",
-				
-				action:"",
-				dd_id:"",
-				xyk:"",
-				cookie:"",
 				
 				lt_name: "",
 				lt_age: "",
@@ -104,21 +107,66 @@
 				zb3:"",
 				zb4:"",
 				
-				url0:"http://localhost:8080/#/pages/luotuo/detail"
+				url0:"http://localhost:8080/#/pages/luotuo/detail",
 				
-				// zb1:"https://img1.imgtp.com/2023/09/18/IxLA8cXq.png",
-				// zb2:"https://img1.imgtp.com/2023/09/18/IxLA8cXq.png",
-				// zb3:"https://img1.imgtp.com/2023/09/18/IxLA8cXq.png",
-				// zb4:"https://img1.imgtp.com/2023/09/18/IxLA8cXq.png",
+				items:{"head":0, "face":100, "neck":200, "seat":300},
+				itemSprites:itemSprites,
+				userId:'',
+				orderId: 0,
+				headPossessions:[],
+				facePossessions:[],
+				neckPossessions:[],
+				seatPossessions:[],
 			};
 		},
 		onShow(){
-			this.order_id = "34"
+			this.userId = getApp().globalData.userId;
+			this.orderId = +this.$route.query.order;
+			this.order_id=this.orderId;
+			//this.orderId=34;
+			var that = this;
 			uni.request({
-				url:'http://127.0.0.1:8000/order/query/34/',
+				url:'http://127.0.0.1:8000/order/query/'+this.orderId+'?query=*.{possessions|owner.possessions}',
+				method:'GET',
+				success(res){
+					that.items = res.data.dat.items;
+					var headSet = new Set();
+					var faceSet = new Set();
+					var neckSet = new Set();
+					var seatSet = new Set();
+					var filter =  e => {
+						switch(true){
+							case e < 100:
+								headSet.add(e);
+								break;
+							case e < 200:
+								faceSet.add(e);
+								break;
+							case e < 300:
+								neckSet.add(e);
+								break;
+							default:
+								seatSet.add(e);
+						}
+					};
+					//console.log(that.items);
+					res.data.dat.owner.possessions.forEach(filter);
+					if(res.data.dat.complement != null){
+						res.data.dat.complement.owner.possessions.forEach(filter);
+					}
+					that.headPossessions = Array.from(headSet);
+					that.facePossessions = Array.from(faceSet);
+					that.neckPossessions = Array.from(neckSet);
+					that.seatPossessions = Array.from(seatSet); 
+				}
+			})
+			
+			//this.order_id = "34"
+			uni.request({
+				url:'http://127.0.0.1:8000/order/query/'+that.orderId,
 				method:"GET",
 				success : (res)=>{
-					console.log(res.data)
+					//console.log(res.data)
 					this.lt_name=res.data.dat.extra.name;
 					this.lt_age=res.data.dat.extra.lt_age;
 					this.lt_body=res.data.dat.extra.lt_body;
@@ -133,10 +181,9 @@
 			})
 		},
 		methods: {
-			click03(){
-				console.log(2233)
+			jump_diy(){
 				uni.navigateTo({
-					url: '/pages/signup/signup'
+					url: '/pages/diyzhuangban?order='+this.orderId
 				})
 			},
 			getBody(status){
@@ -186,7 +233,7 @@
 			},
 			fanhui(){
 				uni.navigateTo({
-					url:'/pages/index'
+					url:'/pages/list'
 				})
 			}
 		},
@@ -216,7 +263,7 @@
 		background: linear-gradient(to   right,#FF6E53 0 , #FF6E52 , #FF8453  , #FF9758  ,#FFA859 100% );
 		width: 100vw;
 		height: 160px;
-		z-index: -7;
+		/* z-index: -7; */
 		display: flex;
 		align-items: center;
 		font-size: 20px;
@@ -233,7 +280,7 @@
 		width: 100%;
 		margin-top: 10px;
 		flex-direction: column;
-		z-index: -5;
+		/* z-index: -5; */
 
 		width: 84vw;
 		height: auto;
@@ -248,18 +295,36 @@
 	}
 	.a{
 		margin-top: 10px;
+		font-size:40rpx;
 	}
 	.lt{
 		width: 80vw;
 		height: 80vw;
 		position: relative;
 		margin-bottom: 20px;
-		z-index: -1;
+		/* z-index: -1; */
 	}
+	.diy_button{
+		width: auto;
+		height: 10vw;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-bottom: 15px;
+		line-height: 10vw;
+		font-size: 40rpx;
+		font-weight: 100;
+		background: #FF8453;
+		color: white;
+		/* border: #FF8453 1px solid; */
+		border-radius: 10px;
+		/* z-index: 99; */
+		
+	}
+	/* 
 	.lt_0{
 		width: 100%;
 		height: 100%;
-		z-index: -1;
+		z-index: -1; 
 		position: absolute;
 	}
 	.lt_1{
@@ -298,10 +363,10 @@
 		position: absolute;
 		transform: translate(-50%, -50%);
 	}
-	
+	 */
 	.box2{
 		display: flex;
-		z-index: -9;
+		/* z-index: -9; */
 		justify-content: center;
 	}
 	.box3{
@@ -334,7 +399,7 @@
 	}
 	.footer{
 		position: fixed;
-		z-index: 9;
+		/* z-index: 9; */
 		bottom: 0;
 		width: 100vw;
 		height: 40px;
@@ -412,47 +477,14 @@
 		border-radius: 10px;
 		box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 	}
-	.a1{
-		height: 30%;
-		display: flex;
-		align-items: center;
-		background: rgb(251, 242, 232);
-	}
-	.lt_name{
-		margin-left: 5px;
-	}
-	.a2{
-		height: 70%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-	.b1{
-		font-size: 12px;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-	.b2{
-		display: flex;
-		height: 100%;
-		align-items: center;
-		margin-right: 30px;
-	}
 
 	.status{
 		color: rgb(42, 111, 42);
 	}
-	.and{
-		color: hotpink;
-		font-weight: bold;
-		margin-left: 5px;
-		margin-right: 5px;
-	}
 	
 	
 	
-	
+	/* 
 	
 	
 	.bg-bubbles {
@@ -559,5 +591,5 @@
 	  100% {
 	    transform: translateY(-700px) rotate(600deg);
 	  }
-	}
+	} */
 </style>
