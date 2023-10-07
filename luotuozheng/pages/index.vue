@@ -1,26 +1,29 @@
 <template>
 	<view class="all">
 		<view class="top">
-			<view class="wenzi_gongyou wenzi1">小萃</view>
-			<view class="wenzi_gongyou wenzi2">骆驼证</view>
-			<button class="button_gongyou button1" @click="tujian">
+			<view class="wenzi">小萃骆驼证</view>
+			<view class="button_gongyou button1" @click="tujian">
 				<view class="button-text text0">图鉴</view>
-			</button>
-			<button class="button_gongyou button2"@click="chouka">
+			</view>
+			<view class="button_gongyou button2"@click="chouka">
 				<view class="button-text text0">抽卡</view>
-			</button>
+			</view>
 		</view>
 		<view class="main">
-			<button class="button_gongyou button3" @click="dianjiyqm">
+			<view class='main_gonyou'></view>
+			<view class="main_gongyou button3" @click="dianjiyqm">
 				<view class="button-text text1">邀请码</view>
-			</button>
-			<button class="button_gongyou button4" @click="dianjixjdd">
+			</view>
+			<view class="main_gongyou button4" @click="dianjixjdd">
 				<view class="button-text text2">新建订单</view>
-			</button>
-			<button class="button_gongyou button5" @click="dianjimy">
+			</view>
+			<view class="main_gongyou button5" @click="dianjimy">
 				<view class="button-text text3">我的订单</view>
-			</button>
+			</view>
 		</view>
+		<image class='dibiao1' src='/static/homepage_dibiao.png'></image>
+		<image class='dibiao2' src='/static/homepage_dibiao.png'></image>
+		<image class='dibiao3' src='/static/homepage_dibiao.png'></image>
 	</view>
 </template>
 <script>
