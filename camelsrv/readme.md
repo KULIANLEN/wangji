@@ -1,3 +1,38 @@
+## 创建用户
+
+#### 接口URL
+> https://<域名>/user/create/
+
+#### 请求方式
+> POST
+
+#### 请求Body参数
+参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
+--- | --- | --- | --- | ---
+user_id | 1145141919810 | String | 是 | 创建用户所用的用户id
+
+#### 成功响应示例
+```javascript
+{
+    "code": 1, 
+    "msg": "ok", 
+    "dat": {}
+}
+```
+#### 失败响应示例
+```javascript
+{
+    "code": -1,
+    "msg": "Some random err msg.",
+    "dat": {}
+}
+```
+#### 响应状态
+参数名 | 示例值 | 参数类型 | 参数描述
+--- | --- | --- | ---
+code | 1 or -1 | Integer | 状态码（成功or失败）
+msg | ok/<错误信息> | String | 获取成功/失败 
+
 ## 获取用户数据接口
 
 #### 接口URL
@@ -254,3 +289,76 @@ user_id | 1145141919810 | String | 是 | 用户id
 code | 1 or -1 | Integer | 状态码（成功or失败）
 msg | ok/<错误信息> | String | 获取成功/失败
 dat | [1, 2, 3, 4, 5] | Integer Array \| {} | 抽卡获取的装备列表
+
+## 获取用户邀请码
+
+#### 接口URL
+> https://<域名>/user/get_inv_code/
+
+#### 请求方式
+> POST
+
+#### 请求Body参数
+参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
+--- | --- | --- | --- | ---
+user_id | 1145141919810 | String | 是 | 用户id
+
+#### 成功响应示例
+```javascript
+{
+    "code": 1, 
+    "msg": "ok", 
+    "dat": "52YJSP"
+}
+```
+#### 失败响应示例
+```javascript
+{
+    "code": -1,
+    "msg": "Some random err msg.",
+    "dat": {}
+}
+```
+#### 响应状态
+参数名 | 示例值 | 参数类型 | 参数描述
+--- | --- | --- | ---
+code | 1 or -1 | Integer | 状态码（成功or失败）
+msg | ok/<错误信息> | String | 获取成功/失败 
+dat | 52YJSP | String \| {} | 用户的邀请码
+
+## 认领用户邀请码
+
+#### 接口URL
+> https://<域名>/user/claim_inv_code/
+
+#### 请求方式
+> POST
+
+#### 请求Body参数
+参数名 | 示例值 | 参数类型 | 是否必填 | 参数描述
+--- | --- | --- | --- | ---
+user_id | 1145141919810 | String | 是 | 用户id
+user_inv_code | 52SNNN | String | 是 | 要认领的邀请码
+
+#### 成功响应示例
+```javascript
+{
+    "code": 1, 
+    "msg": "ok", 
+    "dat": "3777777777"
+}
+```
+#### 失败响应示例
+```javascript
+{
+    "code": -1,
+    "msg": "Some random err msg.",
+    "dat": {}
+}
+```
+#### 响应状态
+参数名 | 示例值 | 参数类型 | 参数描述
+--- | --- | --- | ---
+code | 1 or -1 | Integer | 状态码（成功or失败）
+msg | ok/<错误信息> | String | 获取成功/失败 
+dat | 3777777777 | String \| {} | 拥有该邀请码的用户id

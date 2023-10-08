@@ -1,5 +1,7 @@
 from .models import *
 from django.core.exceptions import *
+from django.db.models.signals import post_save
+
 def auth(req_json):
     id = req_json["user_id"]
     if id == None:

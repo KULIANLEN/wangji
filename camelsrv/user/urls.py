@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
+    path('create/', views.create),
     path('query/<int:id>/', views.query),
+    path('get_inv_code/', views.get_inv_code),
+    path('claim_inv_code/', views.claim_inv_code),
     path('gacha5/', views.gacha5),
 ]

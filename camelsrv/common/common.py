@@ -2,7 +2,9 @@ from django.http import HttpResponse
 import json
 from django.core.exceptions import *
 import re
-
+import hashlib
+import base64
+import time
 def format_response(code, msg, dat = {}):
     return HttpResponse(json.dumps({
             "code" : code,
@@ -96,3 +98,11 @@ def query_base(req, id, objects):
     if query_members == None:
         return try_wrap(lambda: format_raw(get_base(id, objects)))
     return try_wrap(lambda: format_raw(get_member_base(id, query_members, objects)))
+
+def gen_code(accept):
+    def gen(org): 
+        return base64.b32encode(hashlib.md5(org.encode()).hexdigest().encode()).decode()[0:6]
+    code = gen(str(time.time()))
+    while not accept(code):
+        code = gen(code + str(time.time()))
+    return code
