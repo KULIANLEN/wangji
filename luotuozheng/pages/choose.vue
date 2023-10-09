@@ -69,21 +69,37 @@
 				})
 			},
 			drlt() {
-				// uni.request({
-				// 	url: 'http://127.0.0.1:8000/order/create/',
-				// 	data: {
-				// 		user_id: "114"
-				// 	},
-				// 	method: "POST",
-				// 	success: (res) => {
-				// 		console.log(res.data)
-				// 		uni.navigateTo({
-				// 			url:'/pages/message?order='+res.data.dat
-				// 		})
-				// 	}
-				// })
-				uni.navigateTo({
-					url:'/pages/message'
+				uni.showToast({
+					icon: "loading",
+					title: "订单创建中",
+				})
+				uni.request({
+					url: "http://127.0.0.1:8000/order/create/",
+					data: {
+						user_id : getApp().globalData.userId,
+					},
+					method: "POST",
+					success: (res)=>{
+						if(res.data.code == 1){
+							uni.showToast({
+								icon: "success",
+								title: "创建成功",
+							})
+							setTimeout(()=>{
+								uni.navigateTo({
+									url: "/pages/diyzhuangban?order=" + res.data.dat
+								})
+							}, 750);
+						} else {
+							uni.showToast({
+								icon: "error",
+								title: String(res.data.msg),
+							})
+							setTimeout(()=>{
+								uni.hideToast();
+							}, 750);
+						}
+					},
 				})
 			},
 			qllt() {
