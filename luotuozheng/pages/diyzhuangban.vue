@@ -57,7 +57,7 @@
 					
 					</view>
 				</view>
-				<view class="confirm-button" @click="confirm()">确认修改</view>
+				<view class="confirm-button" @click="confirm()">下一步</view>
 			</view>
 		</view>
 	</view>
@@ -152,6 +152,7 @@
 				})
 			},
 			confirm(){
+				/*
 				uni.request({
 					url:'http://127.0.0.1:8000/order/modify/',
 					data:{
@@ -184,6 +185,10 @@
 					}
 					
 				})
+				*/
+			   uni.navigateTo({
+			   	url:"/pages/message"
+			   })
 			}
 		},
 			
