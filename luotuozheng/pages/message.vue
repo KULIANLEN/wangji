@@ -151,7 +151,7 @@
 				// body: '',
 				// zhuangtai: '',
 				activeForm: "form1",
-
+				items: {},
 				lt_name: "",
 				lt_age: "",
 				lt_body: "",
@@ -178,10 +178,33 @@
 			}
 		},
 		onShow(){
-			//this.order_id = this.$route.query.order;
+			this.order_id = this.$route.query.order;
+			var arr_items = this.$route.query.items.split("|").map(Number);
+			this.items = {
+				"head": arr_items[0],
+				"face": arr_items[1],
+				"neck": arr_items[2],
+				"seat": arr_items[3],
+			};
+			uni.request({
+				url: "http://127.0.0.1:8000/order/query/"+this.order_id+"/?query=extra",
+				method: "GET",
+				success: (res) => {
+					var e = res.data.dat.extra;
+					this.lt_name = e.name;
+					this.lt_age = e.lt_age;
+					this.lt_body = e.lt_body;
+					this.lt_food = e.lt_food;
+					this.zr_name = e.zr_name;
+					this.date = e.zr_sr;
+					this.zr_xy = e.zr_xy;
+					this.zr_card = e.zr_card;
+				}
+			});
 		},
 		methods: {
 			submitForms() {
+				
 				if (this.check1() === false) {
 					console.log("数据有误");
 					uni.showLoading({
@@ -192,67 +215,40 @@
 					}, 500);
 					return null;
 				}
-				// food=this.food;
-				// xingge=this.xingge;
-				// const formData1 = new FormData(this.$refs.form1);//获取表单1的数据
-				// const formData2=new FormData(this.$refs.form2); // 获取表单2的数据
-				// console.log(this.name);
-				// console.log(this.lt_age);
-				// console.log(this.zr_xy);
-				// console.log(this.zr_sex);
-				// console.log(this.zr_year)
-				// uni.request({
-				// 	url: 'http://127.0.0.1:8000/order/create/',
-				// 	data: {
-				// 		user_id: "114"
-				// 	},
-				// 	method: "POST",
-				// 	success: (res) => {
-				// 		console.log(res.data)
-				// 		// this.msg=res.data.code
-				// 		// if(this.msg=="登录成功"){
-				// 		// 	uni.navigateTo({
-				// 		// 		url: '/pages/tu/tu'
-				// 		// 	})
-				// 		// }
-				// 	}
-				// })
-				var that = this;
-				
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/create/',
+					url: 'http://127.0.0.1:8000/order/modify/',
 					data: {
-						user_id: "114"
+						user_id: getApp().globalData.userId,
+						order_id: this.order_id,
+						extra:{"name": this.lt_name,
+								"lt_age":this.lt_age,
+								"lt_body":this.lt_body,
+								"lt_zt":"1",
+								"lt_food":this.lt_food,
+								"zr_name":this.zr_name,
+								"zr_sr":this.date,
+								"zr_xy":this.zr_xy,
+								"zr_card":this.zr_card,
+							},
+						items:{"head": this.items.head, "face": this.items.face, "neck": this.items.neck, "seat": this.items.seat}
 					},
 					method: "POST",
 					success: (res) => {
-						console.log(res.data)
-						this.order_id=res.data.dat
-						uni.request({
-							url: 'http://127.0.0.1:8000/order/modify/',
-							data: {
-								user_id: "114",
-								order_id: that.order_id,
-								extra:{"name": this.lt_name,
-										"lt_age":this.lt_age,
-										"lt_body":this.lt_body,
-										"lt_zt":"1",
-										"lt_food":this.lt_food,
-										"zr_name":this.zr_name,
-										"zr_sr":this.date,
-										"zr_xy":this.zr_xy,
-										"zr_card":this.zr_card,
-									},
-								items:{"head":0, "face":100, "neck":200, "seat":300}
-							},
-							method: "POST",
-							success: (res) => {
-								console.log(res.data)
-								uni.navigateTo({
-									url:'/pages/list'
-								})
-							}
-						})
+						if(res.data.code == 1){
+							uni.showToast({
+								icon: "success",
+								title: "修改成功",
+							})
+							setTimeout(()=>{uni.navigateTo({
+								url:'/pages/list'
+							})}, 750);
+						} else {
+							uni.showToast({
+								icon: "error",
+								title: "修改失败",
+							})
+							setTimeout(()=>{uni.hideToast()}, 750);
+						}
 					}
 				})
 //////////////////////////////////////////////////////////////////原来的
@@ -294,9 +290,10 @@
 				// console.log(jsonData)
 			},
 			fanhui(){
-				uni.navigateTo({
-					url:'/pages/choose'
-				})
+				if(window.confirm("放弃修改并返回？"))
+					uni.navigateTo({
+						url:'/pages/list'
+					})
 			},
 			handleRadioClick_1(value) {
 				this.lt_body = value.toString();
