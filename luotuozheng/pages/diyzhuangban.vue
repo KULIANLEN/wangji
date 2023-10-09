@@ -319,7 +319,7 @@
 	justify-content: center;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 	overflow-x: scroll;
-	
+	overflow-y: hidden;
 }
 
 .middlebox5{
@@ -382,7 +382,6 @@
 	border-radius: 15px;
 	border: none;
 	box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
-	z-index: 999;
 }
 
 </style>

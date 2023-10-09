@@ -61,10 +61,7 @@ def create_cp(req):
         order.extra={"name": "骆驼酱"}
         user.order_token -= 1
         ic = cp_inv_code()
-        gen = lambda org : base64.b32encode(hashlib.md5(org.encode()).hexdigest().encode()).decode()[0:6]
-        ic.code = gen(str(time.time()))
-        while cp_inv_code.objects.filter(code = ic.code).count() > 0 :
-            ic.code = gen(ic.code + str(time.time()))
+        ic.code = gen_code(not cp_inv_code.objects.filter(code = ic.code).exists())
         order.status = 1
         order.save()
         ic.order = order
