@@ -6,7 +6,7 @@
 	<view class="bigbox">
 		<view class="top">
 			<view class="backcolor">
-				<view class="middlebox2">
+				<!-- <view class="middlebox2">
 					<view class="smallbox">
 						<button class="topbutton" @click="jump1()">装扮图鉴</button>
 					</view>
@@ -16,7 +16,7 @@
 					<view class="smallbox">
 						<button class="topbutton" @click="jump3()">填写信息</button>
 					</view>
-				</view>
+				</view> -->
 				<view class="middlebox3">
 					<camel-display :items="items"></camel-display>
 				</view>
@@ -230,6 +230,11 @@
 		
 	}
 	.topbutton{
+		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+		color: #393232;
+		border: none;
+		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
+		color: #fff1cf;
 		background-color:#f8f3d4;
 		color:#393232;
 		border-radius: 15px;
@@ -373,6 +378,11 @@
 	height: 7vh;
 }
 .confirm-button{
+	background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+	color: #393232;
+	border: none;
+	box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
+	color: #fff1cf;
 	margin: 7.5%;
 	width:85%;
 	display:flex;
