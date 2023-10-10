@@ -4,40 +4,13 @@
 			<image src='/static/hhh/jiantou.png' class="icon" @click="fanhui()"></image>
 		</view>
 		<view class="top">
-
-		</view>
-
-		<view class="background">
-			<view class="title">
-				骆驼订单
-			</view>
-			<view class="middlebox1">
-				<view class="smallbox">
-					<button class="button1" @click="showForm('form1') ">
-
-						骆驼信息
-					</button>
-
-				</view>
-				<view class="smallbox">
-					<button class="button1" @click="showForm('form2')">
-						主人信息
-					</button>
-
-				</view>
-				<!-- <view class="smallbox">
-					<button class="button1">3</button>
-				</view> -->
-
-
-			</view>
-
-
-
+			<view>骆驼订单</view>
 		</view>
 		<view class="middlebox2">
-			<form id="form1" class='form1' action="" v-show="activeForm === 'form1'" onsubmit="return check1()"
-				ref="form1">
+			<form id="form1" class='form1' action="" >
+				<view class="bigtitle">
+					骆驼信息
+				</view>
 				<view class="formtitle">
 					骆驼名字
 				</view>
@@ -86,9 +59,12 @@
 				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
 				
 			</form>
-
-
-			<form class="form1" action="" v-show="activeForm === 'form2'">
+		</view>
+		<view class="box3">
+			<form class="form1" action="" >
+				<view class="bigtitle">
+					主人信息
+				</view>
 				<view class="formtitle">
 					姓名
 				</view>
@@ -371,33 +347,64 @@
 		display: flex;
 		justify-content: flex-start;
 	}
+	.formtitle {
+		/* text-indent: 1em; */
+		color: #FFA859;
+		margin-top: 2vh;
+		font-weight: 550;
+		font-size: 30rpx;
+		margin-bottom: 1vh;
+	
+	}
+	.bigtitle {
+		/* text-indent: 1em; */
+		display: flex;
+		justify-content: center;
+		color: rgb(90,90,90);
+		margin-top: 2vh;
+		font-weight: bold;
+		font-size: 35rpx;
+		margin-bottom: 1vh;
+	
+	}
 	.text {
 		width: 66vw;
 		height: 3vh;
+		
+		font-size: 28rpx;
 
 		border-width: 1px;
+		/* color: rgb(150, 150, 150); */
 
-
-		border-bottom: solid 1px #BEBDBF;
-		margin-top: 1vw;
+		border-bottom: solid 1px rgb(200, 200, 200);;
+		margin-top: 1vh;
 		/* margin: 1vw; */
+		
 	}
-
-	text::-moz-placeholder {
+	.text::placeholder{
 		color: red;
 	}
-
+/* 	.placeholder-stlye{
+		color: red;
+	} */
 	.bigbox {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
-	.top {
+	.top{
+		background: linear-gradient(to   right,#FF6E53 0 , #FF6E52 , #FF8453  , #FF9758  ,#FFA859 100% );
 		width: 100vw;
-		height: 6vh;
-		z-index: -1;
-		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+		height: 160px;
+		/* z-index: -7; */
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		color: white;
+		padding-top: 2vw;
+		flex-direction: column;
+		/* margin-top: 6vh; */
 	}
 
 	.background {
@@ -412,121 +419,72 @@
 		/* margin-top: 6vh; */
 	}
 
-	.title {
-		font-size: 2vh;
-		font-weight: bold;
-		align-self: flex-start;
-		text-indent: 2em;
-		color: #fff1cf;
-
-
-
-	}
-
-	.middlebox1 {
-		display: flex;
-		justify-content: space-around;
-		width: 94vw;
-		height: 5vh;
-		margin-top: 5vh;
-
-	}
 
 	.smallbox {
-
-
 		width: 25vw;
 		height: 6vh;
 		margin-bottom: 10vw;
 	}
-
-	.button1 {
-		height: 5vh;
-		text-align: center;
-
-		background-color: #f8f4e6;
-		color: #494a41;
-		border-radius: 5px;
-		border: none;
-		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
-		font-size: 1rem;
-		z-index: 99999999;
-	}
-
-	button1:active {
-		background-color: red;
-	}
-
-
-
-
-
 	.middlebox2 {
-		width: 84vw;
+		width: 85vw;
 		height: auto;
-
 		margin-top: -13vh;
-		border-radius: 40px;
+		padding-top: 3vh;
+		padding-bottom: 5vh;
+		/* padding-left: 5vw; */
+		/* padding-right: 1vh; */
+		border-radius: 30px;
 		border: none;
 		box-shadow: 0 0 50px 3px rgba(0, 0, 0, 0.2);
-		background-color: #F5F5F5;
+		background-color: rgb(255, 255, 255);
 		display: flex;
 		flex-direction: column;
-		padding: 2vw;
 		align-items: center;
-
-
+	}
+	.box3 {
+		width: 85vw;
+		height: auto;
+		
+		margin-top: 5vh;
+		margin-bottom: 4vh;
+		
+		padding-top: 3vh;
+		padding-bottom: 5vh;
+		/* padding-left: 1vh;
+		padding-right: 1vh; */
+		border-radius: 30px;
+		border: none;
+		box-shadow: 0 0 50px 3px rgba(0, 0, 0, 0.2);
+		background-color: rgb(255, 255, 255);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
-	.formtitle {
-		/* text-indent: 1em; */
-		color: #808080;
-		margin-top: 4vw;
-		font-size: 1rem;
-		margin-bottom: 1vw;
-
+	.form1 {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
-
-	.text {
-		width: 66vw;
-		height: 3vh;
-
-		border-width: 1px;
-
-
-		border-bottom: solid 1px #BEBDBF;
-		margin-top: 1vw;
-		/* margin: 1vw; */
-	}
-
-	.form {
-		margin-top: 2vw;
-	}
-
 	.radio1 {
 		margin-left: 5vw;
-
+		font-size: 28rpx;
 	}
-
-	.middlebox3 {
-		margin-top: 7vw;
-		width: 100vw;
-		height: 10vh;
+	.radio {
+		/* margin-left: 3vw; */
+		font-size: 28rpx;
 	}
-
-	.smallbox2 {
-		width: 100vw;
-		height: 15vh;
-	}
-
 	.bottombutton {
-		width: 90vw;
+		width: 86vw;
 		text-align: center;
 		border-radius: 15px;
 		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
 		color: #393232;
 		border: none;
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
-		color: #fff1cf;
+		color: white;
+	}
+	.middlebox3{
+		margin-bottom: 2vh;
 	}
 </style>
