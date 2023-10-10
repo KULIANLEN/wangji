@@ -85,10 +85,10 @@
 				itemSprites: itemSprites,
 				userId: '',
 				orderId: 0,
-				headPossessions: [],
-				facePossessions: [],
-				neckPossessions: [],
-				seatPossessions: [],
+				headPossessions: [0,1,2,3,4,5,6,7,8],
+				facePossessions: [100,101,102,103,104],
+				neckPossessions: [200,201,202,203],
+				seatPossessions: [301,302,303,304],
 			}
 		},
 		onShow() {
