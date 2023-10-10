@@ -93,10 +93,10 @@
 				itemSprites: itemSprites,
 				userId: '',
 				orderId: 0,
-				headPossessions: [0,1,2,3,4,5,6,7,8],
-				facePossessions: [100,101,102,103,104],
-				neckPossessions: [200,201,202,203],
-				seatPossessions: [301,302,303,304],
+				headPossessions: [1,2,3,4,5,6,7,8,0],
+				facePossessions: [101,102,103,104,100],
+				neckPossessions: [201,202,203,200],
+				seatPossessions: [301,302,303,304,300],
 			}
 		},
 		onShow() {
@@ -203,7 +203,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
 		width: 100vw;
 		height: 8vh;
 		z-index: -2;
@@ -386,8 +385,10 @@
 		border: none;
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: #fff1cf;
-		margin: 7.5%;
+		/* margin: 7.5%; */
+		margin-top: 7.5%;
 		width: 85%;
+		height: 30vw;
 		display: flex;
 		justify-content: center;
 		align-content: center;

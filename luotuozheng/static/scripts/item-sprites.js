@@ -121,21 +121,21 @@ const itemSprites = {
 	},
 	"100":{
 		foreground:{
-			texture: "",
-			offsetX: 0,
-			offsetY: 0,
-			width : 0,
+			texture: "/static/images/face/100.png",
+			offsetX : 0,
+			offsetY : 0,
+			width : 100,
 		},
 		item_display:{
-			offsetX: 0,
-			offsetY: 0,
-			width: 0,
+			offsetX: -30,
+			offsetY: -50,
+			width: 500,
 		}
 	},
 	"101":{
 		foreground:{
 			texture : "/static/images/face/101.png",
-			offsetX : 15,
+			offsetX : 0,
 			offsetY : 0,
 			width : 100,
 		},
@@ -153,9 +153,9 @@ const itemSprites = {
 			width : 100,
 		},
 		item_display:{
-			offsetX: 0,
-			offsetY: 0,
-			width: 100,
+			offsetX: -30,
+			offsetY: -50,
+			width: 500,
 		}
 	},
 	"103":{
@@ -166,22 +166,22 @@ const itemSprites = {
 			width : 100,
 		},
 		item_display:{
-			offsetX: 0,
-			offsetY: 0,
-			width: 100,
+			offsetX: -30,
+			offsetY: -50,
+			width: 500,
 		}
 	},
 	"104":{
 		foreground:{
 			texture : "/static/images/face/104.png",
-			offsetX : -1.30,
+			offsetX : 0,
 			offsetY : 0,
 			width : 100,
 		},
 		item_display:{
-			offsetX: 0,
-			offsetY: 0,
-			width: 100,
+			offsetX: -30,
+			offsetY: -50,
+			width: 500,
 		}
 	},
 	"200":{
@@ -299,6 +299,19 @@ const itemSprites = {
 			offsetX: 0,
 			offsetY: 0,
 			width: 100,
+		}
+	},
+	"300":{
+		foreground:{
+			texture : "",
+			offsetX : 0,
+			offsetY : 0,
+			width : 0,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 0,
 		}
 	},
 }
