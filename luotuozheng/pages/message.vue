@@ -292,7 +292,7 @@
 			fanhui(){
 				if(window.confirm("放弃修改并返回？"))
 					uni.navigateTo({
-						url:'/pages/list'
+						url: '/pages/detail?order=' + this.order_id
 					})
 			},
 			handleRadioClick_1(value) {
