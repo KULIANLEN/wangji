@@ -13,19 +13,19 @@
 			<image
 			class="item"
 			:src="itemSprites[items.face].foreground.texture"
-			:style="'left:'+itemSprites[items.face].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			:style="'left:'+itemSprites[items.face].foreground.offsetX+'%;top:'+itemSprites[items.face].foreground.offsetY+'%;width:'+itemSprites[items.face].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 			<image
 			class="item"
 			:src="itemSprites[items.neck].foreground.texture"
-			:style="'left:'+itemSprites[items.neck].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			:style="'left:'+itemSprites[items.neck].foreground.offsetX+'%;top:'+itemSprites[items.neck].foreground.offsetY+'%;width:'+itemSprites[items.neck].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 			<image
 			class="item"
 			:src="itemSprites[items.seat].foreground.texture"
-			:style="'left:'+itemSprites[items.seat].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
+			:style="'left:'+itemSprites[items.seat].foreground.offsetX+'%;top:'+itemSprites[items.seat].foreground.offsetY+'%;width:'+itemSprites[items.seat].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 		</image>
