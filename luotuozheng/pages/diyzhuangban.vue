@@ -21,27 +21,35 @@
 						<camel-display :items="items"></camel-display>
 					</view>
 					<view class="middlebox4" v-show="page===1">
-						<view class="image" v-for="(el, idx) in headPossessions" :key="idx"
-							@click="selectItem('head', el)">
-							<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
+						<view class="items_container">
+							<view class="image" v-for="(el, idx) in headPossessions" :key="idx"
+								@click="selectItem('head', el)">
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+							</view>
 						</view>
 					</view>
 					<view class="middlebox4" v-show="page===2">
-						<view class="image" v-for="(el, idx) in facePossessions" :key="idx"
-							@click="selectItem('face', el)">
-							<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
+						<view class="items_container">
+							<view class="image" v-for="(el, idx) in facePossessions" :key="idx"
+								@click="selectItem('face', el)">
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+							</view>
 						</view>
 					</view>
 					<view class="middlebox4" v-show="page===3">
-						<view class="image" v-for="(el, idx) in neckPossessions" :key="idx"
-							@click="selectItem('neck', el)">
-							<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
+						<view class="items_container">
+							<view class="image" v-for="(el, idx) in neckPossessions" :key="idx"
+								@click="selectItem('neck', el)">
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+							</view>
 						</view>
 					</view>
 					<view class="middlebox4" v-show="page===4">
-						<view class="image" v-for="(el, idx) in seatPossessions" :key="idx"
-							@click="selectItem('seat', el)">
-							<image mode="widthFix" :src="itemSprites[el].foreground.texture"></image>
+						<view class="items_container">
+							<view class="image" v-for="(el, idx) in seatPossessions" :key="idx"
+								@click="selectItem('seat', el)">
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+							</view>
 						</view>
 					</view>
 					<view class="middlebox5">
@@ -302,20 +310,27 @@
 	.middlebox4 {
 		margin-left: 2vw;
 		margin-top: 5vw;
-		display: flex;
 		border: 1px;
 		border-style: solid;
 		border-color: #808080;
 		width: 94vw;
-		height: 10vh;
+		height: 20vw;
 		border-radius: 4px;
-		display: flex;
-		justify-content: center;
-		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 		overflow-x: scroll;
 		overflow-y: hidden;
+		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 	}
-
+	
+	.items_container{
+		margin-top: 2.25vw;
+		padding: 0;
+		width: fit-content;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
+	
 	.middlebox5 {
 		margin-left: 2vw;
 		margin-top: 4vw;
@@ -333,19 +348,14 @@
 	}
 
 	.image {
-		height: 8vh;
+		height: 15vw;
 		width: 15vw;
 		border: 1px;
 		border-style: solid;
 		border-color: #808080;
-		margin-top: 2vw;
 		margin-left: 3vw;
 		margin-right: 3vw;
 		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
-	}
-
-	.image image {
-		width: 100%;
 	}
 
 	.underbutton {

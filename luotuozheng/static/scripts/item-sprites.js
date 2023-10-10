@@ -8,6 +8,11 @@ const itemSprites = {
 			offsetX: 0,
 			offsetY: 0,
 			width : 0,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 0,
 		}
 	},
 	"1": {	
@@ -17,6 +22,11 @@ const itemSprites = {
 			offsetY : 7.8,
 			width : 40,
 		},
+		item_display:{
+			offsetX: -10,
+			offsetY: 10,
+			width: 190,
+		}
 	},	
 	"2":{
 		foreground:{
@@ -25,6 +35,11 @@ const itemSprites = {
 			offsetY : 11.75,
 			width : 25,
 		},
+		item_display:{
+			offsetX: -50,
+			offsetY: 10,
+			width: 190,
+		}
 	},
 	"3":{
 		foreground:{
@@ -33,6 +48,11 @@ const itemSprites = {
 			offsetY : 6.75,
 			width : 25,
 		},
+		item_display:{
+			offsetX: -30,
+			offsetY: -20,
+			width: 165,
+		}
 	},
 	"4":{
 		foreground:{
@@ -41,6 +61,11 @@ const itemSprites = {
 			offsetY : 5.30,
 			width : 27,
 		},
+		item_display:{
+			offsetX: -30,
+			offsetY: -20,
+			width: 180,
+		}
 	},
 	"5":{
 		foreground:{
@@ -49,6 +74,11 @@ const itemSprites = {
 			offsetY : 9.00,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"6":{
 		foreground:{
@@ -57,6 +87,11 @@ const itemSprites = {
 			offsetY : 3.75,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 30,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"7":{
 		foreground:{
@@ -65,6 +100,11 @@ const itemSprites = {
 			offsetY : 4.75,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 30,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"8":{
 		foreground:{
@@ -73,37 +113,23 @@ const itemSprites = {
 			offsetY : 0,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 30,
+			offsetY: 0,
+			width: 100,
+		}
 	},
-	// "9":{
-	// 	foreground:{
-	// 		texture : "/static/images/head/flower-ring.png",
-	// 		offsetX : 3.75,
-	// 		offsetY : 11.75,
-	// 		width : 25,
-	// 	},
-	// },
-	// "10":{
-	// 	foreground:{
-	// 		texture : "/static/images/head/flower-ring.png",
-	// 		offsetX : 3.75,
-	// 		offsetY : 11.75,
-	// 		width : 25,
-	// 	},
-	// },
-	// "11":{
-	// 	foreground:{
-	// 		texture : "/static/images/head/flower-ring.png",
-	// 		offsetX : 3.75,
-	// 		offsetY : 11.75,
-	// 		width : 25,
-	// 	},
-	// },
 	"100":{
 		foreground:{
 			texture: "",
 			offsetX: 0,
 			offsetY: 0,
 			width : 0,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 0,
 		}
 	},
 	"101":{
@@ -113,6 +139,11 @@ const itemSprites = {
 			offsetY : 0,
 			width : 100,
 		},
+		item_display:{
+			offsetX: -30,
+			offsetY: -50,
+			width: 500,
+		}
 	},
 	"102":{
 		foreground:{
@@ -121,6 +152,11 @@ const itemSprites = {
 			offsetY : 0,
 			width : 100,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"103":{
 		foreground:{
@@ -129,6 +165,11 @@ const itemSprites = {
 			offsetY : 1,
 			width : 100,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"104":{
 		foreground:{
@@ -137,6 +178,11 @@ const itemSprites = {
 			offsetY : 0,
 			width : 100,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"200":{
 		foreground:{
@@ -144,6 +190,11 @@ const itemSprites = {
 			offsetX: 0,
 			offsetY: 0,
 			width : 0,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 0,
 		}
 	},
 	"201":{
@@ -153,6 +204,11 @@ const itemSprites = {
 			offsetY : 32.75,
 			width : 20,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"202":{
 		foreground:{
@@ -161,6 +217,11 @@ const itemSprites = {
 			offsetY : 28.75,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"203":{
 		foreground:{
@@ -169,6 +230,11 @@ const itemSprites = {
 			offsetY :22.75,
 			width : 40,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"300":{
 		foreground:{
@@ -176,6 +242,11 @@ const itemSprites = {
 			offsetX: 0,
 			offsetY: 0,
 			width : 0,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 0,
 		}
 	},
 	"301":{
@@ -185,6 +256,11 @@ const itemSprites = {
 			offsetY : 22.25,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"302":{
 		foreground:{
@@ -192,6 +268,11 @@ const itemSprites = {
 			offsetX : 50.50,
 			offsetY : 5.25,
 			width : 25,
+		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
 		},
 	},
 	"303":{
@@ -201,6 +282,11 @@ const itemSprites = {
 			offsetY : 26.25,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 	"304":{
 		foreground:{
@@ -209,6 +295,11 @@ const itemSprites = {
 			offsetY : 18.25,
 			width : 25,
 		},
+		item_display:{
+			offsetX: 0,
+			offsetY: 0,
+			width: 100,
+		}
 	},
 }
 export default itemSprites;
