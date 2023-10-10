@@ -5,25 +5,25 @@
 		src="/static/images/camel/camel.png"
 		mode="widthFix">
 			<image
-			class="item"
+			class="head"
 			:src="itemSprites[items.head].foreground.texture"
 			:style="'left:'+itemSprites[items.head].foreground.offsetX+'%;top:'+itemSprites[items.head].foreground.offsetY+'%;width:'+itemSprites[items.head].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 			<image
-			class="item"
+			class="face"
 			:src="itemSprites[items.face].foreground.texture"
 			:style="'left:'+itemSprites[items.face].foreground.offsetX+'%;top:'+itemSprites[items.face].foreground.offsetY+'%;width:'+itemSprites[items.face].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 			<image
-			class="item"
+			class="neck"
 			:src="itemSprites[items.neck].foreground.texture"
 			:style="'left:'+itemSprites[items.neck].foreground.offsetX+'%;top:'+itemSprites[items.neck].foreground.offsetY+'%;width:'+itemSprites[items.neck].foreground.width+'%;'"
 			mode="widthFix"
 			></image>
 			<image
-			class="item"
+			class="seat"
 			:src="itemSprites[items.seat].foreground.texture"
 			:style="'left:'+itemSprites[items.seat].foreground.offsetX+'%;top:'+itemSprites[items.seat].foreground.offsetY+'%;width:'+itemSprites[items.seat].foreground.width+'%;'"
 			mode="widthFix"
@@ -66,7 +66,28 @@ export default{
 		top: 0;
 		left: 0;
 	}
-	.item{
+	.head{
+		position: absolute;
+		z-index: 4;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.face{
+		position: absolute;
+		z-index: 2;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.neck{
+		position: absolute;
+		z-index: 3;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.seat{
 		position: absolute;
 		z-index: 1;
 		margin: 0;
