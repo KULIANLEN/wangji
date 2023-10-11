@@ -6,51 +6,20 @@
 		<image class="myCamel-button" @click="ClickMyCamel" src="../static/images/index_img/myCamel_button.svg"
 			mode="widthFix"></image>
 	</view>
-	<!-- 	<view class="all">
-		<view class="top">
-			<view class="wenzi">小萃骆驼证</view>
-			<view class="button_gongyou button1" @click="tujian">
-				<view class="button-text text0">图鉴</view>
-			</view>
-			<view class="button_gongyou button2" @click="clickCreateCamel">
-				<view class="button-text text0">抽卡</view>
-			</view>
-		</view>
-		<view class="main">
-			<view class='main_gonyou'></view>
-			<view class="main_gongyou button3" @click="dianjiyqm">
-				<view class="button-text text1">邀请码</view>
-			</view>
-			<view class="main_gongyou button4" @click="dianjixjdd">
-				<view class="button-text text2">新建订单</view>
-			</view>
-			<view class="main_gongyou button5" @click="dianjimy">
-				<view class="button-text text3">我的订单</view>
-			</view>
-		</view>
-		<image class='dibiao1' src='/static/homepage_dibiao.png'></image>
-		<image class='dibiao2' src='/static/homepage_dibiao.png'></image>
-		<image class='dibiao3' src='/static/homepage_dibiao.png'></image>
-	</view> -->
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				clicked: false,
 				orderId: 0,
 			};
 		},
 		methods: {
 			
 			ClickMyCamel() {
-				this.clicked = true,
-					// setTimeout(() => {
-					uni.navigateTo({
-						url: "/pages/list",
-					}),
-					this.clicked = false
-				// }, 0);
+				uni.navigateTo({
+					url: "/pages/list",
+				})
 			},
 
 			clickCreateCamel() {
@@ -94,49 +63,11 @@
 								icon: "error",
 								title: "创建失败" + res.data.msg,
 							})
-							// setTimeout(() => {
-							// 	uni.hideToast()
-							// }, 750);
 						}
 					}
 				})
 			},
-			// dianjiyqm() {
-			// 	this.clicked = true,
-			// 		setTimeout(() => {
-			// 			uni.navigateTo({
-			// 					url: "/pages/yaoqing",
-			// 				}),
-			// 				this.clicked = false
-			// 		}, 500);
-			// },
-			// chouka() {
-			// 	this.clicked = true,
-			// 		setTimeout(() => {
-			// 			uni.navigateTo({
-			// 					url: "/pages/chouka",
-			// 				}),
-			// 				this.clicked = false
-			// 		}, 500);
-			// },
-			// dianjixjdd() {
-			// 	this.clicked = true;
-			// 	setTimeout(() => {
-			// 		uni.navigateTo({
-			// 				url: "/pages/choose",
-			// 			}),
-			// 			this.clicked = false
-			// 	}, 500);
-			// },
-			// tujian() {
-			// 	this.clicked = true,
-			// 		setTimeout(() => {
-			// 			uni.navigateTo({
-			// 					url: "/pages/tujian",
-			// 				}),
-			// 				this.clicked = false
-			// 		}, 500);
-			// },
+			
 		},
 		
 
@@ -165,6 +96,4 @@
 		margin-top: 120vw;
 		box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 	}
-
-	/* @import '/style/index.css'; */
 </style>
