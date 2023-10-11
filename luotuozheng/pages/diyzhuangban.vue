@@ -77,7 +77,10 @@
 
 					</view>
 				</view>
-				<view class="confirm-button" @click="confirm()">下一步</view>
+				<view class="bottombox">
+					<button class="confirm-button" @click="confirm()">下一步</button>
+				</view>
+				<!-- <view class="confirm-button" @click="confirm()">下一步</view> -->
 			</view>
 		</view>
 	</view>
@@ -466,23 +469,19 @@
 		width: 20vw;
 		height: 7vh;
 	}
-
+	.bottombox{
+		margin-top: 4vh;
+		margin-bottom: 2vh;
+	}
 	.confirm-button {
 		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
-		color: #393232;
+		color: white;
 		border: none;
-		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
-		color: #fff1cf;
-		/* margin: 7.5%; */
-		margin-top: 7.5%;
-		width: 85%;
-		height: 30vw;
-		display: flex;
-		justify-content: center;
-		align-content: center;
-		background-color: #f8f3d4;
+		width: 86vw;
+		height: 70rpx;
+		line-height: 70rpx;
 		border-radius: 15px;
-		border: none;
-		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+		font-size: 35rpx;
+		text-align: center;
 	}
 </style>
