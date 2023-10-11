@@ -266,10 +266,16 @@
 				// console.log(jsonData)
 			},
 			fanhui(){
-				if(window.confirm("放弃修改并返回？"))
-					uni.navigateTo({
-						url: '/pages/detail?order=' + this.order_id
-					})
+				uni.showModal({
+					title: "放弃修改并返回？",
+					success: (res)=>{
+						if(res.confirm){
+							uni.navigateTo({
+								url: '/pages/detail?order=' + this.order_id
+							})
+						}
+					}
+				})
 			},
 			handleRadioClick_1(value) {
 				this.lt_body = value.toString();

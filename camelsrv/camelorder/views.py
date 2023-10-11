@@ -147,11 +147,19 @@ def submit(req):
         return HttpResponse(1, "ok")
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
-def obtain_submitted(req):
+def submitted(req):
+    req_json = json.loads(req.body)
+    max_count = req_json.get("size")
+    if req_json.get("magic") != "IMA VERY ONLY GUN GOD":
+        return format_response(-1, "Who r u?")
     ret = []
+    count = 0
     for e in camel_order.objects.filter(status = 2):
+        count += 1
+        if count > max_count:
+            break
         toAdd = {}
         for k, v in e.query_methods().items():
             toAdd[k] = try_deref(v(), wild(wild({})))
         ret.append(toAdd)
-    return format_response(1, "ok", json.dumps(ret))
+    return format_response(1, "ok", ret)

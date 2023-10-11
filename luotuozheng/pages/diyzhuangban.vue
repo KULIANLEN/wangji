@@ -165,10 +165,16 @@
 				this.$forceUpdate();
 			},
 			fanhui() {
-				if(window.confirm("放弃修改并返回？"))
-					uni.navigateTo({
-						url: '/pages/detail?order=' + this.orderId
-					})
+				uni.showModal({
+					title: "放弃修改并返回？",
+					success: (res)=>{
+						if(res.confirm){
+							uni.navigateTo({
+								url: '/pages/detail?order=' + this.orderId
+							})
+						}
+					}
+				})
 			},
 			confirm() {
 				uni.navigateTo({
