@@ -51,6 +51,9 @@
 						<label class="radio">
 							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text for="pang">单身</text>
 						</label>
+						<label class="radio">
+							<radio id="pang" value="lt_body1" name="lt_body" checked="2" /><text for="pang">恋爱中</text>
+						</label>
 					</radio-group>
 				</view>
 				<view class="formtitle">
@@ -128,21 +131,21 @@
 				// zhuangtai: '',
 				activeForm: "form1",
 
-				lt_name: "",
-				lt_age: "",
-				lt_body: "",
+				lt_name: "兰小骆",
+				lt_age: "3",
+				lt_body: "2",
 				lt_zt: "1",
-				lt_food: "",
+				lt_food: "风滚草",
 				lt_xg: "",
 
-				zr_name: "",
-				zr_year: "",
-				zr_month: "",
-				zr_day: "",
+				zr_name: "兰小萃",
+				zr_year: "2004",
+				zr_month: "10",
+				zr_day: "19",
 				zr_sex: "",
-				zr_zy: "",
-				zr_xy: "",
-				zr_card: "",
+				zr_zy: "骆驼驾驶",
+				zr_xy: "沙漠动植物研究院",
+				zr_card: "320230547687",
 				
 				userId:'',
 				orderId: 0,
@@ -164,33 +167,38 @@
 		onShow(){
 			this.userId = getApp().globalData.userId;
 			this.orderId = +this.$route.query.order;
-			var that = this;
+			this.mode = +this.$route.query.mode; // create or modify
+			if(mode=='modify'){
+				var that = this;
+				uni.request({
+					url:'http://127.0.0.1:8000/order/query/'+that.orderId,
+					method:"GET",
+					success : (res)=>{
+						console.log(res.data)
+						this.lt_name=res.data.dat.extra.name;
+						this.lt_age=res.data.dat.extra.lt_age;
+						this.lt_body=res.data.dat.extra.lt_body;
+						this.lt_food=res.data.dat.extra.lt_food;
+						this.lt_zt=res.data.dat.extra.lt_zt;
+						this.zr_name=res.data.dat.extra.zr_name;
+						this.zr_card=res.data.dat.extra.zr_card;
+						this.zr_sr=res.data.dat.extra.zr_sr;
+						this.zr_xy=res.data.dat.extra.zr_xy;
+						this.date=res.data.dat.extra.zr_sr;
+						this.head=res.data.dat.items.head;
+						this.face=res.data.dat.items.face;
+						this.neck=res.data.dat.items.neck;
+						this.seat=res.data.dat.items.seat;
+					}
+				})
+			}
+			
 			//this.order_id = "34"
-			uni.request({
-				url:'http://127.0.0.1:8000/order/query/'+that.orderId,
-				method:"GET",
-				success : (res)=>{
-					console.log(res.data)
-					this.lt_name=res.data.dat.extra.name;
-					this.lt_age=res.data.dat.extra.lt_age;
-					this.lt_body=res.data.dat.extra.lt_body;
-					this.lt_food=res.data.dat.extra.lt_food;
-					this.lt_zt=res.data.dat.extra.lt_zt;
-					this.zr_name=res.data.dat.extra.zr_name;
-					this.zr_card=res.data.dat.extra.zr_card;
-					this.zr_sr=res.data.dat.extra.zr_sr;
-					this.zr_xy=res.data.dat.extra.zr_xy;
-					this.date=res.data.dat.extra.zr_sr;
-					this.head=res.data.dat.items.head;
-					this.face=res.data.dat.items.face;
-					this.neck=res.data.dat.items.neck;
-					this.seat=res.data.dat.items.seat;
-				}
-			})
+
 		},
 		methods: {
 			submitForms() {
-				if (this.check1() === false) {
+				if (this.checkForm() === false) {
 					console.log("数据有误");
 					uni.showLoading({
 					    title: '信息填写不完整'
@@ -309,7 +317,7 @@
 			showForm(formName) {
 				this.activeForm = formName;
 			},
-			check1() {
+			checkForm() {
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
 					'' || this.zr_card === '') {
 					return false; // 阻止表单提交

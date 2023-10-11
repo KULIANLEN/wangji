@@ -7,7 +7,7 @@
 			<view>骆驼订单</view>
 		</view>
 		<view class="middlebox2">
-			<form id="form1" class='form1' action="" >
+			<form id="form1" class='form1' action="">
 				<view class="bigtitle">
 					骆驼信息
 				</view>
@@ -51,17 +51,20 @@
 						<label class="radio">
 							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text for="pang">单身</text>
 						</label>
+						<label class="radio">
+							<radio id="pang" value="lt_body1" name="lt_body" checked="2" /><text for="pang">恋爱中</text>
+						</label>
 					</radio-group>
 				</view>
 				<view class="formtitle">
 					最喜欢的食物
 				</view>
 				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
-				
+
 			</form>
 		</view>
 		<view class="box3">
-			<form class="form1" action="" >
+			<form class="form1" action="">
 				<view class="bigtitle">
 					主人信息
 				</view>
@@ -128,21 +131,21 @@
 				// zhuangtai: '',
 				activeForm: "form1",
 				items: {},
-				lt_name: "",
-				lt_age: "",
-				lt_body: "",
+				lt_name: "兰小骆",
+				lt_age: "3",
+				lt_body: "2",
 				lt_zt: "1",
-				lt_food: "",
+				lt_food: "风滚草",
 				lt_xg: "",
 
-				zr_name: "",
-				zr_year: "",
-				zr_month: "",
-				zr_day: "",
+				zr_name: "兰小萃",
+				zr_year: "2004",
+				zr_month: "10",
+				zr_day: "19",
 				zr_sex: "",
-				zr_zy: "",
-				zr_xy: "",
-				zr_card: "",
+				zr_zy: "骆驼驾驶",
+				zr_xy: "沙漠动植物研究院",
+				zr_card: "320230547687",
 			};
 		},
 		computed: {
@@ -153,81 +156,123 @@
 				return this.getDate('end');
 			}
 		},
-		onShow(){
+		onShow() {
 			this.order_id = this.$route.query.order;
-			var arr_items = this.$route.query.items.split("|").map(Number);
-			this.items = {
-				"head": arr_items[0],
-				"face": arr_items[1],
-				"neck": arr_items[2],
-				"seat": arr_items[3],
-			};
-			uni.request({
-				url: "http://127.0.0.1:8000/order/query/"+this.order_id+"/?query=extra",
-				method: "GET",
-				success: (res) => {
-					var e = res.data.dat.extra;
-					this.lt_name = e.name;
-					this.lt_age = e.lt_age;
-					this.lt_body = e.lt_body;
-					this.lt_food = e.lt_food;
-					this.zr_name = e.zr_name;
-					this.date = e.zr_sr;
-					this.zr_xy = e.zr_xy;
-					this.zr_card = e.zr_card;
-				}
-			});
+			this.mode = this.$route.query.mode; // create or modify
+			if(this.mode == 'create'){
+				var arr_items = this.$route.query.items.split("|").map(Number);
+				this.items = {
+					"head": arr_items[0],
+					"face": arr_items[1],
+					"neck": arr_items[2],
+					"seat": arr_items[3],
+				};
+			}
+			var that = this
+			if (this.mode == 'modify') {
+				uni.request({
+					url: "http://127.0.0.1:8000/order/query/" + that.order_id + "/?query=extra",
+					method: "GET",
+					success: (res) => {
+						var e = res.data.dat.extra;
+						that.lt_name = e.name;
+						that.lt_age = e.lt_age;
+						that.lt_body = e.lt_body;
+						that.lt_food = e.lt_food;
+						that.zr_name = e.zr_name;
+						that.date = e.zr_sr;
+						
+						that.zr_xy = e.zr_xy;
+						that.zr_card = e.zr_card;
+						that.zr_name= e.zr_name;
+						that.zr_year= e.zr_year;
+						that.zr_month= e.zr_month;
+						that.zr_day= e.zr_day;
+						that.zr_sex= e.zr_sex;
+						that.zr_zy= e.zr_zy;
+						that.zr_xy= e.zr_xy;
+						that.zr_card= e.zr_card;
+					}
+				});
+			}
 		},
 		methods: {
 			submitForms() {
-				
+				var that = this
 				if (this.check1() === false) {
 					console.log("数据有误");
 					uni.showLoading({
-					    title: '信息填写不完整'
+						title: '信息填写不完整'
 					});
 					setTimeout(() => {
 						uni.hideLoading();
 					}, 500);
 					return null;
 				}
+				var modify_data = {
+					user_id: getApp().globalData.userId,
+					order_id: this.order_id,
+					extra: {
+						"name": this.lt_name,
+						"lt_age": this.lt_age,
+						"lt_body": this.lt_body,
+						"lt_zt": "1",
+						"lt_food": this.lt_food,
+						"zr_name": this.zr_name,
+						"zr_sr": this.date,
+						"zr_xy": this.zr_xy,
+						"zr_card": this.zr_card,
+					},
+
+				}
+				var successTitle = '修改成功'
+				var failTitle = '修改失败'
+				if(this.mode == 'create'){
+					modify_data.items = {
+						"head": this.items.head,
+						"face": this.items.face,
+						"neck": this.items.neck,
+						"seat": this.items.seat
+					}
+					successTitle = '创建成功'				
+					var failTitle = '创建失败'
+				}
 				uni.request({
 					url: 'http://127.0.0.1:8000/order/modify/',
-					data: {
-						user_id: getApp().globalData.userId,
-						order_id: this.order_id,
-						extra:{"name": this.lt_name,
-								"lt_age":this.lt_age,
-								"lt_body":this.lt_body,
-								"lt_zt":"1",
-								"lt_food":this.lt_food,
-								"zr_name":this.zr_name,
-								"zr_sr":this.date,
-								"zr_xy":this.zr_xy,
-								"zr_card":this.zr_card,
-							},
-						items:{"head": this.items.head, "face": this.items.face, "neck": this.items.neck, "seat": this.items.seat}
-					},
+					data: modify_data,
 					method: "POST",
 					success: (res) => {
-						if(res.data.code == 1){
+						if (res.data.code == 1) {
 							uni.showToast({
 								icon: "success",
-								title: "修改成功",
+								title: successTitle,
 							})
-							setTimeout(()=>{uni.navigateTo({
-								url:'/pages/list'
-							})}, 750);
+							if(that.mode=='create'){
+								setTimeout(() => {
+									uni.navigateTo({
+										url: '/pages/list'
+									})
+								}, 750);
+							}else{
+								setTimeout(() => {
+									uni.navigateTo({
+										url: '/pages/detail?order='+that.order_id
+									})
+								}, 750);
+							}
+							
 						} else {
 							uni.showToast({
 								icon: "error",
-								title: "修改失败",
+								title: failTitle + res.data.msg,
 							})
-							setTimeout(()=>{uni.hideToast()}, 750);
+							setTimeout(() => {
+								uni.hideToast()
+							}, 750);
 						}
 					}
 				})
-//////////////////////////////////////////////////////////////////原来的
+				//////////////////////////////////////////////////////////////////原来的
 				// uni.request({
 				// 	url: 'http://127.0.0.1:8000/order/modify/',
 				// 	data: {
@@ -246,7 +291,7 @@
 				// 			},
 				// 		items:{"head":0, "face":100, "neck":200, "seat":300}
 				// 	},
-					
+
 				// 	method: "POST",
 				// 	success: (res) => {
 				// 		console.log(res.data)
@@ -255,7 +300,7 @@
 				// 		})
 				// 	}
 				// })
-////////////////////////////////////////////////////////////////////////////////////
+				////////////////////////////////////////////////////////////////////////////////////
 				// var formData = {
 				// 	name: name,
 				// 	age: age,
@@ -265,11 +310,21 @@
 				// var jsonData = JSON.stringify(formData);
 				// console.log(jsonData)
 			},
-			fanhui(){
-				if(window.confirm("放弃修改并返回？"))
-					uni.navigateTo({
-						url: '/pages/detail?order=' + this.order_id
-					})
+			fanhui() {
+				var that = this
+				uni.showModal({
+					content:"放弃修改并返回？",
+					success(res) {
+						if(res.confirm){
+							uni.navigateTo({
+								url: '/pages/detail?order=' + that.order_id
+							})
+						}
+						
+					}
+				})
+				// if (window.confirm("放弃修改并返回？"))
+					
 			},
 			handleRadioClick_1(value) {
 				this.lt_body = value.toString();
@@ -287,7 +342,8 @@
 				this.activeForm = formName;
 			},
 			check1() {
-				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === ''  || this.zr_name === ''  || this.zr_xy ===
+				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === '' || this.zr_name === '' || this
+					.zr_xy ===
 					'' || this.zr_card === '') {
 					return false; // 阻止表单提交
 				}
@@ -341,12 +397,14 @@
 		top: 36rpx;
 		left: 15rpx;
 	}
+
 	.icon {
 		height: 4vh;
 		width: 4vh;
 		display: flex;
 		justify-content: flex-start;
 	}
+
 	.formtitle {
 		/* text-indent: 1em; */
 		color: #FFA859;
@@ -354,37 +412,42 @@
 		font-weight: 550;
 		font-size: 30rpx;
 		margin-bottom: 1vh;
-	
+
 	}
+
 	.bigtitle {
 		/* text-indent: 1em; */
 		display: flex;
 		justify-content: center;
-		color: rgb(90,90,90);
+		color: rgb(90, 90, 90);
 		margin-top: 2vh;
 		font-weight: bold;
 		font-size: 35rpx;
 		margin-bottom: 1vh;
-	
+
 	}
+
 	.text {
 		width: 66vw;
 		height: 3vh;
-		
+
 		font-size: 28rpx;
 
 		border-width: 1px;
 		/* color: rgb(150, 150, 150); */
 
-		border-bottom: solid 1px rgb(200, 200, 200);;
+		border-bottom: solid 1px rgb(200, 200, 200);
+		;
 		margin-top: 1vh;
 		/* margin: 1vw; */
-		
+
 	}
-	.text::placeholder{
+
+	.text::placeholder {
 		color: red;
 	}
-/* 	.placeholder-stlye{
+
+	/* 	.placeholder-stlye{
 		color: red;
 	} */
 	.bigbox {
@@ -393,8 +456,8 @@
 		align-items: center;
 	}
 
-	.top{
-		background: linear-gradient(to   right,#FF6E53 0 , #FF6E52 , #FF8453  , #FF9758  ,#FFA859 100% );
+	.top {
+		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
 		width: 100vw;
 		height: 160px;
 		/* z-index: -7; */
@@ -425,6 +488,7 @@
 		height: 6vh;
 		margin-bottom: 10vw;
 	}
+
 	.middlebox2 {
 		width: 85vw;
 		height: auto;
@@ -441,13 +505,14 @@
 		flex-direction: column;
 		align-items: center;
 	}
+
 	.box3 {
 		width: 85vw;
 		height: auto;
-		
+
 		margin-top: 5vh;
 		margin-bottom: 4vh;
-		
+
 		padding-top: 3vh;
 		padding-bottom: 5vh;
 		/* padding-left: 1vh;
@@ -466,14 +531,17 @@
 		display: flex;
 		justify-content: center;
 	}
+
 	.radio1 {
 		margin-left: 5vw;
 		font-size: 28rpx;
 	}
+
 	.radio {
 		/* margin-left: 3vw; */
 		font-size: 28rpx;
 	}
+
 	.bottombutton {
 		width: 86vw;
 		text-align: center;
@@ -484,7 +552,8 @@
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: white;
 	}
-	.middlebox3{
+
+	.middlebox3 {
 		margin-bottom: 2vh;
 	}
 </style>

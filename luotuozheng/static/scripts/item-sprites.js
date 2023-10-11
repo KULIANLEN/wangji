@@ -301,18 +301,5 @@ const itemSprites = {
 			width: 100,
 		}
 	},
-	"300":{
-		foreground:{
-			texture : "",
-			offsetX : 0,
-			offsetY : 0,
-			width : 0,
-		},
-		item_display:{
-			offsetX: 0,
-			offsetY: 0,
-			width: 0,
-		}
-	},
 }
 export default itemSprites;

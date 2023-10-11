@@ -113,11 +113,15 @@ def modify(req):
         if order.complement != None:
             available_items.update(order.complement.owner.possessions)
         items = req_json.get('items')
+        
         if items != None:
-            for v in items.values():
-                if not v in available_items:
-                    return format_response(-1, f"Items parameter containing unavailable item(s).")
-            order.items = items
+            if False: # 判断用户是否拥有这些装扮的校验，暂时关闭
+                    for v in items.values():
+                        if not v in available_items:
+                            return format_response(-1, f"Items parameter containing unavailable item(s).")
+                    order.items = items
+            else:
+                order.items = items
         extra = req_json.get('extra')
         if extra != None:
             order.extra = extra
@@ -126,8 +130,10 @@ def modify(req):
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
 def submit(req):
+    print(req.body)
     try:
         req_json = json.loads(req.body)
+        print(req_json)
         user = auth(req_json)
         if user == None:
             return format_response(-1, "Authentication failed.")
@@ -136,6 +142,7 @@ def submit(req):
             if order == None:
                 return format_response(-1, "Missing data order_id.")
             order = camel_order.objects.get(id = int(order))
+            print(order)
         except:
             return format_response(-1, f"Invalid order_id parameter: {order}.")
         if order.status != 0:
@@ -144,8 +151,9 @@ def submit(req):
             return format_response(-1, f"Order {order.id} doesn't belong to {user.id}.")
         order.status = 2
         order.save()
-        return HttpResponse(1, "ok")
+        return format_response(1, "ok")
     except Exception as e:
+        print(e)
         return format_response(-1, f"Server error: {str(e)}")
 def obtain_submitted(req):
     ret = []

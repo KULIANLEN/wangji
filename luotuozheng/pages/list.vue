@@ -97,7 +97,7 @@
 			},
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
-					url: '/pages/detail?order='+this.orders[idx].orderId
+					url: '/pages/detail?order='+this.orders[idx].orderId+'&status='+this.orders[idx].status
 				})
 			},
 			
