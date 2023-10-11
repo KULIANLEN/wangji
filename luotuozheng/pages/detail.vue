@@ -12,13 +12,6 @@
 			<view class="box1">
 				<view class="a">骆驼预览</view>
 				<view class="lt">
-					<!-- 				
-				<img class="lt_0" :src="uuu">
-				<img class="lt_1" :src="zb1">
-				<img class="lt_2" :src="zb2">
-				<img class="lt_3" :src="zb3">
-				<img class="lt_4" :src="zb4">
-				 -->
 					<camel-display :items="items"></camel-display>
 				</view>
 				<view class="diy_button" @click="jump_diy()">
@@ -33,13 +26,13 @@
 						<view class="txt">骆驼名字：{{lt_name}}</view>
 						<view class="txt">年龄：{{lt_age}}岁</view>
 						<view class="txt">体型：{{getBody(lt_body)}}</view>
-						<view class="txt">状态：{{lt_zt=="1"?"单身":(lt_zt=="2"?"恋爱中":"")}}</view>
+						<view class="txt">状态：{{lt_zt=="1"?"单身":(lt_zt=="2"?"恋爱中":(lt_zt=="3"?"其它":"未知"))}}</view>
 						<view class="txt">最喜欢的食物：{{lt_food}}</view>
 
 						<view class="aaa">主人信息</view>
 						<view class="txt">姓名：{{zr_name}}</view>
+						<view class="txt">性别：{{zr_sex=="1"?"男":(zr_sex=="2"?"女":(zr_sex=="3"?"其它":"未知"))}}</view>
 						<view class="txt">生日：{{zr_sr}}</view>
-						<view class="txt">性别：未知</view>
 						<view class="txt">学院：{{zr_xy}}</view>
 						<view class="txt">校园卡：{{zr_card}}</view>
 						<view class="txt">订单编号：{{order_id}}</view>
@@ -142,6 +135,7 @@
 					that.zr_card = res.data.dat.extra.zr_card;
 					that.zr_sr = res.data.dat.extra.zr_sr;
 					that.zr_xy = res.data.dat.extra.zr_xy;
+					this.zr_sex = res.data.dat.extra.zr_sex;
 					that.items = res.data.dat.items;
 				}
 			})
@@ -268,23 +262,6 @@
 						})
 					}
 				})
-			},
-			getImg(url0) {
-				this.zb1 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				this.zb2 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				this.zb3 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				this.zb4 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				// axios.get(url0)
-				// 	.then(response => {
-				// 		this.zb1 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				// 		this.zb2 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				// 		this.zb3 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				// 		this.zb4 = "https://img1.imgtp.com/2023/09/18/IxLA8cXq.png";
-				// 	})
-				// 	.catch(error => {
-				// 		console.error(error);
-				// 	});
-
 			},
 			fanhui() {
 				uni.navigateTo({
@@ -421,51 +398,6 @@
 		/* z-index: 99; */
 
 	}
-
-	/* 
-	.lt_0{
-		width: 100%;
-		height: 100%;
-		z-index: -1; 
-		position: absolute;
-	}
-	.lt_1{
-		width: 10%;
-		z-index: 0;
-		height: 10%;
-		top: 22%;
-		left: 12%;
-		position: absolute;
-		transform: translate(-50%, -50%);
-	}
-	.lt_2{
-		width: 10%;
-		z-index: 0;
-		height: 10%;
-		top: 15%;
-		left: 22%;
-		position: absolute;
-		transform: translate(-50%, -50%);
-	}
-	.lt_3{
-		width: 10%;
-		z-index: 0;
-		height: 10%;
-		top: 49%;
-		left: 24%;
-		position: absolute;
-		transform: translate(-50%, -50%);
-	}
-	.lt_4{
-		width: 10%;
-		z-index: 0;
-		height: 10%;
-		top: 26%;
-		left: 56%;
-		position: absolute;
-		transform: translate(-50%, -50%);
-	}
-	 */
 	.box2 {
 		display: flex;
 		/* z-index: -9; */
@@ -492,14 +424,14 @@
 
 	.aaa {
 		margin-top: 10px;
-		font-size: 18px;
+		font-size: 39rpx;
 		/* color: rgb(67, 67, 67); */
 		color: white;
 	}
 
 	.txt {
 		margin-top: 2px;
-		font-size: 12px;
+		font-size: 26rpx;
 		/* color: rgb(67, 67, 67); */
 		color: rgb(255, 251, 226);
 	}

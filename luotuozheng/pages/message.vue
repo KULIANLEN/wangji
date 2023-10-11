@@ -47,12 +47,18 @@
 					<view class="formtitle">
 						骆驼状态
 					</view>
-					<radio-group v-model="lt_zt">
-						<label class="radio">
-							<radio id="pang" value="lt_body1" name="lt_body" checked="1" /><text for="pang">单身</text>
+					<radio-group>
+						<label class="radio" @click="handleRadioClick_2(1)">
+							<radio id="pang" value="1" name="lt_zt" :checked="lt_zt === '1' " /><text
+								for="pang">单身</text>
 						</label>
-						<label class="radio">
-							<radio id="pang" value="lt_body1" name="lt_body" checked="2" /><text for="pang">恋爱中</text>
+						<label class="radio1" @click="handleRadioClick_2(2)">
+							<radio id="weipang" value="2" name="lt_zt" :checked="lt_zt === '2' " /><text
+								for="weipang">恋爱中</text>
+						</label>
+						<label class="radio1" @click="handleRadioClick_2(3)">
+							<radio id="shou" value="3" name="lt_zt" :checked="lt_zt === '3' " /><text
+								for="shou">其它</text>
 						</label>
 					</radio-group>
 				</view>
@@ -72,7 +78,25 @@
 					姓名
 				</view>
 				<input type="text" class="text" name="name" placeholder="请输入姓名" v-model="zr_name" />
-
+				<view>
+					<view class="formtitle">
+						性别
+					</view>
+					<radio-group>
+						<label class="radio" @click="handleRadioClick_3(1)">
+							<radio id="pang" value="1" name="zr_sex" :checked="zr_sex === '1' " /><text
+								for="pang">男</text>
+						</label>
+						<label class="radio1" @click="handleRadioClick_3(2)">
+							<radio id="weipang" value="2" name="zr_sex" :checked="zr_sex === '2' " /><text
+								for="weipang">女</text>
+						</label>
+						<label class="radio1" @click="handleRadioClick_3(3)">
+							<radio id="shou" value="3" name="zr_sex" :checked="zr_sex === '3' " /><text
+								for="shou">其它</text>
+						</label>
+					</radio-group>
+				</view>
 				<form class="form1" action="">
 					<view class="formtitle">生日</view>
 					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
@@ -134,7 +158,7 @@
 				lt_name: "兰小骆",
 				lt_age: "3",
 				lt_body: "2",
-				lt_zt: "1",
+				lt_zt: "3",
 				lt_food: "风滚草",
 				lt_xg: "",
 
@@ -142,7 +166,7 @@
 				zr_year: "2004",
 				zr_month: "10",
 				zr_day: "19",
-				zr_sex: "",
+				zr_sex: "3",
 				zr_zy: "骆驼驾驶",
 				zr_xy: "沙漠动植物研究院",
 				zr_card: "320230547687",
@@ -179,9 +203,9 @@
 						that.lt_age = e.lt_age;
 						that.lt_body = e.lt_body;
 						that.lt_food = e.lt_food;
+						that.lt_zt=e.lt_zt;
 						that.zr_name = e.zr_name;
 						that.date = e.zr_sr;
-						
 						that.zr_xy = e.zr_xy;
 						that.zr_card = e.zr_card;
 						that.zr_name= e.zr_name;
@@ -216,10 +240,11 @@
 						"name": this.lt_name,
 						"lt_age": this.lt_age,
 						"lt_body": this.lt_body,
-						"lt_zt": "1",
+						"lt_zt": this.lt_zt,
 						"lt_food": this.lt_food,
 						"zr_name": this.zr_name,
 						"zr_sr": this.date,
+						"zr_sex": this.zr_sex,
 						"zr_xy": this.zr_xy,
 						"zr_card": this.zr_card,
 					},
@@ -342,9 +367,9 @@
 				this.activeForm = formName;
 			},
 			check1() {
+				//console.log('a'+this.zr_sex+'b')
 				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === '' || this.zr_name === '' || this
-					.zr_xy ===
-					'' || this.zr_card === '') {
+					.zr_xy === '' || this.zr_card === ''|| this.zr_sex === '' || this.lt_zt === '' ) {
 					return false; // 阻止表单提交
 				}
 
