@@ -15,30 +15,36 @@
 					骆驼名字
 				</view>
 
-				<input type="text" class="text" name="name" placeholder="请输入名字" id="name" v-model="lt_name" />
+				<input type="text" class="text" name="name" placeholder="请输入名字" 
+				id="name" v-model="lt_name" />
 				<view class="formtitle">
 					年龄
 				</view>
-				<input type="text" class="text" name="age" placeholder="请输入年龄" id="age" v-model="lt_age" />
+				<input type="text" class="text" name="age" placeholder="请输入年龄" 
+				id="age" v-model="lt_age" />
 				<view class="form">
 					<view class="formtitle">
 						骆驼体型
 					</view>
 					<radio-group>
 						<label class="radio" @click="handleRadioClick_1(1)">
-							<radio id="pang" value="1" name="lt_body" :checked="lt_body === '1' " /><text
+							<radio id="pang" value="1" name="lt_body" 
+							:checked="lt_body === '1' " /><text
 								for="pang">胖</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(2)">
-							<radio id="weipang" value="2" name="lt_body" :checked="lt_body === '2' " /><text
+							<radio id="weipang" value="2" name="lt_body" 
+							:checked="lt_body === '2' " /><text
 								for="weipang">微胖</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(3)">
-							<radio id="shou" value="3" name="lt_body" :checked="lt_body === '3' " /><text
+							<radio id="shou" value="3" name="lt_body" 
+							:checked="lt_body === '3' " /><text
 								for="shou">瘦</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_1(4)">
-							<radio id="henshou" value="4" name="lt_body" :checked="lt_body === '4' " /><text
+							<radio id="henshou" value="4" name="lt_body" 
+							:checked="lt_body === '4' " /><text
 								for="henshou">很瘦</text>
 						</label>
 					</radio-group>
@@ -49,23 +55,26 @@
 					</view>
 					<radio-group>
 						<label class="radio" @click="handleRadioClick_2(1)">
-							<radio id="pang" value="1" name="lt_zt" :checked="lt_zt === '1' " /><text
+							<radio id="pang" value="1" name="lt_zt" 
+							:checked="lt_zt === '1' " /><text
 								for="pang">单身</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_2(2)">
-							<radio id="weipang" value="2" name="lt_zt" :checked="lt_zt === '2' " /><text
+							<radio id="weipang" value="2" name="lt_zt" 
+							:checked="lt_zt === '2' " /><text
 								for="weipang">恋爱中</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_2(3)">
-							<radio id="shou" value="3" name="lt_zt" :checked="lt_zt === '3' " /><text
-								for="shou">其它</text>
+							<radio id="shou" value="3" name="lt_zt" 
+							:checked="lt_zt === '3' " /><text for="shou">其它</text>
 						</label>
 					</radio-group>
 				</view>
 				<view class="formtitle">
 					最喜欢的食物
 				</view>
-				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" id="food" v-model="lt_food" />
+				<input type="text" class="text" name="food" placeholder="请输入喜欢的食物" 
+				id="food" v-model="lt_food" />
 
 			</form>
 		</view>
@@ -77,29 +86,31 @@
 				<view class="formtitle">
 					姓名
 				</view>
-				<input type="text" class="text" name="name" placeholder="请输入姓名" v-model="zr_name" />
+				<input type="text" class="text" name="name" placeholder="请输入姓名" 
+				v-model="zr_name" />
 				<view>
 					<view class="formtitle">
 						性别
 					</view>
 					<radio-group>
 						<label class="radio" @click="handleRadioClick_3(1)">
-							<radio id="pang" value="1" name="zr_sex" :checked="zr_sex === '1' " /><text
-								for="pang">男</text>
+							<radio id="pang" value="1" name="zr_sex" 
+							:checked="zr_sex === '1' " /><text for="pang">男</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_3(2)">
-							<radio id="weipang" value="2" name="zr_sex" :checked="zr_sex === '2' " /><text
-								for="weipang">女</text>
+							<radio id="weipang" value="2" name="zr_sex" 
+							:checked="zr_sex === '2' " /><text for="weipang">女</text>
 						</label>
 						<label class="radio1" @click="handleRadioClick_3(3)">
-							<radio id="shou" value="3" name="zr_sex" :checked="zr_sex === '3' " /><text
-								for="shou">其它</text>
+							<radio id="shou" value="3" name="zr_sex" 
+							:checked="zr_sex === '3' " /><text for="shou">其它</text>
 						</label>
 					</radio-group>
 				</view>
 				<form class="form1" action="">
 					<view class="formtitle">生日</view>
-					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+					<picker mode="date" :value="date" :start="startDate" 
+					:end="endDate" @change="bindDateChange">
 						<view class="text">{{date}}</view>
 					</picker>
 				</form>
@@ -107,13 +118,15 @@
 				<view class="formtitle">
 					学院
 				</view>
-				<input type="text" class="text" name="name" v-model="zr_xy" placeholder="请输入学院" />
+				<input type="text" class="text" name="name" v-model="zr_xy" 
+				placeholder="请输入学院" />
 
 
 				<view class="formtitle">
 					校园卡号
 				</view>
-				<input type="text" class="text" name="name" v-model="zr_card" placeholder="请输入校园卡号" />
+				<input type="text" class="text" name="name" v-model="zr_card" 
+				placeholder="请输入校园卡号" />
 
 			</form>
 
@@ -155,21 +168,21 @@
 				// zhuangtai: '',
 				activeForm: "form1",
 				items: {},
-				lt_name: "兰小骆",
-				lt_age: "3",
-				lt_body: "2",
-				lt_zt: "3",
-				lt_food: "风滚草",
+				lt_name: "",
+				lt_age: "",
+				lt_body: "",
+				lt_zt: "",
+				lt_food: "",
 				lt_xg: "",
 
-				zr_name: "兰小萃",
-				zr_year: "2004",
-				zr_month: "10",
-				zr_day: "19",
-				zr_sex: "3",
-				zr_zy: "骆驼驾驶",
-				zr_xy: "沙漠动植物研究院",
-				zr_card: "320230547687",
+				zr_name: "",
+				zr_year: "",
+				zr_month: "",
+				zr_day: "",
+				zr_sex: "",
+				zr_zy: "",
+				zr_xy: "",
+				zr_card: "",
 			};
 		},
 		computed: {
@@ -195,7 +208,8 @@
 			var that = this
 			if (this.mode == 'modify') {
 				uni.request({
-					url: "http://127.0.0.1:8000/order/query/" + that.order_id + "/?query=extra",
+					url: "http://127.0.0.1:8000/order/query/" + 
+					that.order_id + "/?query=extra",
 					method: "GET",
 					success: (res) => {
 						var e = res.data.dat.extra;
@@ -226,11 +240,12 @@
 				if (this.check1() === false) {
 					console.log("数据有误");
 					uni.showLoading({
-						title: '信息填写不完整'
+						title: '信息填写不完整',
+						icon: 'error',
 					});
 					setTimeout(() => {
 						uni.hideLoading();
-					}, 500);
+					}, 2000);
 					return null;
 				}
 				var modify_data = {
@@ -325,7 +340,7 @@
 				// 		})
 				// 	}
 				// })
-				////////////////////////////////////////////////////////////////////////////////////
+				////////////////////////////////////////////////////////////////
 				// var formData = {
 				// 	name: name,
 				// 	age: age,
@@ -368,8 +383,10 @@
 			},
 			check1() {
 				//console.log('a'+this.zr_sex+'b')
-				if (this.lt_name === '' || this.lt_age === '' || this.lt_food === '' || this.zr_name === '' || this
-					.zr_xy === '' || this.zr_card === ''|| this.zr_sex === '' || this.lt_zt === '' ) {
+				if (this.lt_name === '' || this.lt_age === '' || 
+				this.lt_food === '' || this.zr_name === '' || this
+					.zr_xy === '' || this.zr_card === ''|| this.zr_sex === '' 
+					|| this.lt_zt === '' ) {
 					return false; // 阻止表单提交
 				}
 
@@ -482,7 +499,8 @@
 	}
 
 	.top {
-		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, 
+		#FF9758, #FFA859 100%);
 		width: 100vw;
 		height: 160px;
 		/* z-index: -7; */
@@ -496,7 +514,8 @@
 	}
 
 	.background {
-		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+		background: linear-gradient(to right, #FF6E53 0, #FF6E52, #FF8453, 
+		#FF9758, #FFA859 100%);
 		width: 100vw;
 		height: 30vh;
 		/* z-index: -5; */
@@ -571,7 +590,8 @@
 		width: 86vw;
 		text-align: center;
 		border-radius: 15px;
-		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
+		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, 
+		#FF9758, #FFA859 100%);
 		border: none;
 		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
 		color: white;
