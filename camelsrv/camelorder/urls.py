@@ -9,4 +9,5 @@ urlpatterns = [
     path('query/<int:id>/', views.query),
     path('submit/', views.submit),
     path('submitted/', views.submitted),
+    path('finish/', views.finish)
 ]

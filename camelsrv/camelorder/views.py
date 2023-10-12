@@ -171,3 +171,12 @@ def submitted(req):
             toAdd[k] = try_deref(v(), wild(wild({})))
         ret.append(toAdd)
     return format_response(1, "ok", ret)
+def finish(req):
+    for e in re.split(" ", str(req.body, encoding="utf8")):
+        try:
+            order = camel_order.objects.get(id = int(e))
+            if order.status != 3:
+                order.status = 3
+                order.save()
+        except:pass
+    return format_response(1, "ok", {})
