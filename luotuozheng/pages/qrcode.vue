@@ -77,7 +77,7 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 		methods :{
 			fanhui(){
 				uni.navigateTo({
-					url:'/pages/index'
+					url:'/pages/list'
 				})
 			}
 		},

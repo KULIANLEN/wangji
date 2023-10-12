@@ -17,7 +17,8 @@
 				</view>
 				<view class="a2">
 					<view class="b1">
-						<view class="txt">{{el.single ? "单身驼" : "情侣驼"}}</view>
+						<view class="txt">年龄：{{el.lt_age}}岁</view>
+						<view class="txt">体型：{{el.lt_body}}</view>
 						<view class="txt">{{"订单编号："+el.orderId}}</view>
 					</view>
 					<view class="b2">
@@ -53,8 +54,11 @@
 						this.orders.push({
 							orderId : e.id,
 							camelName : e.extra.name + (e.complement === null ? '' : ' & ' + e.complement.extra.name),
-							single : e.extra.lt_zt==="1"?1:0,
+							lt_food : e.extra.lt_food,
+							//single : lt_zt=="1"?"单身":(lt_zt=="2"?"恋爱中":(lt_zt=="3"?"其它":"未知")),
 							status : e.status,
+							lt_age : e.extra.lt_age,
+							lt_body: e.extra.lt_body=="1"?"胖":(e.extra.lt_body=="2"?"微胖":(e.extra.lt_body=="3"?"瘦":(e.extra.lt_body=="4"?"很瘦":"未知"))),
 						});	
 					})
 				}
@@ -70,11 +74,6 @@
 					url: '/pages/signup/signup'
 				})
 			},
-			ddxq(){
-				uni.navigateTo({
-					url: '/pages/diyzhuangban'
-				})
-			},
 			mapStatus2Txt(status){
 				switch(status){
 					case 0:
@@ -88,16 +87,17 @@
 			mapStatus2Color(status){
 				switch(status){
 					case 0:
-					return "#FF0000";
+					return "rgb(253, 118, 91)";
 					case 1:
 					return "#dddd00";
 					case 2:
-					return "#00FF00";
+					return "rgb(42, 111, 42)";
 				}
 			},
+			
 			redirect2OrderDetail(idx){
 				uni.navigateTo({
-					url: '/pages/detail?order='+this.orders[idx].orderId
+					url: '/pages/detail?order='+this.orders[idx].orderId+'&status='+this.orders[idx].status
 				})
 			},
 			
@@ -153,7 +153,7 @@
 		
 	}
 	.dd{
-		height: 125px;
+		height: 140px;
 		width: 90vw;
 		background: white;
 /* 		margin-left: 10px;
@@ -186,6 +186,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		margin-top: 7px;
 	}
 	.b2{
 		display: flex;

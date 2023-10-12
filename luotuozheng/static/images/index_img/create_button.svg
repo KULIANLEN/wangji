@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100.46 32.99">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffb239;
+        stroke: #feedc3;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #fff5cc;
+        font-family: MicrosoftYaHei-Bold, 'Microsoft YaHei';
+        font-size: 16.69px;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="_图层_1-2" data-name="图层 1">
+    <g>
+      <rect class="cls-1" x=".5" y=".5" width="99.46" height="31.99" rx="4.99" ry="4.99"/>
+      <text class="cls-2" transform="translate(9.17 21.57)"><tspan x="0" y="0">定制骆驼证</tspan></text>
+    </g>
+  </g>
+</svg>

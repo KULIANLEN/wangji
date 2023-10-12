@@ -24,7 +24,9 @@
 						<view class="items_container">
 							<view class="image" v-for="(el, idx) in headPossessions" :key="idx"
 								@click="selectItem('head', el)">
-								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture"
+									:style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'">
+								</image>
 							</view>
 						</view>
 					</view>
@@ -32,7 +34,9 @@
 						<view class="items_container">
 							<view class="image" v-for="(el, idx) in facePossessions" :key="idx"
 								@click="selectItem('face', el)">
-								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture"
+									:style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'">
+								</image>
 							</view>
 						</view>
 					</view>
@@ -40,7 +44,9 @@
 						<view class="items_container">
 							<view class="image" v-for="(el, idx) in neckPossessions" :key="idx"
 								@click="selectItem('neck', el)">
-								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture"
+									:style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'">
+								</image>
 							</view>
 						</view>
 					</view>
@@ -48,7 +54,9 @@
 						<view class="items_container">
 							<view class="image" v-for="(el, idx) in seatPossessions" :key="idx"
 								@click="selectItem('seat', el)">
-								<image mode="widthFix" :src="itemSprites[el].foreground.texture" :style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'"></image>
+								<image mode="widthFix" :src="itemSprites[el].foreground.texture"
+									:style="'left:'+itemSprites[el].item_display.offsetX+'%;top:'+itemSprites[el].item_display.offsetY+'%;width:'+itemSprites[el].item_display.width+'%;'">
+								</image>
 							</view>
 						</view>
 					</view>
@@ -69,7 +77,10 @@
 
 					</view>
 				</view>
-				<view class="confirm-button" @click="confirm()">下一步</view>
+				<view class="bottombox">
+					<button class="confirm-button" @click="confirm()">下一步</button>
+				</view>
+				<!-- <view class="confirm-button" @click="confirm()">下一步</view> -->
 			</view>
 		</view>
 	</view>
@@ -83,6 +94,7 @@
 		},
 		data() {
 			return {
+				mode: 'create', //create or modify
 				page: 1,
 				items: {
 					"head": 0,
@@ -93,52 +105,38 @@
 				itemSprites: itemSprites,
 				userId: '',
 				orderId: 0,
-				headPossessions: [0,1,2,3,4,5,6,7,8],
-				facePossessions: [100,101,102,103,104],
-				neckPossessions: [200,201,202,203],
-				seatPossessions: [301,302,303,304],
+				headPossessions: [1, 2, 3, 4, 5, 6, 7, 8, 0],
+				facePossessions: [101, 102, 103, 104, 100],
+				neckPossessions: [201, 202, 203, 200],
+				seatPossessions: [301, 302, 303, 304, 300],
 			}
 		},
 		onShow() {
 			this.userId = getApp().globalData.userId;
 			this.orderId = +this.$route.query.order;
-			var that = this;
-			uni.request({
-				url: 'http://127.0.0.1:8000/order/query/' + this.orderId +
-					'?query=*.{possessions|owner.possessions}',
-				method: 'GET',
-				success(res) {
-					that.items = res.data.dat.items;
-					var headSet = new Set();
-					var faceSet = new Set();
-					var neckSet = new Set();
-					var seatSet = new Set();
-					var filter = e => {
-						switch (true) {
-							case e < 100:
-								headSet.add(e);
-								break;
-							case e < 200:
-								faceSet.add(e);
-								break;
-							case e < 300:
-								neckSet.add(e);
-								break;
-							default:
-								seatSet.add(e);
-						}
-					};
-
-					res.data.dat.owner.possessions.forEach(filter);
-					if (res.data.dat.complement != null) {
-						res.data.dat.complement.owner.possessions.forEach(filter);
+			this.mode = this.$route.query.mode
+			var that = this
+			if (this.mode == 'modify') {
+				uni.request({
+					url:'http://127.0.0.1:8000/order/query/'+that.orderId,
+					method:"GET",
+					success : (res)=>{
+						// console.log(res.data)
+						console.log(res.data.dat.items)
+						// that.items.head=res.data.dat.items.name;
+						// that.items.face=res.data.dat.items.face;
+						// that.items.neck=res.data.dat.items.neck;
+						// that.items.seat=res.data.dat.items.seat;
+						that.items=res.data.dat.items;
+						console.log(that.items)
+						// this.zr_name=res.data.dat.extra.zr_name;
+						// this.zr_card=res.data.dat.extra.zr_card;
+						// this.zr_sr=res.data.dat.extra.zr_sr;
+						// this.zr_xy=res.data.dat.extra.zr_xy;
 					}
-					that.headPossessions = Array.from(headSet);
-					that.facePossessions = Array.from(faceSet);
-					that.neckPossessions = Array.from(neckSet);
-					that.seatPossessions = Array.from(seatSet);
-				}
-			})
+				})
+			}
+
 		},
 		methods: {
 			jump1() {
@@ -177,9 +175,90 @@
 				})
 			},
 			confirm() {
-				uni.navigateTo({
-					url: "/pages/message?order=" + this.orderId + "&items=" + String(this.items.head) + "|" + String(this.items.face) + "|" +
-						String(this.items.neck) + "|" + String(this.items.seat)
+				if (this.mode == 'create') {
+					uni.navigateTo({
+						url: "/pages/message?order=" + this.orderId + "&items=" + String(this.items.head) + "|" +
+							String(this.items.face) + "|" +
+							String(this.items.neck) + "|" + String(this.items.seat)+"&mode=create"
+					})
+				}else if (this.mode == 'modify'){
+					var that = this
+					uni.request({
+						url: 'http://127.0.0.1:8000/order/modify/',
+						data: {
+							user_id: getApp().globalData.userId,
+							order_id: that.orderId,
+							items:{
+								"head": that.items.head,
+								"face": that.items.face,
+								"neck": that.items.neck,
+								"seat": that.items.seat,
+							}
+						},
+						method: "POST",
+						success: (res) => {
+							if (res.data.code == 1) {
+								uni.showToast({
+									icon: "success",
+									title: "修改成功",
+								})
+								setTimeout(() => {
+									uni.navigateTo({
+										url: "/pages/detail?order=" + that.orderId 
+									})
+								}, 750);
+							} else {
+								uni.showToast({
+									icon: "error",
+									title: "修改失败" + res.data.msg,
+								})
+								setTimeout(() => {
+									uni.hideToast()
+								}, 750);
+							}
+						}
+					})
+					
+				}
+
+			},
+			getPossessions() {
+				var that = this;
+				uni.request({
+					url: 'http://127.0.0.1:8000/order/query/' + this.orderId +
+						'?query=*.{possessions|owner.possessions}',
+					method: 'GET',
+					success(res) {
+						that.items = res.data.dat.items;
+						var headSet = new Set();
+						var faceSet = new Set();
+						var neckSet = new Set();
+						var seatSet = new Set();
+						var filter = e => {
+							switch (true) {
+								case e < 100:
+									headSet.add(e);
+									break;
+								case e < 200:
+									faceSet.add(e);
+									break;
+								case e < 300:
+									neckSet.add(e);
+									break;
+								default:
+									seatSet.add(e);
+							}
+						};
+
+						res.data.dat.owner.possessions.forEach(filter);
+						if (res.data.dat.complement != null) {
+							res.data.dat.complement.owner.possessions.forEach(filter);
+						}
+						that.headPossessions = Array.from(headSet);
+						that.facePossessions = Array.from(faceSet);
+						that.neckPossessions = Array.from(neckSet);
+						that.seatPossessions = Array.from(seatSet);
+					}
 				})
 			}
 		},
@@ -209,7 +288,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
 		width: 100vw;
 		height: 8vh;
 		z-index: -2;
@@ -326,8 +404,8 @@
 		overflow-y: hidden;
 		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
 	}
-	
-	.items_container{
+
+	.items_container {
 		margin-top: 2.25vw;
 		padding: 0;
 		width: fit-content;
@@ -336,7 +414,7 @@
 		justify-content: center;
 		flex-direction: row;
 	}
-	
+
 	.middlebox5 {
 		margin-left: 2vw;
 		margin-top: 4vw;
@@ -385,21 +463,19 @@
 		width: 20vw;
 		height: 7vh;
 	}
-
+	.bottombox{
+		margin-top: 4vh;
+		margin-bottom: 2vh;
+	}
 	.confirm-button {
 		background: linear-gradient(to bottom right, #FF6E53 0, #FF6E52, #FF8453, #FF9758, #FFA859 100%);
-		color: #393232;
+		color: white;
 		border: none;
-		box-shadow: 0 0px 29px 1px rgba(0, 0, 0, 0.2);
-		color: #fff1cf;
-		margin: 7.5%;
-		width: 85%;
-		display: flex;
-		justify-content: center;
-		align-content: center;
-		background-color: #f8f3d4;
+		width: 86vw;
+		height: 70rpx;
+		line-height: 70rpx;
 		border-radius: 15px;
-		border: none;
-		box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+		font-size: 35rpx;
+		text-align: center;
 	}
 </style>
