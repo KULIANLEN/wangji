@@ -130,23 +130,23 @@ def modify(req):
     except Exception as e:
         return format_response(-1, f"Server error: {str(e)}")
 def submit(req):
-    print(req.body)
     try:
-        req_json = json.loads(req.body)
-        print(req_json)
-        user = auth(req_json)
+        user = req.GET.get("user_id")
         if user == None:
-            return format_response(-1, "Authentication failed.")
+            return format_response(-1, "user_id required.")
         try:
-            order = req_json.get('order_id')
-            if order == None:
-                return format_response(-1, "Missing data order_id.")
+            user = user_data.objects.get(id = user)
+        except ObjectDoesNotExist as e:
+            return format_response(-1, f"User {user} doesn't exist.")
+        order = req.GET.get('order_id')
+        if order == None:
+            return format_response(-1, "order_id required.")
+        try:
             order = camel_order.objects.get(id = int(order))
-            print(order)
         except:
             return format_response(-1, f"Invalid order_id parameter: {order}.")
         if order.status != 0:
-            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only modify orders on status 0.")
+            return format_response(-1, f"Order {order.id} is now on status {order.status}, you can only submit orders on status 0.")
         if user != order.owner:
             return format_response(-1, f"Order {order.id} doesn't belong to {user.id}.")
         order.status = 2

@@ -45,9 +45,8 @@ import { AwesomeQR } from 'static/scripts/awesome-qr.js';
 			}
 		},
 		mounted() {
-			
 			new AwesomeQR({
-				text : "https://m.bilibili.com",
+				text : getApp().globalData.serverURL + "/order/submit/?user_id=" + getApp().globalData.userId + "&order_id=" + this.$route.query.order_id,
 				size : 512,
 				margin : 0,
 				colorDark : "#000000",

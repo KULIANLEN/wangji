@@ -11,6 +11,7 @@
 		},
 		globalData:{
 			userId : 114,
+			serverURL : "http://127.0.0.1:8000"
 		}
 	}
 </script>

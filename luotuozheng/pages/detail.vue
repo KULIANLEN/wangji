@@ -223,44 +223,8 @@
 				// }
 			},
 			tjdd() {
-				console.log("提交订单")
-				var that = this;
-				uni.showLoading({
-					title: "提交中..."
-				})
-				uni.request({
-					url: 'http://127.0.0.1:8000/order/submit/',
-					method: 'POST',
-					data: {
-						order_id: that.orderId,
-						user_id: getApp().globalData.userId,
-					},
-					success(res) {
-						if (res.data.code == 1) {
-							console.log(res)
-							uni.hideLoading()
-							uni.showToast({
-								title: "提交成功",
-								complete() {
-									uni.navigateTo({
-										url: '/pages/qrcode'
-									})
-								}
-							})
-						} else {
-							uni.hideLoading()
-							uni.showToast({
-								title: "提交失败" + res.data.msg
-							})
-						}
-
-					},
-					fail(res) {
-						uni.hideLoading()
-						uni.showToast({
-							title: "网络错误"
-						})
-					}
+				uni.navigateTo({
+					url: '/pages/qrcode?order_id=' + this.orderId
 				})
 			},
 			fanhui() {
@@ -271,7 +235,7 @@
 			getPossessions() {
 				var that = this;
 				uni.request({
-					url: 'http://127.0.0.1:8000/order/query/' + this.orderId +
+					url: getApp().globalData.serverURL + '/order/query/' + this.orderId +
 						'?query=*.{possessions|owner.possessions}',
 					method: 'GET',
 					success(res) {
